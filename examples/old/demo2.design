@@ -1,0 +1,24 @@
+# file_name: demo2
+
+Flow {
+    Given LoginPage
+    When Click Button.Login
+    Then Goto HomePage
+
+    Given When HomePage
+    When Click Link.Blog
+    Then Goto BlogPage
+
+    Given When BlogPage
+    When Click Link.Detail
+    Then Goto BlogDetailPage
+}
+
+Template BlogDetailPage {
+    Layer.Header
+    Layer.Title
+    Layer.Description
+    Layer.Content
+    Layer.Comments
+    Layer.Footer
+}

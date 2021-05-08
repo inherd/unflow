@@ -1,0 +1,124 @@
+project: DesignDSL
+feature: "design basic dsl"
+type: web
+width: 1080px
+
+flow 登录 {
+    SEE 首页
+    DO [Click] "登录".Button
+        REACT Success: SHOW "Login Success".Toast with ANIMATE(bounce)
+        REACT Failure: SHOW "Login Failure".Dialog
+
+    SEE "登录失败".窗口
+    DO [Click] "忘记密码".Button
+        REACT: GOTO ForgotPasswordPage
+
+    SEE 忘记密码面
+    DO [Click] "重置密码".Button
+        REACT: SHOW "Please Check Email".Message
+}
+
+flow 登出 {
+    SEE 个人信息面
+    DO [Click] "登出".按钮
+    REACT Success: SHOW "登出成功".Toast with ANIMATE(bounce)
+}
+
+page HomePage {
+    LayoutGrid: 12x
+    LayoutId: HomePage
+    Router: "/home"
+}
+
+page ForgotPasswordPage {
+    Router: "/profile/reset-password/"
+}
+
+Layout HomePage {
+--------------------------
+|      Navigation(RIGHT) |
+--------------------------
+| Empty(2x) | TitleComponent | Empty(2x) |
+--------------------------
+|     ImageComponent     |
+--------------------------
+| BlogList(8x)  | Archives(2x) |
+--------------------------
+| Footer                 |
+--------------------------
+}
+
+component Navigation {
+    LayoutId: Navigation
+}
+
+component Dialog {
+    width: 320px
+    height: 240px
+}
+
+
+Layout Navigation {
+--------------------------------------
+| "home" |"detail" | Button("Login") |
+--------------------------------------
+}
+
+component TitleComponent {}
+component ImageComponent {
+    width: 1080px
+    height: 320px
+}
+component Toast {
+    width: 320px
+    height: 120px
+}
+component 窗口 {
+    width: 320px
+    height: 120px
+}
+component Message {
+    width: 320px
+    height: 120px
+}
+component BlogList {
+    BlogDetail, Space8
+    BlogDetail, Space8
+    BlogDetail, Space8
+    BlogDetail, Space8
+    BlogDetail, Space8
+    BlogDetail, Space8
+}
+
+library FontSize {
+    H1 = 32px
+    H2 = 28px
+    H3 = 24px
+    H4 = 20px
+    H5 = 18px
+    H6 = 16px
+}
+
+library Color {
+    Primary {
+        label = "Primary"
+        value = "#E53935"
+    }
+    Secondary {
+        label = "Blue"
+        value = "#1E88E5"
+    }
+    Third {
+        label = "Third"
+        value = "#000000"
+    }
+}
+
+library Button {
+    Default = [
+        FontSize.H2, Color.Primary
+    ]
+    Primary = [
+        FontSize.H2, Color.Primary
+    ]
+}

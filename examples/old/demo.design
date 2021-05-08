@@ -1,0 +1,35 @@
+# blabla
+
+DesignSystem: antdesign
+
+Component some {
+    A -> B
+}
+
+Template canvas
+
+Design Headline {
+    style -> HeadLineStyle
+    title -> Phodal
+    class -> head
+
+    color: COLOR_BLUE                 // set value
+    background: COLOR_GREEN           // set value
+}
+
+Design SlideImage {
+
+}
+
+Template Home {
+    Layer Headline
+    Layer SlideImage
+}
+
+```
+<html>
+    <body>
+        <h1></h1>
+    </body>
+</html>
+```
