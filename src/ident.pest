@@ -5,18 +5,25 @@ ident = { (alpha | digit)+ }
 
 ident_list = _{ !digit ~ ident ~ (" " ~ ident)+ }
 
-lparen = { '(' }
-rparen = { ')' }
-lbrace = { '{' }
-rbrace = { '}' }
-lbrack = { '[' }
-rbrack = { ']' }
-quote =  { '\"'}
-singlequote = { '\''}
-colon = { ':'}
-dot =   { '.'}
-comma = { ','}
+int   = @{ "-" ? ~ ("0" | '1'..'9' ~ '0'..'9' * ) }
+float = @{
+    "-" ? ~
+    (
+        "0" ~ "." ~ '0'..'9' + |
+        '1'..'9' ~ '0'..'9' * ~ "." ~ '0'..'9' +
+    )
+}
 
+double_quoted_string  = @{ "\"" ~ (!("\"") ~ ANY)* ~ "\""}
+single_quoted_string  = @{ "\'" ~ (!("\'") ~ ANY)* ~ "\'"}
+backquoted_quoted_string  = @{ "`" ~ (!("`") ~ ANY)* ~ "`"}
+
+string = @{
+    double_quoted_string |
+    single_quoted_string |
+    backquoted_quoted_string
+}
+boolean = { "true" | "false" | "True" | "False" }
 
 unit = { "rem" | "px" | "em" }
 
@@ -42,3 +49,16 @@ position = { "LEFT" | "RIGHT" | "TOP" | "BOTTOM" }
 
 style = { "style" | "STYLE" | "CSS" | "css" }
 library = { "library" | "LIBRARY" | "库" }
+
+
+lparen = { "(" }
+rparen = { ")" }
+lbrace = { "{" }
+rbrace = { "}" }
+lbrack = { "[" }
+rbrack = { "]" }
+quote =  { "\""}
+singlequote = { "\""}
+colon = { ":"}
+dot =   { "."}
+comma = { ","}
