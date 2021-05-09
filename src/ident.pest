@@ -10,7 +10,7 @@ declarations = {
     flow_definition
 }
 
-flow_definition = { flow ~ WHITESPACE* ~ utf16 ~ WHITESPACE* ~ lbrace ~ WHITESPACE* ~ rbrace }
+flow_definition = { flow ~ WHITESPACE* ~ identifier ~ WHITESPACE* ~ lbrace ~ WHITESPACE* ~ "}" }
 
 int   = @{ "-" ? ~ ("0" | '1'..'9' ~ '0'..'9' * ) }
 float = @{
@@ -37,7 +37,7 @@ unit = { "rem" | "px" | "em" }
 goto_text =  { "goto" | "GOTO" | "跳转"}
 show_key = { "show" | "SHOW" | "展示" }
 
-flow = { "flow" | "流" }
+flow = @{ "flow" | "流" }
 
 see_text = { "see" | "SEE" | "看到" }
 do_text = { "do" | "DO" | "做" }
@@ -60,19 +60,19 @@ library = { "library" | "LIBRARY" | "库" }
 
 lparen = { "(" }
 rparen = { ")" }
-lbrace = { "{" }
-rbrace = { "}" }
+lbrace = @{ "{" }
+rbrace = @{ "}" }
 lbrack = { "[" }
 rbrack = { "]" }
 quote =  { "\""}
-singlequote = { "\""}
+singlequote = { "\'"}
 colon = { ":"}
 dot =   { "."}
 comma = { ","}
 
 identifier = @{ (ASCII_ALPHA | ASCII_ALPHANUMERIC | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
 
-utf16 = @{ ANY* }
+iden_utf8 = @{ ANY* }
 
 WHITESPACE = _{ " " | "\t" | "\\" ~ NEWLINE}
 COMMENT = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") | ("//" ~ (!NEWLINE ~ ANY)*) }

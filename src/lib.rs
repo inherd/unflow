@@ -28,9 +28,9 @@ mod tests {
     fn should_parse_config() {
         parse("id: 123");
     }
-    //
-    // #[test]
-    // fn should_parse_flow() {
-    //     parse("flow 登录 {}");
-    // }
+
+    #[test]
+    fn should_parse_flow() {
+        parse("flow login { }");
+    }
 }
