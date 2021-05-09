@@ -1,8 +1,16 @@
-start = { SOI ~ NEWLINE* ~ config_definition* }
+// start = ${ SOI ~ NEWLINE* ~ config_definition* ~ declarations* ~ EOI }
 
-config_definition = { config_key ~ ":" ~ config_value }
+start = ${ SOI ~ NEWLINE* ~ config_definition* ~ declarations* ~ EOI }
+
+config_definition = { config_key ~ WHITESPACE* ~ ":" ~ WHITESPACE* ~ config_value }
 config_key = { identifier }
-config_value = { identifier }
+config_value = { identifier | int | float }
+
+declarations = {
+    flow_definition
+}
+
+flow_definition = { flow ~ WHITESPACE* ~ utf16 ~ WHITESPACE* ~ lbrace ~ WHITESPACE* ~ rbrace }
 
 int   = @{ "-" ? ~ ("0" | '1'..'9' ~ '0'..'9' * ) }
 float = @{
@@ -64,6 +72,7 @@ comma = { ","}
 
 identifier = @{ (ASCII_ALPHA | ASCII_ALPHANUMERIC | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
 
+utf16 = @{ ANY* }
 
 WHITESPACE = _{ " " | "\t" | "\\" ~ NEWLINE}
 COMMENT = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") | ("//" ~ (!NEWLINE ~ ANY)*) }
