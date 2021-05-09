@@ -4,3 +4,41 @@ digit = { '0'..'9' }
 ident = { (alpha | digit)+ }
 
 ident_list = _{ !digit ~ ident ~ (" " ~ ident)+ }
+
+lparen = { '(' }
+rparen = { ')' }
+lbrace = { '{' }
+rbrace = { '}' }
+lbrack = { '[' }
+rbrack = { ']' }
+quote =  { '\"'}
+singlequote = { '\''}
+colon = { ':'}
+dot =   { '.'}
+comma = { ','}
+
+
+unit = { "rem" | "px" | "em" }
+
+goto_text =  { "goto" | "GOTO" | "跳转"}
+show_key = { "show" | "SHOW" | "展示" }
+
+flow = { "flow" | "流" }
+
+see_text = { "see" | "SEE" | "看到" }
+do_text = { "do" | "DO" | "做" }
+react_text = { "react" | "REACT" | "响应" }
+
+with_text  = { "with" | "WITH" | "使用" }
+animate = { "animte" | "ANIMATE" | "动画" }
+
+repeat = { "repeat" }
+
+layout = { "layout" | "Layout" | "布局" }
+page = { "page" | "PAGE" | "页面" }
+component = { "component" | "COMPONENT" | "组件" }
+
+position = { "LEFT" | "RIGHT" | "TOP" | "BOTTOM" }
+
+style = { "style" | "STYLE" | "CSS" | "css" }
+library = { "library" | "LIBRARY" | "库" }
