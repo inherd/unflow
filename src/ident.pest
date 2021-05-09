@@ -1,9 +1,8 @@
-alpha = { 'a'..'z' | 'A'..'Z' }
-digit = { '0'..'9' }
+start = { SOI ~ NEWLINE* ~ config_definition* }
 
-ident = { (alpha | digit)+ }
-
-ident_list = _{ !digit ~ ident ~ (" " ~ ident)+ }
+config_definition = { config_key ~ ":" ~ config_value }
+config_key = { identifier }
+config_value = { identifier }
 
 int   = @{ "-" ? ~ ("0" | '1'..'9' ~ '0'..'9' * ) }
 float = @{
@@ -62,3 +61,9 @@ singlequote = { "\""}
 colon = { ":"}
 dot =   { "."}
 comma = { ","}
+
+identifier = @{ (ASCII_ALPHA | ASCII_ALPHANUMERIC | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
+
+
+WHITESPACE = _{ " " | "\t" | "\\" ~ NEWLINE}
+COMMENT = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") | ("//" ~ (!NEWLINE ~ ANY)*) }
