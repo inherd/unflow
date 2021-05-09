@@ -72,7 +72,8 @@ comma = { ","}
 
 identifier = @{ (ASCII_ALPHA | ASCII_ALPHANUMERIC | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
 
-iden_utf8 = @{ ANY* }
+// ident_utf = _{ '\u{D800}'..'\u{DBFF}' }
+// any = { '\u{00}'..'\u{10FFFF}' }
 
 WHITESPACE = _{ " " | "\t" | "\\" ~ NEWLINE}
 COMMENT = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") | ("//" ~ (!NEWLINE ~ ANY)*) }
