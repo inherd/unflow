@@ -6,7 +6,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext};
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext, Do_declContextExt};
 #[allow(unused_imports)]
 use crate::{
     Config_declContextAttrs,
@@ -17,6 +17,7 @@ use crate::{
     React_declContextAttrs,
 };
 use std::rc::Rc;
+use antlr_rust::parser_rule_context::BaseParserRuleContext;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Interaction {
@@ -172,14 +173,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {
                     let do_decl = decl.do_decl().unwrap() as Rc<Do_declContext<'i>>;
 
-                    let text: String = do_decl.STRING_LITERAL().unwrap().get_text();
-                    let without_quote: &str = &text[1..text.len() - 1];
-
-                    let do_inter = DoInteraction {
-                        component_name: do_decl.component_name().unwrap().get_text(),
-                        data: without_quote.to_string(),
-                        ui_event: do_decl.action_name().unwrap().get_text()
-                    };
+                    let do_inter = <UnflowParser<'i>>::build_do_interaction(&do_decl);
 
                     current_interaction.ui_do = do_inter;
                 }
@@ -226,5 +220,19 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
         flow.interactions.push(current_interaction);
         self.flow.flows.push(flow);
+    }
+}
+
+impl<'i>  UnflowParser<'i> {
+    fn build_do_interaction<'c>(do_decl: &Rc<BaseParserRuleContext<'c, Do_declContextExt<'c>>>) -> DoInteraction {
+        let text: String = do_decl.STRING_LITERAL().unwrap().get_text();
+        let without_quote: &str = &text[1..text.len() - 1];
+
+        let do_inter = DoInteraction {
+            component_name: do_decl.component_name().unwrap().get_text(),
+            data: without_quote.to_string(),
+            ui_event: do_decl.action_name().unwrap().get_text()
+        };
+        do_inter
     }
 }
