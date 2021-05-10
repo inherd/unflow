@@ -9,7 +9,6 @@ mod tests {
     use crate::{DesignLexer, DesignParserContextType, design_parser, DesignParserContext, DesignParser, DesignListener};
     use antlr_rust::InputStream;
     use antlr_rust::tree::ParseTreeListener;
-    use antlr_rust::rule_context::CustomRuleContext;
     use antlr_rust::common_token_stream::CommonTokenStream;
 
     #[test]
