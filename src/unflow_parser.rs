@@ -3,14 +3,15 @@ use std::collections::HashMap;
 use antlr_rust::common_token_stream::CommonTokenStream;
 use antlr_rust::InputStream;
 use antlr_rust::token_factory::ArenaCommonFactory;
-use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable};
+use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_DeclContext};
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_DeclContext, Interaction_declContextAll };
 use crate::{
     Config_declContextAttrs,
-    Flow_DeclContextAttrs
+    Flow_DeclContextAttrs,
 };
+use std::rc::Rc;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Interaction {
@@ -139,7 +140,24 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
         let interaction = Interaction::default();
 
-        // ctx.interaction_decl_all()
+        let decls: Vec<Rc<Interaction_declContextAll<'i>>> = ctx.interaction_decl_all();
+        for decl in decls {
+            let child = decl.get_child(0).unwrap();
+            let type_name = format!("{:?}", child);
+            match type_name.as_str() {
+                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::See_declContextExt>" => {
+                    // println!("{:?}", child);
+                },
+                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {
+
+                },
+                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {
+
+                }
+                _ => {}
+            }
+            println!("{:?}", type_name);
+        }
 
         flow.interactions.push(interaction);
         self.flow.flows.push(flow);
