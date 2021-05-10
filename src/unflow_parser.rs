@@ -8,7 +8,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, Layout_declContext, Library_declContext, Library_expContextAll};
+use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, Layout_declContext, Library_declContext, Library_expContextAll, Component_nameContextAll};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -29,6 +29,7 @@ use crate::{
     See_declContextAttrs,
     Show_actionContextAttrs,
 };
+use std::ops::Deref;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Interaction {
@@ -277,22 +278,20 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
         let decls: Vec<Rc<Component_body_declContextAll<'i>>> = ctx.component_body_decl_all();
         for decl in &decls {
-            let child = decl.get_child(0).unwrap();
-            let type_name = format!("{:?}", child);
+            match decl.deref() {
+                Component_body_declContextAll::Component_body_configContext(sub_ctx) => {
+                    let key = sub_ctx.config_key().unwrap().get_text();
+                    let value = sub_ctx.config_value().unwrap().get_text();
 
-            if type_name.contains("Config_keyContextExt") {
-                let key = child.get_text();
-                let value = decl.get_child(0).unwrap().get_text();
-
-                component.configs.insert(key, value);
-            }
-
-            if type_name.contains("Component_nameContextExt") {
-                for name in decl.get_children() {
-                    if format!("{:?}", name).contains("Component_nameContextExt") {
+                    component.configs.insert(key, value);
+                }
+                Component_body_declContextAll::Component_body_nameContext(sub_ctx) => {
+                    let names: Vec<Rc<Component_nameContextAll<'i>>> = sub_ctx.component_name_all();
+                    for name in names {
                         component.child_components.push(name.get_text());
                     }
                 }
+                Component_body_declContextAll::Error(_) => {}
             }
         }
 
@@ -309,7 +308,11 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
         let exps: Vec<Rc<Library_expContextAll<'i>>> = ctx.library_exp_all();
         for exp in exps {
-            println!("{:?}", exp);
+            match exp.deref() {
+                Library_expContextAll::Library_objectContext(_) => {}
+                Library_expContextAll::Library_configContext(_) => {}
+                Library_expContextAll::Error(_) => {}
+            }
         }
 
         self.flow.libraries.push(library);
