@@ -259,15 +259,30 @@ fn enter_component_decl(&mut self, _ctx: &Component_declContext<'input>) { }
 fn exit_component_decl(&mut self, _ctx: &Component_declContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#component_body_decl}.
+ * Enter a parse tree produced by the {@code component_body_name}
+ * labeled alternative in {@link DesignParser#component_body_decl}.
  * @param ctx the parse tree
  */
-fn enter_component_body_decl(&mut self, _ctx: &Component_body_declContext<'input>) { }
+fn enter_component_body_name(&mut self, _ctx: &Component_body_nameContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#component_body_decl}.
+ * Exit a parse tree produced by the {@code component_body_name}
+ * labeled alternative in {@link DesignParser#component_body_decl}.
  * @param ctx the parse tree
  */
-fn exit_component_body_decl(&mut self, _ctx: &Component_body_declContext<'input>) { }
+fn exit_component_body_name(&mut self, _ctx: &Component_body_nameContext<'input>) { }
+
+/**
+ * Enter a parse tree produced by the {@code component_body_config}
+ * labeled alternative in {@link DesignParser#component_body_decl}.
+ * @param ctx the parse tree
+ */
+fn enter_component_body_config(&mut self, _ctx: &Component_body_configContext<'input>) { }
+/**
+ * Exit a parse tree produced by the {@code component_body_config}
+ * labeled alternative in {@link DesignParser#component_body_decl}.
+ * @param ctx the parse tree
+ */
+fn exit_component_body_config(&mut self, _ctx: &Component_body_configContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#layout_decl}.

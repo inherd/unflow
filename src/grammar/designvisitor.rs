@@ -147,10 +147,18 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_component_decl(&mut self, ctx: &Component_declContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by {@link DesignParser#component_body_decl}.
+	 * Visit a parse tree produced by the {@code component_body_name}
+	 * labeled alternative in {@link DesignParser#component_body_decl}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_component_body_decl(&mut self, ctx: &Component_body_declContext<'input>) { self.visit_children(ctx) }
+	fn visit_component_body_name(&mut self, ctx: &Component_body_nameContext<'input>) { self.visit_children(ctx) }
+
+	/**
+	 * Visit a parse tree produced by the {@code component_body_config}
+	 * labeled alternative in {@link DesignParser#component_body_decl}.
+	 * @param ctx the parse tree
+	 */
+	fn visit_component_body_config(&mut self, ctx: &Component_body_configContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#layout_decl}.

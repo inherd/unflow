@@ -3225,7 +3225,37 @@ where
 	}
 }
 //------------------- component_body_decl ----------------
-pub type Component_body_declContextAll<'input> = Component_body_declContext<'input>;
+#[derive(Debug)]
+pub enum Component_body_declContextAll<'input>{
+	Component_body_configContext(Component_body_configContext<'input>),
+	Component_body_nameContext(Component_body_nameContext<'input>),
+Error(Component_body_declContext<'input>)
+}
+antlr_rust::type_id!{Component_body_declContextAll<'a>}
+
+impl<'input> antlr_rust::parser_rule_context::DerefSeal for Component_body_declContextAll<'input>{}
+
+impl<'input> DesignParserContext<'input> for Component_body_declContextAll<'input>{}
+
+impl<'input> Deref for Component_body_declContextAll<'input>{
+	type Target = dyn Component_body_declContextAttrs<'input> + 'input;
+	fn deref(&self) -> &Self::Target{
+		use Component_body_declContextAll::*;
+		match self{
+			Component_body_configContext(inner) => inner,
+			Component_body_nameContext(inner) => inner,
+Error(inner) => inner
+		}
+	}
+}
+impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_body_declContextAll<'input>{
+	fn accept(&self, visitor: &mut (dyn DesignVisitor<'input> + 'a)) { self.deref().accept(visitor) }
+}
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_declContextAll<'input>{
+    fn enter(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().enter(listener) }
+    fn exit(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().exit(listener) }
+}
+
 
 
 pub type Component_body_declContext<'input> = BaseParserRuleContext<'input,Component_body_declContextExt<'input>>;
@@ -3238,20 +3268,9 @@ ph:PhantomData<&'input str>
 impl<'input> DesignParserContext<'input> for Component_body_declContext<'input>{}
 
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_declContext<'input>{
-	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.enter_every_rule(self);
-		listener.enter_component_body_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_body_decl(self);
-		listener.exit_every_rule(self);
-	}
 }
 
 impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_body_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_body_decl(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Component_body_declContextExt<'input>{
@@ -3265,45 +3284,171 @@ antlr_rust::type_id!{Component_body_declContextExt<'a>}
 impl<'input> Component_body_declContextExt<'input>{
 	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Component_body_declContextAll<'input>> {
 		Rc::new(
+		Component_body_declContextAll::Error(
 			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Component_body_declContextExt{
 				ph:PhantomData
 			}),
+		)
 		)
 	}
 }
 
 pub trait Component_body_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Component_body_declContextExt<'input>>{
 
-fn component_name_all(&self) ->  Vec<Rc<Component_nameContextAll<'input>>> where Self:Sized{
-	self.children_of_type()
-}
-fn component_name(&self, i: usize) -> Option<Rc<Component_nameContextAll<'input>>> where Self:Sized{
-	self.child_of_type(i)
-}
-/// Retrieves all `TerminalNode`s corresponding to token COMMA in current rule
-fn COMMA_all(&self) -> Vec<Rc<TerminalNode<'input,DesignParserContextType>>>  where Self:Sized{
-	self.children_of_type()
-}
-/// Retrieves 'i's TerminalNode corresponding to token COMMA, starting from 0.
-/// Returns `None` if number of children corresponding to token COMMA is less or equal than `i`.
-fn COMMA(&self, i: usize) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
-	self.get_token(COMMA, i)
-}
-fn config_key(&self) -> Option<Rc<Config_keyContextAll<'input>>> where Self:Sized{
-	self.child_of_type(0)
-}
-/// Retrieves first TerminalNode corresponding to token COLON
-/// Returns `None` if there is no child corresponding to token COLON
-fn COLON(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
-	self.get_token(COLON, 0)
-}
-fn config_value(&self) -> Option<Rc<Config_valueContextAll<'input>>> where Self:Sized{
-	self.child_of_type(0)
-}
 
 }
 
 impl<'input> Component_body_declContextAttrs<'input> for Component_body_declContext<'input>{}
+
+pub type Component_body_configContext<'input> = BaseParserRuleContext<'input,Component_body_configContextExt<'input>>;
+
+pub trait Component_body_configContextAttrs<'input>: DesignParserContext<'input>{
+	fn config_key(&self) -> Option<Rc<Config_keyContextAll<'input>>> where Self:Sized{
+		self.child_of_type(0)
+	}
+	/// Retrieves first TerminalNode corresponding to token COLON
+	/// Returns `None` if there is no child corresponding to token COLON
+	fn COLON(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
+		self.get_token(COLON, 0)
+	}
+	fn config_value(&self) -> Option<Rc<Config_valueContextAll<'input>>> where Self:Sized{
+		self.child_of_type(0)
+	}
+}
+
+impl<'input> Component_body_configContextAttrs<'input> for Component_body_configContext<'input>{}
+
+pub struct Component_body_configContextExt<'input>{
+	base:Component_body_declContextExt<'input>,
+	ph:PhantomData<&'input str>
+}
+
+antlr_rust::type_id!{Component_body_configContextExt<'a>}
+
+impl<'input> DesignParserContext<'input> for Component_body_configContext<'input>{}
+
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_configContext<'input>{
+	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
+		listener.enter_every_rule(self);
+		listener.enter_component_body_config(self);
+	}
+	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
+		listener.exit_component_body_config(self);
+		listener.exit_every_rule(self);
+	}
+}
+
+impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_body_configContext<'input>{
+	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
+		visitor.visit_component_body_config(self);
+	}
+}
+
+impl<'input> CustomRuleContext<'input> for Component_body_configContextExt<'input>{
+	type TF = LocalTokenFactory<'input>;
+	type Ctx = DesignParserContextType;
+	fn get_rule_index(&self) -> usize { RULE_component_body_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_component_body_decl }
+}
+
+impl<'input> Borrow<Component_body_declContextExt<'input>> for Component_body_configContext<'input>{
+	fn borrow(&self) -> &Component_body_declContextExt<'input> { &self.base }
+}
+impl<'input> BorrowMut<Component_body_declContextExt<'input>> for Component_body_configContext<'input>{
+	fn borrow_mut(&mut self) -> &mut Component_body_declContextExt<'input> { &mut self.base }
+}
+
+impl<'input> Component_body_declContextAttrs<'input> for Component_body_configContext<'input> {}
+
+impl<'input> Component_body_configContextExt<'input>{
+	fn new(ctx: &dyn Component_body_declContextAttrs<'input>) -> Rc<Component_body_declContextAll<'input>>  {
+		Rc::new(
+			Component_body_declContextAll::Component_body_configContext(
+				BaseParserRuleContext::copy_from(ctx,Component_body_configContextExt{
+        			base: ctx.borrow().clone(),
+        			ph:PhantomData
+				})
+			)
+		)
+	}
+}
+
+pub type Component_body_nameContext<'input> = BaseParserRuleContext<'input,Component_body_nameContextExt<'input>>;
+
+pub trait Component_body_nameContextAttrs<'input>: DesignParserContext<'input>{
+	fn component_name_all(&self) ->  Vec<Rc<Component_nameContextAll<'input>>> where Self:Sized{
+		self.children_of_type()
+	}
+	fn component_name(&self, i: usize) -> Option<Rc<Component_nameContextAll<'input>>> where Self:Sized{
+		self.child_of_type(i)
+	}
+	/// Retrieves all `TerminalNode`s corresponding to token COMMA in current rule
+	fn COMMA_all(&self) -> Vec<Rc<TerminalNode<'input,DesignParserContextType>>>  where Self:Sized{
+		self.children_of_type()
+	}
+	/// Retrieves 'i's TerminalNode corresponding to token COMMA, starting from 0.
+	/// Returns `None` if number of children corresponding to token COMMA is less or equal than `i`.
+	fn COMMA(&self, i: usize) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
+		self.get_token(COMMA, i)
+	}
+}
+
+impl<'input> Component_body_nameContextAttrs<'input> for Component_body_nameContext<'input>{}
+
+pub struct Component_body_nameContextExt<'input>{
+	base:Component_body_declContextExt<'input>,
+	ph:PhantomData<&'input str>
+}
+
+antlr_rust::type_id!{Component_body_nameContextExt<'a>}
+
+impl<'input> DesignParserContext<'input> for Component_body_nameContext<'input>{}
+
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_nameContext<'input>{
+	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
+		listener.enter_every_rule(self);
+		listener.enter_component_body_name(self);
+	}
+	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
+		listener.exit_component_body_name(self);
+		listener.exit_every_rule(self);
+	}
+}
+
+impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_body_nameContext<'input>{
+	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
+		visitor.visit_component_body_name(self);
+	}
+}
+
+impl<'input> CustomRuleContext<'input> for Component_body_nameContextExt<'input>{
+	type TF = LocalTokenFactory<'input>;
+	type Ctx = DesignParserContextType;
+	fn get_rule_index(&self) -> usize { RULE_component_body_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_component_body_decl }
+}
+
+impl<'input> Borrow<Component_body_declContextExt<'input>> for Component_body_nameContext<'input>{
+	fn borrow(&self) -> &Component_body_declContextExt<'input> { &self.base }
+}
+impl<'input> BorrowMut<Component_body_declContextExt<'input>> for Component_body_nameContext<'input>{
+	fn borrow_mut(&mut self) -> &mut Component_body_declContextExt<'input> { &mut self.base }
+}
+
+impl<'input> Component_body_declContextAttrs<'input> for Component_body_nameContext<'input> {}
+
+impl<'input> Component_body_nameContextExt<'input>{
+	fn new(ctx: &dyn Component_body_declContextAttrs<'input>) -> Rc<Component_body_declContextAll<'input>>  {
+		Rc::new(
+			Component_body_declContextAll::Component_body_nameContext(
+				BaseParserRuleContext::copy_from(ctx,Component_body_nameContextExt{
+        			base: ctx.borrow().clone(),
+        			ph:PhantomData
+				})
+			)
+		)
+	}
+}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
@@ -3324,8 +3469,9 @@ where
 			recog.err_handler.sync(&mut recog.base)?;
 			match  recog.interpreter.adaptive_predict(17,&mut recog.base)? {
 				1 =>{
-					//recog.base.enter_outer_alt(_localctx.clone(), 1);
-					recog.base.enter_outer_alt(None, 1);
+					let tmp = Component_body_nameContextExt::new(&**_localctx);
+					recog.base.enter_outer_alt(Some(tmp.clone()), 1);
+					_localctx = tmp;
 					{
 					/*InvokeRule component_name*/
 					recog.base.set_state(220);
@@ -3354,8 +3500,9 @@ where
 				}
 			,
 				2 =>{
-					//recog.base.enter_outer_alt(_localctx.clone(), 2);
-					recog.base.enter_outer_alt(None, 2);
+					let tmp = Component_body_configContextExt::new(&**_localctx);
+					recog.base.enter_outer_alt(Some(tmp.clone()), 2);
+					_localctx = tmp;
 					{
 					/*InvokeRule config_key*/
 					recog.base.set_state(228);

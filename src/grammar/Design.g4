@@ -80,8 +80,8 @@ page_decl: PAGE IDENTIFIER LBRACE component_body_decl* RBRACE;
 component_decl: COMPONENT IDENTIFIER LBRACE component_body_decl* RBRACE;
 
 component_body_decl
-    : component_name (',' component_name)*
-    | config_key COLON config_value
+    : component_name (',' component_name)*      # component_body_name
+    | config_key COLON config_value             # component_body_config
     ;
 
 layout_decl: LAYOUT IDENTIFIER LBRACE layout_row* RBRACE;
