@@ -57,7 +57,6 @@ width: 1080px
     fn should_parse_flow_do() {
         let result = unflow_parser::parse(get_examples_flows().as_str());
 
-
         let interaction = &result.flows[0].clone().interactions[0];
         assert_eq!("登出", interaction.ui_do.data);
         assert_eq!("按钮", interaction.ui_do.component_name);
@@ -65,5 +64,13 @@ width: 1080px
         let interaction = &result.flows[0].clone().interactions[1];
         assert_eq!("登出", interaction.ui_do.data);
         assert_eq!("按钮", interaction.ui_do.component_name);
+    }
+
+    #[test]
+    fn should_parse_flow_react() {
+        let result = unflow_parser::parse(get_examples_flows().as_str());
+
+        let react_inter = &result.flows[0].clone().interactions[0].ui_react[0];
+        assert_eq!("Success", react_inter.scene_name);
     }
 }

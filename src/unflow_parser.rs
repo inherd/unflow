@@ -6,7 +6,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext};
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext};
 #[allow(unused_imports)]
 use crate::{
     Config_declContextAttrs,
@@ -184,6 +184,28 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
                     current_interaction.ui_do = do_inter;
                 }
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {
+                    let react_decl = decl.react_decl().unwrap() as Rc<React_declContext<'i>>;
+
+                    let mut scene_name = "".to_string();
+                    if let Some(_) = react_decl.scene_name() {
+                        scene_name = react_decl.scene_name().unwrap().get_text();
+                    }
+
+                    let animate_name = "".to_string();
+                    // if let Some(_) = react_decl.animate_name() {
+                    //     animate_name = react_decl.animate_name().unwrap().get_text();
+                    // }
+
+                    let interaction = ReactInteraction {
+                        scene_name,
+                        react_action: "".to_string(),
+                        react_component_name: "".to_string(),
+                        animate_name,
+                        react_component_data: "".to_string()
+                    };
+
+                    current_interaction.ui_react.push(interaction);
+
                     let mut has_next_see = false;
                     if let Some(decl) = &decls.get(index + 1) {
                         let next_name = format!("{:?}", decl.get_child(0).unwrap());
