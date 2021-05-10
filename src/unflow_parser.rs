@@ -6,7 +6,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext};
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext};
 #[allow(unused_imports)]
 use crate::{
     Config_declContextAttrs,
@@ -39,6 +39,7 @@ impl Default for Interaction {
 pub struct DoInteraction {
     pub component_name: String,
     pub data: String,
+    pub ui_event: String,
 }
 
 impl Default for DoInteraction {
@@ -46,6 +47,7 @@ impl Default for DoInteraction {
         DoInteraction {
             component_name: "".to_string(),
             data: "".to_string(),
+            ui_event: "".to_string()
         }
     }
 }
@@ -167,7 +169,20 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
                     current_interaction.ui_see = see_inter;
                 }
-                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {}
+                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {
+                    let do_decl = decl.do_decl().unwrap() as Rc<Do_declContext<'i>>;
+
+                    let text: String = do_decl.STRING_LITERAL().unwrap().get_text();
+                    let without_quote: &str = &text[1..text.len() - 1];
+
+                    let do_inter = DoInteraction {
+                        component_name: do_decl.component_name().unwrap().get_text(),
+                        data: without_quote.to_string(),
+                        ui_event: do_decl.action_name().unwrap().get_text()
+                    };
+
+                    current_interaction.ui_do = do_inter;
+                }
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {
                     let mut has_next_see = false;
                     if let Some(decl) = &decls.get(index + 1) {

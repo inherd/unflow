@@ -22,8 +22,7 @@ width: 1080px
         assert_eq!(4, result.config.len())
     }
 
-    #[test]
-    fn should_parse_flow() {
+    fn get_examples_flows() -> String {
         let data = r#"flow 登出 {
     SEE 个人信息页
     DO [Click] "登出".按钮
@@ -34,11 +33,13 @@ width: 1080px
       REACT Success: SHOW "登出成功".Toast with ANIMATE(bounce)
 
 }
-
 "#;
+        data.to_string()
+    }
 
-        let result = unflow_parser::parse(data);
-        println!("{:?}", result);
+    #[test]
+    fn should_parse_flow_see() {
+        let result = unflow_parser::parse(get_examples_flows().as_str());
 
         assert_eq!(1, result.flows.len());
         assert_eq!("登出", &result.flows[0].name);
@@ -50,5 +51,19 @@ width: 1080px
         let interaction = &result.flows[0].clone().interactions[1];
         assert_eq!("窗口", interaction.ui_see.component_name);
         assert_eq!("登录失败", interaction.ui_see.data);
+    }
+
+    #[test]
+    fn should_parse_flow_do() {
+        let result = unflow_parser::parse(get_examples_flows().as_str());
+
+
+        let interaction = &result.flows[0].clone().interactions[0];
+        assert_eq!("登出", interaction.ui_do.data);
+        assert_eq!("按钮", interaction.ui_do.component_name);
+
+        let interaction = &result.flows[0].clone().interactions[1];
+        assert_eq!("登出", interaction.ui_do.data);
+        assert_eq!("按钮", interaction.ui_do.component_name);
     }
 }
