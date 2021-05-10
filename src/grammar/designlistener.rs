@@ -421,15 +421,15 @@ fn enter_library_object(&mut self, _ctx: &Library_objectContext<'input>) { }
 fn exit_library_object(&mut self, _ctx: &Library_objectContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#keyValue}.
+ * Enter a parse tree produced by {@link DesignParser#key_value}.
  * @param ctx the parse tree
  */
-fn enter_keyValue(&mut self, _ctx: &KeyValueContext<'input>) { }
+fn enter_key_value(&mut self, _ctx: &Key_valueContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#keyValue}.
+ * Exit a parse tree produced by {@link DesignParser#key_value}.
  * @param ctx the parse tree
  */
-fn exit_keyValue(&mut self, _ctx: &KeyValueContext<'input>) { }
+fn exit_key_value(&mut self, _ctx: &Key_valueContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#preset_key}.

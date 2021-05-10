@@ -235,10 +235,10 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_library_object(&mut self, ctx: &Library_objectContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by {@link DesignParser#keyValue}.
+	 * Visit a parse tree produced by {@link DesignParser#key_value}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_keyValue(&mut self, ctx: &KeyValueContext<'input>) { self.visit_children(ctx) }
+	fn visit_key_value(&mut self, ctx: &Key_valueContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#preset_key}.

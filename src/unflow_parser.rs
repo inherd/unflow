@@ -8,7 +8,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, Layout_declContext, Library_declContext};
+use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, Layout_declContext, Library_declContext, Library_expContextAll};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -23,6 +23,7 @@ use crate::{
     Goto_actionContextAttrs,
     Interaction_declContextAttrs,
     Library_declContextAttrs,
+    Library_objectContextAttrs,
     React_actionContextAttrs,
     React_declContextAttrs,
     See_declContextAttrs,
@@ -305,6 +306,11 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
     fn visit_library_decl(&mut self, ctx: &Library_declContext<'i>) {
         let mut library = UiLibrary::default();
         library.name = ctx.library_name().unwrap().get_text();
+
+        let exps: Vec<Rc<Library_expContextAll<'i>>> = ctx.library_exp_all();
+        for exp in exps {
+            println!("{:?}", exp);
+        }
 
         self.flow.libraries.push(library);
     }

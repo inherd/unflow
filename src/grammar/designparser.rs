@@ -120,7 +120,7 @@ use std::any::{Any,TypeId};
 	pub const RULE_style_body:usize = 32; 
 	pub const RULE_library_decl:usize = 33; 
 	pub const RULE_library_exp:usize = 34; 
-	pub const RULE_keyValue:usize = 35; 
+	pub const RULE_key_value:usize = 35; 
 	pub const RULE_preset_key:usize = 36; 
 	pub const RULE_preset_value:usize = 37; 
 	pub const RULE_preset_array:usize = 38; 
@@ -134,7 +134,7 @@ use std::any::{Any,TypeId};
 		"page_decl", "component_decl", "component_body_decl", "layout_decl", "layout_row", 
 		"layout_lines", "layout_line", "component_use_decl", "component_layout_value", 
 		"style_decl", "style_name", "style_body", "library_decl", "library_exp", 
-		"keyValue", "preset_key", "preset_value", "preset_array", "preset_call", 
+		"key_value", "preset_key", "preset_value", "preset_array", "preset_call", 
 		"library_name"
 	];
 
@@ -4898,10 +4898,10 @@ pub trait Library_objectContextAttrs<'input>: DesignParserContext<'input>{
 	fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 		self.get_token(RBRACE, 0)
 	}
-	fn keyValue_all(&self) ->  Vec<Rc<KeyValueContextAll<'input>>> where Self:Sized{
+	fn key_value_all(&self) ->  Vec<Rc<Key_valueContextAll<'input>>> where Self:Sized{
 		self.children_of_type()
 	}
-	fn keyValue(&self, i: usize) -> Option<Rc<KeyValueContextAll<'input>>> where Self:Sized{
+	fn key_value(&self, i: usize) -> Option<Rc<Key_valueContextAll<'input>>> where Self:Sized{
 		self.child_of_type(i)
 	}
 }
@@ -5122,9 +5122,9 @@ where
 					while _la==IDENTIFIER {
 						{
 						{
-						/*InvokeRule keyValue*/
+						/*InvokeRule key_value*/
 						recog.base.set_state(319);
-						recog.keyValue()?;
+						recog.key_value()?;
 
 						}
 						}
@@ -5155,55 +5155,55 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- keyValue ----------------
-pub type KeyValueContextAll<'input> = KeyValueContext<'input>;
+//------------------- key_value ----------------
+pub type Key_valueContextAll<'input> = Key_valueContext<'input>;
 
 
-pub type KeyValueContext<'input> = BaseParserRuleContext<'input,KeyValueContextExt<'input>>;
+pub type Key_valueContext<'input> = BaseParserRuleContext<'input,Key_valueContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct KeyValueContextExt<'input>{
+pub struct Key_valueContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for KeyValueContext<'input>{}
+impl<'input> DesignParserContext<'input> for Key_valueContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for KeyValueContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Key_valueContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_keyValue(self);
+		listener.enter_key_value(self);
 	}
 	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_keyValue(self);
+		listener.exit_key_value(self);
 		listener.exit_every_rule(self);
 	}
 }
 
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for KeyValueContext<'input>{
+impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Key_valueContext<'input>{
 	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_keyValue(self);
+		visitor.visit_key_value(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for KeyValueContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Key_valueContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_keyValue }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_keyValue }
+	fn get_rule_index(&self) -> usize { RULE_key_value }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_key_value }
 }
-antlr_rust::type_id!{KeyValueContextExt<'a>}
+antlr_rust::type_id!{Key_valueContextExt<'a>}
 
-impl<'input> KeyValueContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<KeyValueContextAll<'input>> {
+impl<'input> Key_valueContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Key_valueContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,KeyValueContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Key_valueContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait KeyValueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<KeyValueContextExt<'input>>{
+pub trait Key_valueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Key_valueContextExt<'input>>{
 
 fn preset_key(&self) -> Option<Rc<Preset_keyContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
@@ -5214,20 +5214,20 @@ fn preset_value(&self) -> Option<Rc<Preset_valueContextAll<'input>>> where Self:
 
 }
 
-impl<'input> KeyValueContextAttrs<'input> for KeyValueContext<'input>{}
+impl<'input> Key_valueContextAttrs<'input> for Key_valueContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn keyValue(&mut self,)
-	-> Result<Rc<KeyValueContextAll<'input>>,ANTLRError> {
+	pub fn key_value(&mut self,)
+	-> Result<Rc<Key_valueContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = KeyValueContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 70, RULE_keyValue);
-        let mut _localctx: Rc<KeyValueContextAll> = _localctx;
+		let mut _localctx = Key_valueContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 70, RULE_key_value);
+        let mut _localctx: Rc<Key_valueContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);

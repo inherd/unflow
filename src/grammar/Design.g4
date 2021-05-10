@@ -129,10 +129,10 @@ library_decl: LIBRARY library_name LBRACE library_exp* RBRACE;
 
 library_exp
     : preset_key '=' (preset_value |preset_array) ';'?  # library_config
-    | preset_key '{' keyValue* '}'                      # library_object
+    | preset_key '{' key_value* '}'                      # library_object
     ;
 
-keyValue: preset_key '=' preset_value;
+key_value: preset_key '=' preset_value;
 
 preset_key: IDENTIFIER;
 preset_value: config_value;
