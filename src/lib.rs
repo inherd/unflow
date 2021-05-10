@@ -36,7 +36,8 @@ width: 1080px
         assert_eq!(1, result.flows.len());
         assert_eq!("登出", &result.flows[0].name);
         assert_eq!(1, result.flows[0].interactions.len());
-        // let interaction = &result.flows[0].clone().interactions[0];
-        // assert_eq!("个人信息页", interaction.ui_do.component_name)
+
+        let interaction = &result.flows[0].clone().interactions[0];
+        assert_eq!("个人信息页", interaction.ui_see.component_name)
     }
 }
