@@ -1,6 +1,6 @@
 grammar Design;
 
-start: (comment | config_decl | decalartions)* EOF;
+start: (comment | declarations)* EOF;
 
 comment: IDENTIFIER;
 
@@ -20,7 +20,7 @@ unit: 'rem'
     | 'em'
     ;
 
-decalartions
+declarations
     : config_decl
     | flow_Decl
     | page_decl

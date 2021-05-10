@@ -72,15 +72,15 @@ fn enter_unit(&mut self, _ctx: &UnitContext<'input>) { }
 fn exit_unit(&mut self, _ctx: &UnitContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#decalartions}.
+ * Enter a parse tree produced by {@link DesignParser#declarations}.
  * @param ctx the parse tree
  */
-fn enter_decalartions(&mut self, _ctx: &DecalartionsContext<'input>) { }
+fn enter_declarations(&mut self, _ctx: &DeclarationsContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#decalartions}.
+ * Exit a parse tree produced by {@link DesignParser#declarations}.
  * @param ctx the parse tree
  */
-fn exit_decalartions(&mut self, _ctx: &DecalartionsContext<'input>) { }
+fn exit_declarations(&mut self, _ctx: &DeclarationsContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#flow_Decl}.
