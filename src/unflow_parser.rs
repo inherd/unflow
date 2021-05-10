@@ -94,11 +94,11 @@ pub struct ReactInteraction {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiLayout {
     pub name: String,
-    pub cells: Vec<LayoutCell>
+    pub flex_child: Vec<FlexChild>
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct LayoutCell {
+pub struct FlexChild {
     // pub grid:
 }
 
