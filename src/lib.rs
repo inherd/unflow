@@ -1,6 +1,8 @@
 #![feature(try_blocks)]
 
 pub use grammar::*;
+pub use unflow_parser::*;
+
 pub mod grammar;
 
 pub mod unflow_parser;
