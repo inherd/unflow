@@ -1,6 +1,5 @@
 # unflow
 
-
 Design as Code
 
 ## Flow
@@ -11,15 +10,8 @@ DSL -> DSL Parser -> DSL Json ---pipe---> Node.js -> Sketch
 
 ## Setup
 
-install Go & Node.js
-
-cd `adapter/visual/sketch` and run `npm install`
-
-then
-
-```
-./script/run.sh 
-```
+1. install nightly
+2. download antlr-4.8 rust version from: [https://github.com/rrevenantt/antlr4rust](https://github.com/rrevenantt/antlr4rust)
 
 ## DSL
 

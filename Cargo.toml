@@ -19,4 +19,4 @@ exclude = [
 ]
 
 [dependencies]
-antlr-rust = "=0.2"
+antlr-rust = { version = "=0.2.0" }
