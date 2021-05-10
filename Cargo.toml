@@ -19,5 +19,4 @@ exclude = [
 ]
 
 [dependencies]
-pest = "2.1.3"
-pest_derive = "2.1.0"
+antlr-rust = "=0.2"
