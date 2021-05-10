@@ -225,16 +225,14 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
         let decls: Vec<Rc<Component_body_declContextAll<'i>>> = ctx.component_body_decl_all();
         for decl in &decls {
-
             let child = decl.get_child(0).unwrap();
             let type_name = format!("{:?}", child);
-            println!("{:?}", child);
 
             if type_name.contains("Config_keyContextExt") {
-                // let key = child.config_key().unwrap().get_text();
-                // let value = child.config_value().unwrap().get_text();
+                let key = child.get_text();
+                let value = decl.get_child(0).unwrap().get_text();
 
-                // component.configs.insert(key, value);
+                component.configs.insert(key, value);
             }
         }
 

@@ -94,5 +94,6 @@ width: 1080px
 
         assert_eq!(1, result.components.len());
         assert_eq!("Dialog", result.components[0].name);
+        assert_eq!(2, result.components[0].configs.len());
     }
 }
