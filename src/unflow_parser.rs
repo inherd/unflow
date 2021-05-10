@@ -8,7 +8,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext};
+use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, Layout_declContext};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -89,9 +89,47 @@ pub struct ReactInteraction {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct UiLayout {
+    pub name: String,
+    pub cells: Vec<LayoutCell>
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct LayoutCell {
+    // pub grid:
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct UiLibrary {
+    pub name: String,
+    pub presets: Vec<UiLibraryPreset>
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct UiLibraryPreset {
+    pub key: String,
+    pub value: String,
+    pub preset_calls: Vec<PresetCall>,
+    pub sub_properties: Vec<UiProperty>
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct PresetCall {
+    pub name: String,
+    pub preset: String
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct UiProperty {
+    pub key: String,
+    pub value: String
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiFlow {
     pub name: String,
     pub interactions: Vec<Interaction>,
+    pub layout: Vec<UiLayout>
 }
 
 impl UiFlow {
@@ -99,6 +137,7 @@ impl UiFlow {
         UiFlow {
             name,
             interactions: vec![],
+            layout: vec![]
         }
     }
 }
@@ -245,6 +284,10 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         }
 
         self.flow.components.push(component);
+    }
+
+    fn visit_layout_decl(&mut self, _ctx: &Layout_declContext<'i>) {
+
     }
 }
 
