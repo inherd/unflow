@@ -4,6 +4,7 @@ use antlr_rust::tree::{Visitable, ParseTree, ParseTreeVisitor};
 
 use crate::{DesignLexer, DesignParserContextType, DesignParser, Config_declContext, DesignVisitor};
 use antlr_rust::token_factory::ArenaCommonFactory;
+use crate::Config_declContextAttrs;
 
 pub struct UnflowParser<'i, T>(pub(crate) Vec<&'i str>, pub(crate) T);
 
@@ -23,6 +24,7 @@ impl<'i, T> ParseTreeVisitor<'i, DesignParserContextType> for UnflowParser<'i, T
 
 impl<'i, T> DesignVisitor<'i> for UnflowParser<'i, T> {
     fn visit_config_decl(&mut self, ctx: &Config_declContext<'i>) {
+        println!("{:?}", ctx.config_key().unwrap().get_text());
         println!("{:?}", ctx.get_text());
     }
 }
