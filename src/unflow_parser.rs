@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::ops::Deref;
 use std::rc::Rc;
 
 use antlr_rust::common_token_stream::CommonTokenStream;
@@ -8,7 +9,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, Layout_declContext, Library_declContext, Library_expContextAll, Component_nameContextAll};
+use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -29,7 +30,7 @@ use crate::{
     See_declContextAttrs,
     Show_actionContextAttrs,
 };
-use std::ops::Deref;
+use crate::layout::{Flex, FlexCell, UiLayout};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Interaction {
@@ -89,40 +90,6 @@ pub struct ReactInteraction {
     pub react_component_name: String,
     pub animate_name: String,
     pub react_component_data: String,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct UiLayout {
-    pub name: String,
-    pub flex_child: Vec<FlexChild>
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct FlexChild {
-    pub flex: Flex,
-    pub cells: Vec<FlexCell>
-}
-
-impl Default for FlexChild {
-    fn default() -> Self {
-        FlexChild {
-            flex: Flex::ROW,
-            cells: vec![]
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct FlexCell {
-    pub component_name: String,
-    pub layout_info: String,
-    pub normal_info: String
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub enum Flex {
-    ROW,
-    COLUMN
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

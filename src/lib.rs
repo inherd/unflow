@@ -6,6 +6,7 @@ pub use unflow_parser::*;
 pub mod grammar;
 
 pub mod unflow_parser;
+pub mod layout;
 
 #[cfg(test)]
 mod tests {
