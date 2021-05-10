@@ -11,11 +11,10 @@ mod tests {
 
     #[test]
     fn should_parse_config() {
-        let data = r#"
-config: 123
-flow login {
-
-}
+        let data = r#"project: DesignDSL
+feature: "design basic dsl"
+type: web
+width: 1080px
 
 "#;
 

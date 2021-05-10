@@ -2,9 +2,9 @@ use std::collections::HashMap;
 
 use antlr_rust::common_token_stream::CommonTokenStream;
 use antlr_rust::InputStream;
-use antlr_rust::tree::ParseTreeListener;
+use antlr_rust::tree::{ParseTreeListener, ParseTree};
 
-use crate::{DesignLexer, DesignParserContextType, designparser, DesignParserContext, DesignParser, DesignListener};
+use crate::{DesignLexer, DesignParserContextType, DesignParser, DesignListener, Config_declContext};
 
 pub struct UnflowParser {
     pub config: HashMap<String, String>,
@@ -26,4 +26,8 @@ impl<'input> ParseTreeListener<'input, DesignParserContextType> for UnflowParser
 
 }
 
-impl<'input> DesignListener<'input> for UnflowParser {}
+impl<'input> DesignListener<'input> for UnflowParser {
+    fn enter_config_decl(&mut self, ctx: &Config_declContext<'input>) {
+        println!("{:?}", ctx.get_text());
+    }
+}
