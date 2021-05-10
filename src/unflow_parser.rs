@@ -15,6 +15,7 @@ use crate::{
     See_declContextAttrs,
     Do_declContextAttrs,
     React_declContextAttrs,
+    Animate_declContextAttrs
 };
 use std::rc::Rc;
 use antlr_rust::parser_rule_context::BaseParserRuleContext;
@@ -219,16 +220,20 @@ impl<'i>  UnflowParser<'i> {
         see_inter
     }
 
-    fn build_react_interaction<'c>(react_decl: &Rc<BaseParserRuleContext<'c, React_declContextExt<'c>>>) -> ReactInteraction {
+    fn build_react_interaction<'c>(decl: &Rc<BaseParserRuleContext<'c, React_declContextExt<'c>>>) -> ReactInteraction {
         let mut scene_name = "".to_string();
-        if let Some(_) = react_decl.scene_name() {
-            scene_name = react_decl.scene_name().unwrap().get_text();
+        if let Some(_) = decl.scene_name() {
+            scene_name = decl.scene_name().unwrap().get_text();
         }
 
-        let animate_name = "".to_string();
-        // if let Some(_) = react_decl.animate_name() {
-        //     animate_name = react_decl.animate_name().unwrap().get_text();
-        // }
+        let mut animate_name = "".to_string();
+
+        if let Some(animate) = decl.animate_decl() {
+            let type_name = format!("{:?}", animate);
+            if type_name.as_str().contains("Animate_declContextExt") {
+                animate_name = animate.animate_name().unwrap().get_text();
+            }
+        }
 
         let interaction = ReactInteraction {
             scene_name,
