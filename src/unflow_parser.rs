@@ -6,7 +6,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext, Do_declContextExt, See_declContextExt, React_declContextExt, Show_actionContext, Goto_actionContext};
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext, Do_declContextExt, See_declContextExt, React_declContextExt, Show_actionContext, Goto_actionContext, Component_declContext};
 #[allow(unused_imports)]
 use crate::{
     Config_declContextAttrs,
@@ -20,7 +20,9 @@ use crate::{
     React_actionContextAttrs,
     // sub action
     Show_actionContextAttrs,
-    Goto_actionContextAttrs
+    Goto_actionContextAttrs,
+
+    Component_declContextAttrs,
 };
 use std::rc::Rc;
 use antlr_rust::parser_rule_context::BaseParserRuleContext;
@@ -101,9 +103,27 @@ impl UiFlow {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Component {
+    pub name: String,
+    pub child_components: Vec<Component>,
+    pub configs: HashMap<String, String>
+}
+
+impl Default for Component {
+    fn default() -> Self {
+        Component {
+            name: "".to_string(),
+            child_components: vec![],
+            configs: Default::default()
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Unflow {
     pub config: HashMap<String, String>,
     pub flows: Vec<UiFlow>,
+    pub components: Vec<Component>
 }
 
 impl Default for Unflow {
@@ -111,6 +131,7 @@ impl Default for Unflow {
         Unflow {
             config: Default::default(),
             flows: vec![],
+            components: vec![]
         }
     }
 }
@@ -194,6 +215,14 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
         flow.interactions.push(current_interaction);
         self.flow.flows.push(flow);
+    }
+
+    fn visit_component_decl(&mut self, ctx: &Component_declContext<'i>) {
+        let mut component = Component::default();
+        let component_name = ctx.IDENTIFIER().unwrap().get_text();
+        component.name = component_name;
+
+        self.flow.components.push(component);
     }
 }
 

@@ -82,4 +82,17 @@ width: 1080px
         assert_eq!("GOTO", react_inter2.react_action);
         assert_eq!("HomePage", react_inter2.react_component_name);
     }
+
+    #[test]
+    fn should_parse_component_data() {
+        let data = r#"component Dialog {
+    width: 320px
+    height: 240px
+}
+"#;
+        let result = unflow_parser::parse(data);
+
+        assert_eq!(1, result.components.len());
+        assert_eq!("Dialog", result.components[0].name);
+    }
 }
