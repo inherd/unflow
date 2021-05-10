@@ -26,7 +26,12 @@ mod tests {
 
     #[test]
     fn should_parse_config() {
-        parse("id: 123");
+        parse("
+id: 123
+length: 123px
+width: 999
+keywords: hello, worlds
+");
     }
 
     #[test]
