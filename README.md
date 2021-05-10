@@ -3,7 +3,7 @@
 Design as Code
 
 
-[![crates.io](https://meritbadge.herokuapp.com/framework)](https://crates.io/crates/unflow)
+[![crates.io](https://meritbadge.herokuapp.com/unflow)](https://crates.io/crates/unflow)
 [![docs.rs](https://docs.rs/unflow/badge.svg)](https://docs.rs/framework/)
 [![license](https://img.shields.io/crates/l/unflow)](https://github.com/inherd/unflow/blob/master/LICENSE)
 
