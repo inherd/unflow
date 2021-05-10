@@ -11,10 +11,28 @@ config_value = {
 }
 
 declarations = {
-    flow_definition
+    flow_def
 }
 
-flow_definition = { flow ~ WHITESPACE* ~ identifier ~ WHITESPACE* ~ "{" ~ WHITESPACE* ~ "}" ~ NEWLINE* }
+flow_def = { flow ~ WHITESPACE* ~ identifier ~ WHITESPACE* ~ "{" ~ interaction_def* ~ WHITESPACE* ~ NEWLINE*~ "}" ~ NEWLINE* }
+
+interaction_def = {
+    see_def |
+    do_def |
+    react_def
+}
+
+see_def = { NEWLINE* ~ WHITESPACE* ~ see_text ~ WHITESPACE* ~ ( identifier ) ~ NEWLINE* }
+do_def = { do_text }
+react_def = { react_text }
+
+action_name = { identifier }
+scene_name = { identifier }
+animate_name = { identifier }
+
+component_name = { identifier }
+component_value = { identifier }
+
 
 int   = @{ "-" ? ~ ("0" | '1'..'9' ~ '0'..'9' * ) }
 float = @{

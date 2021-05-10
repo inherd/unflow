@@ -41,6 +41,8 @@ keywords: hello, worlds
 
     #[test]
     fn should_parse_utf8_flow() {
-        parse("flow 登录 { }");
+        parse("flow 登录 {
+  see LoginForm
+}");
     }
 }
