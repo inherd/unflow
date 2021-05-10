@@ -6,7 +6,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext, Do_declContextExt};
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext, Do_declContextExt, See_declContextExt};
 #[allow(unused_imports)]
 use crate::{
     Config_declContextAttrs,
@@ -157,25 +157,11 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
             match type_name.as_str() {
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::See_declContextExt>" => {
                     let see_decl = decl.see_decl().unwrap() as Rc<See_declContext<'i>>;
-                    let mut see_inter = SeeInteraction::default();
-                    match see_decl.IDENTIFIER() {
-                        Some(ident_ctx) => { see_inter.component_name = ident_ctx.get_text() }
-                        None => {
-                            see_inter.component_name = see_decl.component_name().unwrap().get_text();
-                            let text: String = see_decl.STRING_LITERAL().unwrap().get_text();
-                            let without_quote: &str = &text[1..text.len() - 1];
-                            see_inter.data = without_quote.to_string();
-                        }
-                    }
-
-                    current_interaction.ui_see = see_inter;
+                    current_interaction.ui_see = <UnflowParser<'i>>::build_see_interaction(&see_decl);
                 }
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {
                     let do_decl = decl.do_decl().unwrap() as Rc<Do_declContext<'i>>;
-
-                    let do_inter = <UnflowParser<'i>>::build_do_interaction(&do_decl);
-
-                    current_interaction.ui_do = do_inter;
+                    current_interaction.ui_do = <UnflowParser<'i>>::build_do_interaction(&do_decl);
                 }
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {
                     let react_decl = decl.react_decl().unwrap() as Rc<React_declContext<'i>>;
@@ -223,6 +209,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
     }
 }
 
+
 impl<'i>  UnflowParser<'i> {
     fn build_do_interaction<'c>(do_decl: &Rc<BaseParserRuleContext<'c, Do_declContextExt<'c>>>) -> DoInteraction {
         let text: String = do_decl.STRING_LITERAL().unwrap().get_text();
@@ -234,5 +221,19 @@ impl<'i>  UnflowParser<'i> {
             ui_event: do_decl.action_name().unwrap().get_text()
         };
         do_inter
+    }
+
+    fn build_see_interaction<'c>(see_decl: &Rc<BaseParserRuleContext<'c, See_declContextExt<'c>>>) -> SeeInteraction {
+        let mut see_inter = SeeInteraction::default();
+        match see_decl.IDENTIFIER() {
+            Some(ident_ctx) => { see_inter.component_name = ident_ctx.get_text() }
+            None => {
+                see_inter.component_name = see_decl.component_name().unwrap().get_text();
+                let text: String = see_decl.STRING_LITERAL().unwrap().get_text();
+                let without_quote: &str = &text[1..text.len() - 1];
+                see_inter.data = without_quote.to_string();
+            }
+        }
+        see_inter
     }
 }
