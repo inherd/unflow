@@ -26,7 +26,8 @@ width: 1080px
         let data = r#"flow 登出 {
     SEE 个人信息页
     DO [Click] "登出".按钮
-    REACT Success: SHOW "登出成功".Toast with ANIMATE(bounce)
+        REACT Success: SHOW "登出成功".Toast with ANIMATE(bounce)
+        REACT Success: GOTO HomePage
 
     SEE "登录失败".窗口
     DO [Click] "登出".按钮
@@ -76,5 +77,9 @@ width: 1080px
         assert_eq!("SHOW", react_inter.react_action);
         assert_eq!("Toast", react_inter.react_component_name);
         assert_eq!("登出成功", react_inter.react_component_data);
+
+        let react_inter2 = &result.flows[0].clone().interactions[0].ui_react[1];
+        assert_eq!("GOTO", react_inter2.react_action);
+        assert_eq!("HomePage", react_inter2.react_component_name);
     }
 }
