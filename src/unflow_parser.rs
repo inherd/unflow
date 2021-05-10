@@ -14,7 +14,7 @@ use crate::{
     Interaction_declContextAttrs,
     See_declContextAttrs,
     Do_declContextAttrs,
-    React_declContextAttrs
+    React_declContextAttrs,
 };
 use std::rc::Rc;
 
@@ -143,33 +143,51 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         let flow_name = ctx.IDENTIFIER().unwrap().get_text();
         let mut flow = UiFlow::new(flow_name);
 
-        let mut interaction = Interaction::default();
-
         let decls: Vec<Rc<Interaction_declContextAll<'i>>> = ctx.interaction_decl_all();
-        for decl in decls {
+        let mut index = 0;
+        let mut current_interaction = Interaction::default();
+
+        for decl in &decls {
             let child = decl.get_child(0).unwrap();
             let type_name = format!("{:?}", child);
+
             match type_name.as_str() {
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::See_declContextExt>" => {
                     let see_decl = decl.see_decl().unwrap() as Rc<See_declContext<'i>>;
                     let mut see_inter = SeeInteraction::default();
                     match see_decl.IDENTIFIER() {
-                        Some(ident_ctx) => { see_inter.component_name = ident_ctx.get_text()}
+                        Some(ident_ctx) => { see_inter.component_name = ident_ctx.get_text() }
                         None => {
                             see_inter.component_name = see_decl.component_name().unwrap().get_text();
+                            let text: String = see_decl.STRING_LITERAL().unwrap().get_text();
+                            let without_quote: &str = &text[1..text.len() - 1];
+                            see_inter.data = without_quote.to_string();
                         }
                     }
 
-                    interaction.ui_see = see_inter;
+                    current_interaction.ui_see = see_inter;
                 }
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {}
-                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {}
+                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {
+                    let mut has_next_see = false;
+                    if let Some(decl) = &decls.get(index + 1) {
+                        let next_name = format!("{:?}", decl.get_child(0).unwrap());
+                        if next_name.as_str().contains("See_declContextExt") {
+                            has_next_see = true;
+                        }
+                    }
+
+                    if has_next_see {
+                        flow.interactions.push(current_interaction);
+                        current_interaction = Interaction::default();
+                    }
+                }
                 _ => {}
             }
-            println!("{:?}", type_name);
+            index = index + 1;
         }
 
-        flow.interactions.push(interaction);
+        flow.interactions.push(current_interaction);
         self.flow.flows.push(flow);
     }
 }
