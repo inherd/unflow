@@ -1,4 +1,4 @@
-// Generated from docs/dsl/Design.g4 by ANTLR 4.8
+// Generated from src/grammar/Design.g4 by ANTLR 4.8
 #![allow(dead_code)]
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
@@ -23,7 +23,7 @@ use antlr_rust::token::{TOKEN_EOF,OwningToken,Token};
 use antlr_rust::int_stream::EOF;
 use antlr_rust::vocabulary::{Vocabulary,VocabularyImpl};
 use antlr_rust::token_factory::{CommonTokenFactory,TokenFactory, TokenAware};
-use super::design_listener::*;
+use super::designlistener::*;
 use antlr_rust::lazy_static;
 use antlr_rust::{TidAble,TidExt};
 
@@ -85,55 +85,55 @@ use std::any::{Any,TypeId};
 		pub const FLOAT_LITERAL:isize=47;
 	pub const RULE_start:usize = 0; 
 	pub const RULE_comment:usize = 1; 
-	pub const RULE_configDeclaration:usize = 2; 
-	pub const RULE_configKey:usize = 3; 
-	pub const RULE_configValue:usize = 4; 
+	pub const RULE_config_decl:usize = 2; 
+	pub const RULE_config_key:usize = 3; 
+	pub const RULE_config_value:usize = 4; 
 	pub const RULE_unit:usize = 5; 
 	pub const RULE_decalartions:usize = 6; 
-	pub const RULE_flowDeclaration:usize = 7; 
-	pub const RULE_interactionDeclaration:usize = 8; 
-	pub const RULE_seeDeclaration:usize = 9; 
-	pub const RULE_doDeclaration:usize = 10; 
-	pub const RULE_reactDeclaration:usize = 11; 
-	pub const RULE_animateDeclaration:usize = 12; 
-	pub const RULE_reactAction:usize = 13; 
-	pub const RULE_gotoAction:usize = 14; 
-	pub const RULE_showAction:usize = 15; 
-	pub const RULE_actionName:usize = 16; 
-	pub const RULE_componentValue:usize = 17; 
-	pub const RULE_componentName:usize = 18; 
-	pub const RULE_sceneName:usize = 19; 
-	pub const RULE_animateName:usize = 20; 
-	pub const RULE_pageDeclaration:usize = 21; 
-	pub const RULE_componentDeclaration:usize = 22; 
-	pub const RULE_componentBodyDeclaration:usize = 23; 
-	pub const RULE_layoutDeclaration:usize = 24; 
-	pub const RULE_layoutRow:usize = 25; 
-	pub const RULE_layoutLines:usize = 26; 
-	pub const RULE_layoutLine:usize = 27; 
-	pub const RULE_componentUseDeclaration:usize = 28; 
-	pub const RULE_componentLayoutValue:usize = 29; 
-	pub const RULE_styleDeclaration:usize = 30; 
-	pub const RULE_styleName:usize = 31; 
-	pub const RULE_styleBody:usize = 32; 
-	pub const RULE_libraryDeclaration:usize = 33; 
-	pub const RULE_libraryExpress:usize = 34; 
+	pub const RULE_flow_Decl:usize = 7; 
+	pub const RULE_interaction_decl:usize = 8; 
+	pub const RULE_see_decl:usize = 9; 
+	pub const RULE_do_decl:usize = 10; 
+	pub const RULE_react_decl:usize = 11; 
+	pub const RULE_animate_decl:usize = 12; 
+	pub const RULE_react_action:usize = 13; 
+	pub const RULE_goto_action:usize = 14; 
+	pub const RULE_show_action:usize = 15; 
+	pub const RULE_action_name:usize = 16; 
+	pub const RULE_component_value:usize = 17; 
+	pub const RULE_component_name:usize = 18; 
+	pub const RULE_scene_name:usize = 19; 
+	pub const RULE_animate_name:usize = 20; 
+	pub const RULE_page_decl:usize = 21; 
+	pub const RULE_component_decl:usize = 22; 
+	pub const RULE_component_body_decl:usize = 23; 
+	pub const RULE_layout_decl:usize = 24; 
+	pub const RULE_layout_row:usize = 25; 
+	pub const RULE_layout_lines:usize = 26; 
+	pub const RULE_layout_line:usize = 27; 
+	pub const RULE_component_use_decl:usize = 28; 
+	pub const RULE_component_layout_value:usize = 29; 
+	pub const RULE_style_decl:usize = 30; 
+	pub const RULE_style_name:usize = 31; 
+	pub const RULE_style_body:usize = 32; 
+	pub const RULE_library_decl:usize = 33; 
+	pub const RULE_library_exp:usize = 34; 
 	pub const RULE_keyValue:usize = 35; 
-	pub const RULE_presetKey:usize = 36; 
-	pub const RULE_presetValue:usize = 37; 
-	pub const RULE_presetArray:usize = 38; 
-	pub const RULE_presetCall:usize = 39; 
-	pub const RULE_libraryName:usize = 40;
+	pub const RULE_preset_key:usize = 36; 
+	pub const RULE_preset_value:usize = 37; 
+	pub const RULE_preset_array:usize = 38; 
+	pub const RULE_preset_call:usize = 39; 
+	pub const RULE_library_name:usize = 40;
 	pub const ruleNames: [&'static str; 41] =  [
-		"start", "comment", "configDeclaration", "configKey", "configValue", "unit", 
-		"decalartions", "flowDeclaration", "interactionDeclaration", "seeDeclaration", 
-		"doDeclaration", "reactDeclaration", "animateDeclaration", "reactAction", 
-		"gotoAction", "showAction", "actionName", "componentValue", "componentName", 
-		"sceneName", "animateName", "pageDeclaration", "componentDeclaration", 
-		"componentBodyDeclaration", "layoutDeclaration", "layoutRow", "layoutLines", 
-		"layoutLine", "componentUseDeclaration", "componentLayoutValue", "styleDeclaration", 
-		"styleName", "styleBody", "libraryDeclaration", "libraryExpress", "keyValue", 
-		"presetKey", "presetValue", "presetArray", "presetCall", "libraryName"
+		"start", "comment", "config_decl", "config_key", "config_value", "unit", 
+		"decalartions", "flow_Decl", "interaction_decl", "see_decl", "do_decl", 
+		"react_decl", "animate_decl", "react_action", "goto_action", "show_action", 
+		"action_name", "component_value", "component_name", "scene_name", "animate_name", 
+		"page_decl", "component_decl", "component_body_decl", "layout_decl", "layout_row", 
+		"layout_lines", "layout_line", "component_use_decl", "component_layout_value", 
+		"style_decl", "style_name", "style_body", "library_decl", "library_exp", 
+		"keyValue", "preset_key", "preset_value", "preset_array", "preset_call", 
+		"library_name"
 	];
 
 
@@ -353,10 +353,10 @@ fn comment_all(&self) ->  Vec<Rc<CommentContextAll<'input>>> where Self:Sized{
 fn comment(&self, i: usize) -> Option<Rc<CommentContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
-fn configDeclaration_all(&self) ->  Vec<Rc<ConfigDeclarationContextAll<'input>>> where Self:Sized{
+fn config_decl_all(&self) ->  Vec<Rc<Config_declContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn configDeclaration(&self, i: usize) -> Option<Rc<ConfigDeclarationContextAll<'input>>> where Self:Sized{
+fn config_decl(&self, i: usize) -> Option<Rc<Config_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 fn decalartions_all(&self) ->  Vec<Rc<DecalartionsContextAll<'input>>> where Self:Sized{
@@ -407,9 +407,9 @@ where
 				,
 					2 =>{
 						{
-						/*InvokeRule configDeclaration*/
+						/*InvokeRule config_decl*/
 						recog.base.set_state(83);
-						recog.configDeclaration()?;
+						recog.config_decl()?;
 
 						}
 					}
@@ -535,47 +535,47 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- configDeclaration ----------------
-pub type ConfigDeclarationContextAll<'input> = ConfigDeclarationContext<'input>;
+//------------------- config_decl ----------------
+pub type Config_declContextAll<'input> = Config_declContext<'input>;
 
 
-pub type ConfigDeclarationContext<'input> = BaseParserRuleContext<'input,ConfigDeclarationContextExt<'input>>;
+pub type Config_declContext<'input> = BaseParserRuleContext<'input,Config_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ConfigDeclarationContextExt<'input>{
+pub struct Config_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ConfigDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Config_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ConfigDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Config_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_configDeclaration(self);
+		listener.enter_config_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ConfigDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Config_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_configDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_configDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_config_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_config_decl }
 }
-antlr_rust::type_id!{ConfigDeclarationContextExt<'a>}
+antlr_rust::type_id!{Config_declContextExt<'a>}
 
-impl<'input> ConfigDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ConfigDeclarationContextAll<'input>> {
+impl<'input> Config_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Config_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ConfigDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Config_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ConfigDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ConfigDeclarationContextExt<'input>>{
+pub trait Config_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Config_declContextExt<'input>>{
 
-fn configKey(&self) -> Option<Rc<ConfigKeyContextAll<'input>>> where Self:Sized{
+fn config_key(&self) -> Option<Rc<Config_keyContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token COLON
@@ -583,41 +583,41 @@ fn configKey(&self) -> Option<Rc<ConfigKeyContextAll<'input>>> where Self:Sized{
 fn COLON(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(COLON, 0)
 }
-fn configValue(&self) -> Option<Rc<ConfigValueContextAll<'input>>> where Self:Sized{
+fn config_value(&self) -> Option<Rc<Config_valueContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> ConfigDeclarationContextAttrs<'input> for ConfigDeclarationContext<'input>{}
+impl<'input> Config_declContextAttrs<'input> for Config_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn configDeclaration(&mut self,)
-	-> Result<Rc<ConfigDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn config_decl(&mut self,)
+	-> Result<Rc<Config_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ConfigDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 4, RULE_configDeclaration);
-        let mut _localctx: Rc<ConfigDeclarationContextAll> = _localctx;
+		let mut _localctx = Config_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 4, RULE_config_decl);
+        let mut _localctx: Rc<Config_declContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
 			recog.base.enter_outer_alt(None, 1);
 			{
-			/*InvokeRule configKey*/
+			/*InvokeRule config_key*/
 			recog.base.set_state(94);
-			recog.configKey()?;
+			recog.config_key()?;
 
 			recog.base.set_state(95);
 			recog.base.match_token(COLON,&mut recog.err_handler)?;
 
-			/*InvokeRule configValue*/
+			/*InvokeRule config_value*/
 			recog.base.set_state(96);
-			recog.configValue()?;
+			recog.config_value()?;
 
 			}
 		};
@@ -635,45 +635,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- configKey ----------------
-pub type ConfigKeyContextAll<'input> = ConfigKeyContext<'input>;
+//------------------- config_key ----------------
+pub type Config_keyContextAll<'input> = Config_keyContext<'input>;
 
 
-pub type ConfigKeyContext<'input> = BaseParserRuleContext<'input,ConfigKeyContextExt<'input>>;
+pub type Config_keyContext<'input> = BaseParserRuleContext<'input,Config_keyContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ConfigKeyContextExt<'input>{
+pub struct Config_keyContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ConfigKeyContext<'input>{}
+impl<'input> DesignParserContext<'input> for Config_keyContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ConfigKeyContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Config_keyContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_configKey(self);
+		listener.enter_config_key(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ConfigKeyContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Config_keyContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_configKey }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_configKey }
+	fn get_rule_index(&self) -> usize { RULE_config_key }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_config_key }
 }
-antlr_rust::type_id!{ConfigKeyContextExt<'a>}
+antlr_rust::type_id!{Config_keyContextExt<'a>}
 
-impl<'input> ConfigKeyContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ConfigKeyContextAll<'input>> {
+impl<'input> Config_keyContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Config_keyContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ConfigKeyContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Config_keyContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ConfigKeyContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ConfigKeyContextExt<'input>>{
+pub trait Config_keyContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Config_keyContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -683,20 +683,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> ConfigKeyContextAttrs<'input> for ConfigKeyContext<'input>{}
+impl<'input> Config_keyContextAttrs<'input> for Config_keyContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn configKey(&mut self,)
-	-> Result<Rc<ConfigKeyContextAll<'input>>,ANTLRError> {
+	pub fn config_key(&mut self,)
+	-> Result<Rc<Config_keyContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ConfigKeyContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 6, RULE_configKey);
-        let mut _localctx: Rc<ConfigKeyContextAll> = _localctx;
+		let mut _localctx = Config_keyContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 6, RULE_config_key);
+        let mut _localctx: Rc<Config_keyContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -721,45 +721,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- configValue ----------------
-pub type ConfigValueContextAll<'input> = ConfigValueContext<'input>;
+//------------------- config_value ----------------
+pub type Config_valueContextAll<'input> = Config_valueContext<'input>;
 
 
-pub type ConfigValueContext<'input> = BaseParserRuleContext<'input,ConfigValueContextExt<'input>>;
+pub type Config_valueContext<'input> = BaseParserRuleContext<'input,Config_valueContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ConfigValueContextExt<'input>{
+pub struct Config_valueContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ConfigValueContext<'input>{}
+impl<'input> DesignParserContext<'input> for Config_valueContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ConfigValueContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Config_valueContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_configValue(self);
+		listener.enter_config_value(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ConfigValueContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Config_valueContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_configValue }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_configValue }
+	fn get_rule_index(&self) -> usize { RULE_config_value }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_config_value }
 }
-antlr_rust::type_id!{ConfigValueContextExt<'a>}
+antlr_rust::type_id!{Config_valueContextExt<'a>}
 
-impl<'input> ConfigValueContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ConfigValueContextAll<'input>> {
+impl<'input> Config_valueContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Config_valueContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ConfigValueContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Config_valueContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ConfigValueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ConfigValueContextExt<'input>>{
+pub trait Config_valueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Config_valueContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token DIGITS_IDENTIFIER
 /// Returns `None` if there is no child corresponding to token DIGITS_IDENTIFIER
@@ -801,20 +801,20 @@ fn STRING_LITERAL(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextTyp
 
 }
 
-impl<'input> ConfigValueContextAttrs<'input> for ConfigValueContext<'input>{}
+impl<'input> Config_valueContextAttrs<'input> for Config_valueContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn configValue(&mut self,)
-	-> Result<Rc<ConfigValueContextAll<'input>>,ANTLRError> {
+	pub fn config_value(&mut self,)
+	-> Result<Rc<Config_valueContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ConfigValueContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 8, RULE_configValue);
-        let mut _localctx: Rc<ConfigValueContextAll> = _localctx;
+		let mut _localctx = Config_valueContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 8, RULE_config_value);
+        let mut _localctx: Rc<Config_valueContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -1073,25 +1073,25 @@ impl<'input> DecalartionsContextExt<'input>{
 
 pub trait DecalartionsContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<DecalartionsContextExt<'input>>{
 
-fn configDeclaration(&self) -> Option<Rc<ConfigDeclarationContextAll<'input>>> where Self:Sized{
+fn config_decl(&self) -> Option<Rc<Config_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn flowDeclaration(&self) -> Option<Rc<FlowDeclarationContextAll<'input>>> where Self:Sized{
+fn flow_Decl(&self) -> Option<Rc<Flow_DeclContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn pageDeclaration(&self) -> Option<Rc<PageDeclarationContextAll<'input>>> where Self:Sized{
+fn page_decl(&self) -> Option<Rc<Page_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn styleDeclaration(&self) -> Option<Rc<StyleDeclarationContextAll<'input>>> where Self:Sized{
+fn style_decl(&self) -> Option<Rc<Style_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn componentDeclaration(&self) -> Option<Rc<ComponentDeclarationContextAll<'input>>> where Self:Sized{
+fn component_decl(&self) -> Option<Rc<Component_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn libraryDeclaration(&self) -> Option<Rc<LibraryDeclarationContextAll<'input>>> where Self:Sized{
+fn library_decl(&self) -> Option<Rc<Library_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn layoutDeclaration(&self) -> Option<Rc<LayoutDeclarationContextAll<'input>>> where Self:Sized{
+fn layout_decl(&self) -> Option<Rc<Layout_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
@@ -1121,9 +1121,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 1);
 					recog.base.enter_outer_alt(None, 1);
 					{
-					/*InvokeRule configDeclaration*/
+					/*InvokeRule config_decl*/
 					recog.base.set_state(122);
-					recog.configDeclaration()?;
+					recog.config_decl()?;
 
 					}
 				}
@@ -1133,9 +1133,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 2);
 					recog.base.enter_outer_alt(None, 2);
 					{
-					/*InvokeRule flowDeclaration*/
+					/*InvokeRule flow_Decl*/
 					recog.base.set_state(123);
-					recog.flowDeclaration()?;
+					recog.flow_Decl()?;
 
 					}
 				}
@@ -1145,9 +1145,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 3);
 					recog.base.enter_outer_alt(None, 3);
 					{
-					/*InvokeRule pageDeclaration*/
+					/*InvokeRule page_decl*/
 					recog.base.set_state(124);
-					recog.pageDeclaration()?;
+					recog.page_decl()?;
 
 					}
 				}
@@ -1157,9 +1157,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 4);
 					recog.base.enter_outer_alt(None, 4);
 					{
-					/*InvokeRule styleDeclaration*/
+					/*InvokeRule style_decl*/
 					recog.base.set_state(125);
-					recog.styleDeclaration()?;
+					recog.style_decl()?;
 
 					}
 				}
@@ -1169,9 +1169,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 5);
 					recog.base.enter_outer_alt(None, 5);
 					{
-					/*InvokeRule componentDeclaration*/
+					/*InvokeRule component_decl*/
 					recog.base.set_state(126);
-					recog.componentDeclaration()?;
+					recog.component_decl()?;
 
 					}
 				}
@@ -1181,9 +1181,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 6);
 					recog.base.enter_outer_alt(None, 6);
 					{
-					/*InvokeRule libraryDeclaration*/
+					/*InvokeRule library_decl*/
 					recog.base.set_state(127);
-					recog.libraryDeclaration()?;
+					recog.library_decl()?;
 
 					}
 				}
@@ -1193,9 +1193,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 7);
 					recog.base.enter_outer_alt(None, 7);
 					{
-					/*InvokeRule layoutDeclaration*/
+					/*InvokeRule layout_decl*/
 					recog.base.set_state(128);
-					recog.layoutDeclaration()?;
+					recog.layout_decl()?;
 
 					}
 				}
@@ -1217,45 +1217,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- flowDeclaration ----------------
-pub type FlowDeclarationContextAll<'input> = FlowDeclarationContext<'input>;
+//------------------- flow_Decl ----------------
+pub type Flow_DeclContextAll<'input> = Flow_DeclContext<'input>;
 
 
-pub type FlowDeclarationContext<'input> = BaseParserRuleContext<'input,FlowDeclarationContextExt<'input>>;
+pub type Flow_DeclContext<'input> = BaseParserRuleContext<'input,Flow_DeclContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct FlowDeclarationContextExt<'input>{
+pub struct Flow_DeclContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for FlowDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Flow_DeclContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for FlowDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Flow_DeclContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_flowDeclaration(self);
+		listener.enter_flow_Decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for FlowDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Flow_DeclContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_flowDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_flowDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_flow_Decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_flow_Decl }
 }
-antlr_rust::type_id!{FlowDeclarationContextExt<'a>}
+antlr_rust::type_id!{Flow_DeclContextExt<'a>}
 
-impl<'input> FlowDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<FlowDeclarationContextAll<'input>> {
+impl<'input> Flow_DeclContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Flow_DeclContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,FlowDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Flow_DeclContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait FlowDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<FlowDeclarationContextExt<'input>>{
+pub trait Flow_DeclContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Flow_DeclContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token FLOW
 /// Returns `None` if there is no child corresponding to token FLOW
@@ -1277,29 +1277,29 @@ fn LBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> whe
 fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(RBRACE, 0)
 }
-fn interactionDeclaration_all(&self) ->  Vec<Rc<InteractionDeclarationContextAll<'input>>> where Self:Sized{
+fn interaction_decl_all(&self) ->  Vec<Rc<Interaction_declContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn interactionDeclaration(&self, i: usize) -> Option<Rc<InteractionDeclarationContextAll<'input>>> where Self:Sized{
+fn interaction_decl(&self, i: usize) -> Option<Rc<Interaction_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 
 }
 
-impl<'input> FlowDeclarationContextAttrs<'input> for FlowDeclarationContext<'input>{}
+impl<'input> Flow_DeclContextAttrs<'input> for Flow_DeclContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn flowDeclaration(&mut self,)
-	-> Result<Rc<FlowDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn flow_Decl(&mut self,)
+	-> Result<Rc<Flow_DeclContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = FlowDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 14, RULE_flowDeclaration);
-        let mut _localctx: Rc<FlowDeclarationContextAll> = _localctx;
+		let mut _localctx = Flow_DeclContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 14, RULE_flow_Decl);
+        let mut _localctx: Rc<Flow_DeclContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -1321,9 +1321,9 @@ where
 			while (((_la) & !0x3f) == 0 && ((1usize << _la) & ((1usize << SEE) | (1usize << DO) | (1usize << REACT))) != 0) {
 				{
 				{
-				/*InvokeRule interactionDeclaration*/
+				/*InvokeRule interaction_decl*/
 				recog.base.set_state(134);
-				recog.interactionDeclaration()?;
+				recog.interaction_decl()?;
 
 				}
 				}
@@ -1350,72 +1350,72 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- interactionDeclaration ----------------
-pub type InteractionDeclarationContextAll<'input> = InteractionDeclarationContext<'input>;
+//------------------- interaction_decl ----------------
+pub type Interaction_declContextAll<'input> = Interaction_declContext<'input>;
 
 
-pub type InteractionDeclarationContext<'input> = BaseParserRuleContext<'input,InteractionDeclarationContextExt<'input>>;
+pub type Interaction_declContext<'input> = BaseParserRuleContext<'input,Interaction_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct InteractionDeclarationContextExt<'input>{
+pub struct Interaction_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for InteractionDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Interaction_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for InteractionDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Interaction_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_interactionDeclaration(self);
+		listener.enter_interaction_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for InteractionDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Interaction_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_interactionDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_interactionDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_interaction_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_interaction_decl }
 }
-antlr_rust::type_id!{InteractionDeclarationContextExt<'a>}
+antlr_rust::type_id!{Interaction_declContextExt<'a>}
 
-impl<'input> InteractionDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<InteractionDeclarationContextAll<'input>> {
+impl<'input> Interaction_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Interaction_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,InteractionDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Interaction_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait InteractionDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<InteractionDeclarationContextExt<'input>>{
+pub trait Interaction_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Interaction_declContextExt<'input>>{
 
-fn seeDeclaration(&self) -> Option<Rc<SeeDeclarationContextAll<'input>>> where Self:Sized{
+fn see_decl(&self) -> Option<Rc<See_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn doDeclaration(&self) -> Option<Rc<DoDeclarationContextAll<'input>>> where Self:Sized{
+fn do_decl(&self) -> Option<Rc<Do_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn reactDeclaration(&self) -> Option<Rc<ReactDeclarationContextAll<'input>>> where Self:Sized{
+fn react_decl(&self) -> Option<Rc<React_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> InteractionDeclarationContextAttrs<'input> for InteractionDeclarationContext<'input>{}
+impl<'input> Interaction_declContextAttrs<'input> for Interaction_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn interactionDeclaration(&mut self,)
-	-> Result<Rc<InteractionDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn interaction_decl(&mut self,)
+	-> Result<Rc<Interaction_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = InteractionDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 16, RULE_interactionDeclaration);
-        let mut _localctx: Rc<InteractionDeclarationContextAll> = _localctx;
+		let mut _localctx = Interaction_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 16, RULE_interaction_decl);
+        let mut _localctx: Rc<Interaction_declContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			recog.base.set_state(145);
@@ -1426,9 +1426,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 1);
 					recog.base.enter_outer_alt(None, 1);
 					{
-					/*InvokeRule seeDeclaration*/
+					/*InvokeRule see_decl*/
 					recog.base.set_state(142);
-					recog.seeDeclaration()?;
+					recog.see_decl()?;
 
 					}
 				}
@@ -1438,9 +1438,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 2);
 					recog.base.enter_outer_alt(None, 2);
 					{
-					/*InvokeRule doDeclaration*/
+					/*InvokeRule do_decl*/
 					recog.base.set_state(143);
-					recog.doDeclaration()?;
+					recog.do_decl()?;
 
 					}
 				}
@@ -1450,9 +1450,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 3);
 					recog.base.enter_outer_alt(None, 3);
 					{
-					/*InvokeRule reactDeclaration*/
+					/*InvokeRule react_decl*/
 					recog.base.set_state(144);
-					recog.reactDeclaration()?;
+					recog.react_decl()?;
 
 					}
 				}
@@ -1474,45 +1474,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- seeDeclaration ----------------
-pub type SeeDeclarationContextAll<'input> = SeeDeclarationContext<'input>;
+//------------------- see_decl ----------------
+pub type See_declContextAll<'input> = See_declContext<'input>;
 
 
-pub type SeeDeclarationContext<'input> = BaseParserRuleContext<'input,SeeDeclarationContextExt<'input>>;
+pub type See_declContext<'input> = BaseParserRuleContext<'input,See_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct SeeDeclarationContextExt<'input>{
+pub struct See_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for SeeDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for See_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for SeeDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for See_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_seeDeclaration(self);
+		listener.enter_see_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for SeeDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for See_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_seeDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_seeDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_see_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_see_decl }
 }
-antlr_rust::type_id!{SeeDeclarationContextExt<'a>}
+antlr_rust::type_id!{See_declContextExt<'a>}
 
-impl<'input> SeeDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<SeeDeclarationContextAll<'input>> {
+impl<'input> See_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<See_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,SeeDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,See_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait SeeDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<SeeDeclarationContextExt<'input>>{
+pub trait See_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<See_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token SEE
 /// Returns `None` if there is no child corresponding to token SEE
@@ -1534,26 +1534,26 @@ fn STRING_LITERAL(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextTyp
 fn DOT(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(DOT, 0)
 }
-fn componentName(&self) -> Option<Rc<ComponentNameContextAll<'input>>> where Self:Sized{
+fn component_name(&self) -> Option<Rc<Component_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> SeeDeclarationContextAttrs<'input> for SeeDeclarationContext<'input>{}
+impl<'input> See_declContextAttrs<'input> for See_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn seeDeclaration(&mut self,)
-	-> Result<Rc<SeeDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn see_decl(&mut self,)
+	-> Result<Rc<See_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = SeeDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 18, RULE_seeDeclaration);
-        let mut _localctx: Rc<SeeDeclarationContextAll> = _localctx;
+		let mut _localctx = See_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 18, RULE_see_decl);
+        let mut _localctx: Rc<See_declContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -1583,9 +1583,9 @@ where
 					recog.base.set_state(150);
 					recog.base.match_token(DOT,&mut recog.err_handler)?;
 
-					/*InvokeRule componentName*/
+					/*InvokeRule component_name*/
 					recog.base.set_state(151);
-					recog.componentName()?;
+					recog.component_name()?;
 
 					}
 				}
@@ -1608,45 +1608,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- doDeclaration ----------------
-pub type DoDeclarationContextAll<'input> = DoDeclarationContext<'input>;
+//------------------- do_decl ----------------
+pub type Do_declContextAll<'input> = Do_declContext<'input>;
 
 
-pub type DoDeclarationContext<'input> = BaseParserRuleContext<'input,DoDeclarationContextExt<'input>>;
+pub type Do_declContext<'input> = BaseParserRuleContext<'input,Do_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct DoDeclarationContextExt<'input>{
+pub struct Do_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for DoDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Do_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for DoDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Do_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_doDeclaration(self);
+		listener.enter_do_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for DoDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Do_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_doDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_doDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_do_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_do_decl }
 }
-antlr_rust::type_id!{DoDeclarationContextExt<'a>}
+antlr_rust::type_id!{Do_declContextExt<'a>}
 
-impl<'input> DoDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<DoDeclarationContextAll<'input>> {
+impl<'input> Do_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Do_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,DoDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Do_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait DoDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<DoDeclarationContextExt<'input>>{
+pub trait Do_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Do_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token DO
 /// Returns `None` if there is no child corresponding to token DO
@@ -1658,7 +1658,7 @@ fn DO(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where S
 fn LBRACK(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(LBRACK, 0)
 }
-fn actionName(&self) -> Option<Rc<ActionNameContextAll<'input>>> where Self:Sized{
+fn action_name(&self) -> Option<Rc<Action_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token RBRACK
@@ -1676,26 +1676,26 @@ fn STRING_LITERAL(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextTyp
 fn DOT(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(DOT, 0)
 }
-fn componentName(&self) -> Option<Rc<ComponentNameContextAll<'input>>> where Self:Sized{
+fn component_name(&self) -> Option<Rc<Component_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> DoDeclarationContextAttrs<'input> for DoDeclarationContext<'input>{}
+impl<'input> Do_declContextAttrs<'input> for Do_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn doDeclaration(&mut self,)
-	-> Result<Rc<DoDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn do_decl(&mut self,)
+	-> Result<Rc<Do_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = DoDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 20, RULE_doDeclaration);
-        let mut _localctx: Rc<DoDeclarationContextAll> = _localctx;
+		let mut _localctx = Do_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 20, RULE_do_decl);
+        let mut _localctx: Rc<Do_declContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -1707,9 +1707,9 @@ where
 			recog.base.set_state(155);
 			recog.base.match_token(LBRACK,&mut recog.err_handler)?;
 
-			/*InvokeRule actionName*/
+			/*InvokeRule action_name*/
 			recog.base.set_state(156);
-			recog.actionName()?;
+			recog.action_name()?;
 
 			recog.base.set_state(157);
 			recog.base.match_token(RBRACK,&mut recog.err_handler)?;
@@ -1720,9 +1720,9 @@ where
 			recog.base.set_state(159);
 			recog.base.match_token(DOT,&mut recog.err_handler)?;
 
-			/*InvokeRule componentName*/
+			/*InvokeRule component_name*/
 			recog.base.set_state(160);
-			recog.componentName()?;
+			recog.component_name()?;
 
 			}
 		};
@@ -1740,45 +1740,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- reactDeclaration ----------------
-pub type ReactDeclarationContextAll<'input> = ReactDeclarationContext<'input>;
+//------------------- react_decl ----------------
+pub type React_declContextAll<'input> = React_declContext<'input>;
 
 
-pub type ReactDeclarationContext<'input> = BaseParserRuleContext<'input,ReactDeclarationContextExt<'input>>;
+pub type React_declContext<'input> = BaseParserRuleContext<'input,React_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ReactDeclarationContextExt<'input>{
+pub struct React_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ReactDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for React_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ReactDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for React_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_reactDeclaration(self);
+		listener.enter_react_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ReactDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for React_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_reactDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_reactDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_react_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_react_decl }
 }
-antlr_rust::type_id!{ReactDeclarationContextExt<'a>}
+antlr_rust::type_id!{React_declContextExt<'a>}
 
-impl<'input> ReactDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ReactDeclarationContextAll<'input>> {
+impl<'input> React_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<React_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ReactDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,React_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ReactDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ReactDeclarationContextExt<'input>>{
+pub trait React_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<React_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token REACT
 /// Returns `None` if there is no child corresponding to token REACT
@@ -1790,32 +1790,32 @@ fn REACT(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> wher
 fn COLON(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(COLON, 0)
 }
-fn reactAction(&self) -> Option<Rc<ReactActionContextAll<'input>>> where Self:Sized{
+fn react_action(&self) -> Option<Rc<React_actionContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn sceneName(&self) -> Option<Rc<SceneNameContextAll<'input>>> where Self:Sized{
+fn scene_name(&self) -> Option<Rc<Scene_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn animateDeclaration(&self) -> Option<Rc<AnimateDeclarationContextAll<'input>>> where Self:Sized{
+fn animate_decl(&self) -> Option<Rc<Animate_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> ReactDeclarationContextAttrs<'input> for ReactDeclarationContext<'input>{}
+impl<'input> React_declContextAttrs<'input> for React_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn reactDeclaration(&mut self,)
-	-> Result<Rc<ReactDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn react_decl(&mut self,)
+	-> Result<Rc<React_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ReactDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 22, RULE_reactDeclaration);
-        let mut _localctx: Rc<ReactDeclarationContextAll> = _localctx;
+		let mut _localctx = React_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 22, RULE_react_decl);
+        let mut _localctx: Rc<React_declContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -1830,9 +1830,9 @@ where
 			_la = recog.base.input.la(1);
 			if _la==IDENTIFIER {
 				{
-				/*InvokeRule sceneName*/
+				/*InvokeRule scene_name*/
 				recog.base.set_state(163);
-				recog.sceneName()?;
+				recog.scene_name()?;
 
 				}
 			}
@@ -1840,18 +1840,18 @@ where
 			recog.base.set_state(166);
 			recog.base.match_token(COLON,&mut recog.err_handler)?;
 
-			/*InvokeRule reactAction*/
+			/*InvokeRule react_action*/
 			recog.base.set_state(167);
-			recog.reactAction()?;
+			recog.react_action()?;
 
 			recog.base.set_state(169);
 			recog.err_handler.sync(&mut recog.base)?;
 			_la = recog.base.input.la(1);
 			if _la==WITHTEXT {
 				{
-				/*InvokeRule animateDeclaration*/
+				/*InvokeRule animate_decl*/
 				recog.base.set_state(168);
-				recog.animateDeclaration()?;
+				recog.animate_decl()?;
 
 				}
 			}
@@ -1872,45 +1872,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- animateDeclaration ----------------
-pub type AnimateDeclarationContextAll<'input> = AnimateDeclarationContext<'input>;
+//------------------- animate_decl ----------------
+pub type Animate_declContextAll<'input> = Animate_declContext<'input>;
 
 
-pub type AnimateDeclarationContext<'input> = BaseParserRuleContext<'input,AnimateDeclarationContextExt<'input>>;
+pub type Animate_declContext<'input> = BaseParserRuleContext<'input,Animate_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct AnimateDeclarationContextExt<'input>{
+pub struct Animate_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for AnimateDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Animate_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for AnimateDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Animate_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_animateDeclaration(self);
+		listener.enter_animate_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for AnimateDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Animate_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_animateDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_animateDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_animate_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_animate_decl }
 }
-antlr_rust::type_id!{AnimateDeclarationContextExt<'a>}
+antlr_rust::type_id!{Animate_declContextExt<'a>}
 
-impl<'input> AnimateDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<AnimateDeclarationContextAll<'input>> {
+impl<'input> Animate_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Animate_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,AnimateDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Animate_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait AnimateDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<AnimateDeclarationContextExt<'input>>{
+pub trait Animate_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Animate_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token WITHTEXT
 /// Returns `None` if there is no child corresponding to token WITHTEXT
@@ -1927,7 +1927,7 @@ fn ANIMATE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> wh
 fn LPAREN(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(LPAREN, 0)
 }
-fn animateName(&self) -> Option<Rc<AnimateNameContextAll<'input>>> where Self:Sized{
+fn animate_name(&self) -> Option<Rc<Animate_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token RPAREN
@@ -1938,20 +1938,20 @@ fn RPAREN(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> whe
 
 }
 
-impl<'input> AnimateDeclarationContextAttrs<'input> for AnimateDeclarationContext<'input>{}
+impl<'input> Animate_declContextAttrs<'input> for Animate_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn animateDeclaration(&mut self,)
-	-> Result<Rc<AnimateDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn animate_decl(&mut self,)
+	-> Result<Rc<Animate_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = AnimateDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 24, RULE_animateDeclaration);
-        let mut _localctx: Rc<AnimateDeclarationContextAll> = _localctx;
+		let mut _localctx = Animate_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 24, RULE_animate_decl);
+        let mut _localctx: Rc<Animate_declContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -1966,9 +1966,9 @@ where
 			recog.base.set_state(173);
 			recog.base.match_token(LPAREN,&mut recog.err_handler)?;
 
-			/*InvokeRule animateName*/
+			/*InvokeRule animate_name*/
 			recog.base.set_state(174);
-			recog.animateName()?;
+			recog.animate_name()?;
 
 			recog.base.set_state(175);
 			recog.base.match_token(RPAREN,&mut recog.err_handler)?;
@@ -1989,69 +1989,69 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- reactAction ----------------
-pub type ReactActionContextAll<'input> = ReactActionContext<'input>;
+//------------------- react_action ----------------
+pub type React_actionContextAll<'input> = React_actionContext<'input>;
 
 
-pub type ReactActionContext<'input> = BaseParserRuleContext<'input,ReactActionContextExt<'input>>;
+pub type React_actionContext<'input> = BaseParserRuleContext<'input,React_actionContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ReactActionContextExt<'input>{
+pub struct React_actionContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ReactActionContext<'input>{}
+impl<'input> DesignParserContext<'input> for React_actionContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ReactActionContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for React_actionContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_reactAction(self);
+		listener.enter_react_action(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ReactActionContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for React_actionContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_reactAction }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_reactAction }
+	fn get_rule_index(&self) -> usize { RULE_react_action }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_react_action }
 }
-antlr_rust::type_id!{ReactActionContextExt<'a>}
+antlr_rust::type_id!{React_actionContextExt<'a>}
 
-impl<'input> ReactActionContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ReactActionContextAll<'input>> {
+impl<'input> React_actionContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<React_actionContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ReactActionContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,React_actionContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ReactActionContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ReactActionContextExt<'input>>{
+pub trait React_actionContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<React_actionContextExt<'input>>{
 
-fn gotoAction(&self) -> Option<Rc<GotoActionContextAll<'input>>> where Self:Sized{
+fn goto_action(&self) -> Option<Rc<Goto_actionContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn showAction(&self) -> Option<Rc<ShowActionContextAll<'input>>> where Self:Sized{
+fn show_action(&self) -> Option<Rc<Show_actionContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> ReactActionContextAttrs<'input> for ReactActionContext<'input>{}
+impl<'input> React_actionContextAttrs<'input> for React_actionContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn reactAction(&mut self,)
-	-> Result<Rc<ReactActionContextAll<'input>>,ANTLRError> {
+	pub fn react_action(&mut self,)
+	-> Result<Rc<React_actionContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ReactActionContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 26, RULE_reactAction);
-        let mut _localctx: Rc<ReactActionContextAll> = _localctx;
+		let mut _localctx = React_actionContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 26, RULE_react_action);
+        let mut _localctx: Rc<React_actionContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			recog.base.set_state(179);
@@ -2062,9 +2062,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 1);
 					recog.base.enter_outer_alt(None, 1);
 					{
-					/*InvokeRule gotoAction*/
+					/*InvokeRule goto_action*/
 					recog.base.set_state(177);
-					recog.gotoAction()?;
+					recog.goto_action()?;
 
 					}
 				}
@@ -2074,9 +2074,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 2);
 					recog.base.enter_outer_alt(None, 2);
 					{
-					/*InvokeRule showAction*/
+					/*InvokeRule show_action*/
 					recog.base.set_state(178);
-					recog.showAction()?;
+					recog.show_action()?;
 
 					}
 				}
@@ -2098,71 +2098,71 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- gotoAction ----------------
-pub type GotoActionContextAll<'input> = GotoActionContext<'input>;
+//------------------- goto_action ----------------
+pub type Goto_actionContextAll<'input> = Goto_actionContext<'input>;
 
 
-pub type GotoActionContext<'input> = BaseParserRuleContext<'input,GotoActionContextExt<'input>>;
+pub type Goto_actionContext<'input> = BaseParserRuleContext<'input,Goto_actionContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct GotoActionContextExt<'input>{
+pub struct Goto_actionContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for GotoActionContext<'input>{}
+impl<'input> DesignParserContext<'input> for Goto_actionContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for GotoActionContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Goto_actionContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_gotoAction(self);
+		listener.enter_goto_action(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for GotoActionContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Goto_actionContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_gotoAction }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_gotoAction }
+	fn get_rule_index(&self) -> usize { RULE_goto_action }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_goto_action }
 }
-antlr_rust::type_id!{GotoActionContextExt<'a>}
+antlr_rust::type_id!{Goto_actionContextExt<'a>}
 
-impl<'input> GotoActionContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<GotoActionContextAll<'input>> {
+impl<'input> Goto_actionContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Goto_actionContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,GotoActionContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Goto_actionContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait GotoActionContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<GotoActionContextExt<'input>>{
+pub trait Goto_actionContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Goto_actionContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token GOTO_KEY
 /// Returns `None` if there is no child corresponding to token GOTO_KEY
 fn GOTO_KEY(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(GOTO_KEY, 0)
 }
-fn componentName(&self) -> Option<Rc<ComponentNameContextAll<'input>>> where Self:Sized{
+fn component_name(&self) -> Option<Rc<Component_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> GotoActionContextAttrs<'input> for GotoActionContext<'input>{}
+impl<'input> Goto_actionContextAttrs<'input> for Goto_actionContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn gotoAction(&mut self,)
-	-> Result<Rc<GotoActionContextAll<'input>>,ANTLRError> {
+	pub fn goto_action(&mut self,)
+	-> Result<Rc<Goto_actionContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = GotoActionContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 28, RULE_gotoAction);
-        let mut _localctx: Rc<GotoActionContextAll> = _localctx;
+		let mut _localctx = Goto_actionContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 28, RULE_goto_action);
+        let mut _localctx: Rc<Goto_actionContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -2171,9 +2171,9 @@ where
 			recog.base.set_state(181);
 			recog.base.match_token(GOTO_KEY,&mut recog.err_handler)?;
 
-			/*InvokeRule componentName*/
+			/*InvokeRule component_name*/
 			recog.base.set_state(182);
-			recog.componentName()?;
+			recog.component_name()?;
 
 			}
 		};
@@ -2191,45 +2191,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- showAction ----------------
-pub type ShowActionContextAll<'input> = ShowActionContext<'input>;
+//------------------- show_action ----------------
+pub type Show_actionContextAll<'input> = Show_actionContext<'input>;
 
 
-pub type ShowActionContext<'input> = BaseParserRuleContext<'input,ShowActionContextExt<'input>>;
+pub type Show_actionContext<'input> = BaseParserRuleContext<'input,Show_actionContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ShowActionContextExt<'input>{
+pub struct Show_actionContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ShowActionContext<'input>{}
+impl<'input> DesignParserContext<'input> for Show_actionContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ShowActionContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Show_actionContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_showAction(self);
+		listener.enter_show_action(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ShowActionContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Show_actionContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_showAction }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_showAction }
+	fn get_rule_index(&self) -> usize { RULE_show_action }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_show_action }
 }
-antlr_rust::type_id!{ShowActionContextExt<'a>}
+antlr_rust::type_id!{Show_actionContextExt<'a>}
 
-impl<'input> ShowActionContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ShowActionContextAll<'input>> {
+impl<'input> Show_actionContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Show_actionContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ShowActionContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Show_actionContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ShowActionContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ShowActionContextExt<'input>>{
+pub trait Show_actionContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Show_actionContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token SHOW_KEY
 /// Returns `None` if there is no child corresponding to token SHOW_KEY
@@ -2246,26 +2246,26 @@ fn STRING_LITERAL(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextTyp
 fn DOT(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(DOT, 0)
 }
-fn componentName(&self) -> Option<Rc<ComponentNameContextAll<'input>>> where Self:Sized{
+fn component_name(&self) -> Option<Rc<Component_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> ShowActionContextAttrs<'input> for ShowActionContext<'input>{}
+impl<'input> Show_actionContextAttrs<'input> for Show_actionContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn showAction(&mut self,)
-	-> Result<Rc<ShowActionContextAll<'input>>,ANTLRError> {
+	pub fn show_action(&mut self,)
+	-> Result<Rc<Show_actionContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ShowActionContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 30, RULE_showAction);
-        let mut _localctx: Rc<ShowActionContextAll> = _localctx;
+		let mut _localctx = Show_actionContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 30, RULE_show_action);
+        let mut _localctx: Rc<Show_actionContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -2280,9 +2280,9 @@ where
 			recog.base.set_state(186);
 			recog.base.match_token(DOT,&mut recog.err_handler)?;
 
-			/*InvokeRule componentName*/
+			/*InvokeRule component_name*/
 			recog.base.set_state(187);
-			recog.componentName()?;
+			recog.component_name()?;
 
 			}
 		};
@@ -2300,45 +2300,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- actionName ----------------
-pub type ActionNameContextAll<'input> = ActionNameContext<'input>;
+//------------------- action_name ----------------
+pub type Action_nameContextAll<'input> = Action_nameContext<'input>;
 
 
-pub type ActionNameContext<'input> = BaseParserRuleContext<'input,ActionNameContextExt<'input>>;
+pub type Action_nameContext<'input> = BaseParserRuleContext<'input,Action_nameContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ActionNameContextExt<'input>{
+pub struct Action_nameContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ActionNameContext<'input>{}
+impl<'input> DesignParserContext<'input> for Action_nameContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ActionNameContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Action_nameContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_actionName(self);
+		listener.enter_action_name(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ActionNameContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Action_nameContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_actionName }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_actionName }
+	fn get_rule_index(&self) -> usize { RULE_action_name }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_action_name }
 }
-antlr_rust::type_id!{ActionNameContextExt<'a>}
+antlr_rust::type_id!{Action_nameContextExt<'a>}
 
-impl<'input> ActionNameContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ActionNameContextAll<'input>> {
+impl<'input> Action_nameContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Action_nameContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ActionNameContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Action_nameContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ActionNameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ActionNameContextExt<'input>>{
+pub trait Action_nameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Action_nameContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -2348,20 +2348,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> ActionNameContextAttrs<'input> for ActionNameContext<'input>{}
+impl<'input> Action_nameContextAttrs<'input> for Action_nameContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn actionName(&mut self,)
-	-> Result<Rc<ActionNameContextAll<'input>>,ANTLRError> {
+	pub fn action_name(&mut self,)
+	-> Result<Rc<Action_nameContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ActionNameContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 32, RULE_actionName);
-        let mut _localctx: Rc<ActionNameContextAll> = _localctx;
+		let mut _localctx = Action_nameContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 32, RULE_action_name);
+        let mut _localctx: Rc<Action_nameContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -2386,45 +2386,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- componentValue ----------------
-pub type ComponentValueContextAll<'input> = ComponentValueContext<'input>;
+//------------------- component_value ----------------
+pub type Component_valueContextAll<'input> = Component_valueContext<'input>;
 
 
-pub type ComponentValueContext<'input> = BaseParserRuleContext<'input,ComponentValueContextExt<'input>>;
+pub type Component_valueContext<'input> = BaseParserRuleContext<'input,Component_valueContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ComponentValueContextExt<'input>{
+pub struct Component_valueContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ComponentValueContext<'input>{}
+impl<'input> DesignParserContext<'input> for Component_valueContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ComponentValueContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_valueContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_componentValue(self);
+		listener.enter_component_value(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ComponentValueContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Component_valueContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_componentValue }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_componentValue }
+	fn get_rule_index(&self) -> usize { RULE_component_value }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_component_value }
 }
-antlr_rust::type_id!{ComponentValueContextExt<'a>}
+antlr_rust::type_id!{Component_valueContextExt<'a>}
 
-impl<'input> ComponentValueContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ComponentValueContextAll<'input>> {
+impl<'input> Component_valueContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Component_valueContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ComponentValueContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Component_valueContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ComponentValueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ComponentValueContextExt<'input>>{
+pub trait Component_valueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Component_valueContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -2434,20 +2434,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> ComponentValueContextAttrs<'input> for ComponentValueContext<'input>{}
+impl<'input> Component_valueContextAttrs<'input> for Component_valueContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn componentValue(&mut self,)
-	-> Result<Rc<ComponentValueContextAll<'input>>,ANTLRError> {
+	pub fn component_value(&mut self,)
+	-> Result<Rc<Component_valueContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ComponentValueContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 34, RULE_componentValue);
-        let mut _localctx: Rc<ComponentValueContextAll> = _localctx;
+		let mut _localctx = Component_valueContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 34, RULE_component_value);
+        let mut _localctx: Rc<Component_valueContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -2472,45 +2472,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- componentName ----------------
-pub type ComponentNameContextAll<'input> = ComponentNameContext<'input>;
+//------------------- component_name ----------------
+pub type Component_nameContextAll<'input> = Component_nameContext<'input>;
 
 
-pub type ComponentNameContext<'input> = BaseParserRuleContext<'input,ComponentNameContextExt<'input>>;
+pub type Component_nameContext<'input> = BaseParserRuleContext<'input,Component_nameContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ComponentNameContextExt<'input>{
+pub struct Component_nameContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ComponentNameContext<'input>{}
+impl<'input> DesignParserContext<'input> for Component_nameContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ComponentNameContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_nameContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_componentName(self);
+		listener.enter_component_name(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ComponentNameContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Component_nameContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_componentName }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_componentName }
+	fn get_rule_index(&self) -> usize { RULE_component_name }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_component_name }
 }
-antlr_rust::type_id!{ComponentNameContextExt<'a>}
+antlr_rust::type_id!{Component_nameContextExt<'a>}
 
-impl<'input> ComponentNameContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ComponentNameContextAll<'input>> {
+impl<'input> Component_nameContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Component_nameContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ComponentNameContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Component_nameContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ComponentNameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ComponentNameContextExt<'input>>{
+pub trait Component_nameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Component_nameContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -2520,20 +2520,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> ComponentNameContextAttrs<'input> for ComponentNameContext<'input>{}
+impl<'input> Component_nameContextAttrs<'input> for Component_nameContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn componentName(&mut self,)
-	-> Result<Rc<ComponentNameContextAll<'input>>,ANTLRError> {
+	pub fn component_name(&mut self,)
+	-> Result<Rc<Component_nameContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ComponentNameContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 36, RULE_componentName);
-        let mut _localctx: Rc<ComponentNameContextAll> = _localctx;
+		let mut _localctx = Component_nameContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 36, RULE_component_name);
+        let mut _localctx: Rc<Component_nameContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -2558,45 +2558,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- sceneName ----------------
-pub type SceneNameContextAll<'input> = SceneNameContext<'input>;
+//------------------- scene_name ----------------
+pub type Scene_nameContextAll<'input> = Scene_nameContext<'input>;
 
 
-pub type SceneNameContext<'input> = BaseParserRuleContext<'input,SceneNameContextExt<'input>>;
+pub type Scene_nameContext<'input> = BaseParserRuleContext<'input,Scene_nameContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct SceneNameContextExt<'input>{
+pub struct Scene_nameContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for SceneNameContext<'input>{}
+impl<'input> DesignParserContext<'input> for Scene_nameContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for SceneNameContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Scene_nameContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_sceneName(self);
+		listener.enter_scene_name(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for SceneNameContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Scene_nameContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_sceneName }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_sceneName }
+	fn get_rule_index(&self) -> usize { RULE_scene_name }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_scene_name }
 }
-antlr_rust::type_id!{SceneNameContextExt<'a>}
+antlr_rust::type_id!{Scene_nameContextExt<'a>}
 
-impl<'input> SceneNameContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<SceneNameContextAll<'input>> {
+impl<'input> Scene_nameContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Scene_nameContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,SceneNameContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Scene_nameContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait SceneNameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<SceneNameContextExt<'input>>{
+pub trait Scene_nameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Scene_nameContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -2606,20 +2606,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> SceneNameContextAttrs<'input> for SceneNameContext<'input>{}
+impl<'input> Scene_nameContextAttrs<'input> for Scene_nameContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn sceneName(&mut self,)
-	-> Result<Rc<SceneNameContextAll<'input>>,ANTLRError> {
+	pub fn scene_name(&mut self,)
+	-> Result<Rc<Scene_nameContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = SceneNameContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 38, RULE_sceneName);
-        let mut _localctx: Rc<SceneNameContextAll> = _localctx;
+		let mut _localctx = Scene_nameContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 38, RULE_scene_name);
+        let mut _localctx: Rc<Scene_nameContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -2644,45 +2644,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- animateName ----------------
-pub type AnimateNameContextAll<'input> = AnimateNameContext<'input>;
+//------------------- animate_name ----------------
+pub type Animate_nameContextAll<'input> = Animate_nameContext<'input>;
 
 
-pub type AnimateNameContext<'input> = BaseParserRuleContext<'input,AnimateNameContextExt<'input>>;
+pub type Animate_nameContext<'input> = BaseParserRuleContext<'input,Animate_nameContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct AnimateNameContextExt<'input>{
+pub struct Animate_nameContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for AnimateNameContext<'input>{}
+impl<'input> DesignParserContext<'input> for Animate_nameContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for AnimateNameContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Animate_nameContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_animateName(self);
+		listener.enter_animate_name(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for AnimateNameContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Animate_nameContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_animateName }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_animateName }
+	fn get_rule_index(&self) -> usize { RULE_animate_name }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_animate_name }
 }
-antlr_rust::type_id!{AnimateNameContextExt<'a>}
+antlr_rust::type_id!{Animate_nameContextExt<'a>}
 
-impl<'input> AnimateNameContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<AnimateNameContextAll<'input>> {
+impl<'input> Animate_nameContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Animate_nameContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,AnimateNameContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Animate_nameContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait AnimateNameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<AnimateNameContextExt<'input>>{
+pub trait Animate_nameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Animate_nameContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -2692,20 +2692,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> AnimateNameContextAttrs<'input> for AnimateNameContext<'input>{}
+impl<'input> Animate_nameContextAttrs<'input> for Animate_nameContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn animateName(&mut self,)
-	-> Result<Rc<AnimateNameContextAll<'input>>,ANTLRError> {
+	pub fn animate_name(&mut self,)
+	-> Result<Rc<Animate_nameContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = AnimateNameContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 40, RULE_animateName);
-        let mut _localctx: Rc<AnimateNameContextAll> = _localctx;
+		let mut _localctx = Animate_nameContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 40, RULE_animate_name);
+        let mut _localctx: Rc<Animate_nameContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -2730,45 +2730,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- pageDeclaration ----------------
-pub type PageDeclarationContextAll<'input> = PageDeclarationContext<'input>;
+//------------------- page_decl ----------------
+pub type Page_declContextAll<'input> = Page_declContext<'input>;
 
 
-pub type PageDeclarationContext<'input> = BaseParserRuleContext<'input,PageDeclarationContextExt<'input>>;
+pub type Page_declContext<'input> = BaseParserRuleContext<'input,Page_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct PageDeclarationContextExt<'input>{
+pub struct Page_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for PageDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Page_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for PageDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Page_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_pageDeclaration(self);
+		listener.enter_page_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for PageDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Page_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_pageDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_pageDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_page_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_page_decl }
 }
-antlr_rust::type_id!{PageDeclarationContextExt<'a>}
+antlr_rust::type_id!{Page_declContextExt<'a>}
 
-impl<'input> PageDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<PageDeclarationContextAll<'input>> {
+impl<'input> Page_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Page_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,PageDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Page_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait PageDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<PageDeclarationContextExt<'input>>{
+pub trait Page_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Page_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token PAGE
 /// Returns `None` if there is no child corresponding to token PAGE
@@ -2790,29 +2790,29 @@ fn LBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> whe
 fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(RBRACE, 0)
 }
-fn componentBodyDeclaration_all(&self) ->  Vec<Rc<ComponentBodyDeclarationContextAll<'input>>> where Self:Sized{
+fn component_body_decl_all(&self) ->  Vec<Rc<Component_body_declContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn componentBodyDeclaration(&self, i: usize) -> Option<Rc<ComponentBodyDeclarationContextAll<'input>>> where Self:Sized{
+fn component_body_decl(&self, i: usize) -> Option<Rc<Component_body_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 
 }
 
-impl<'input> PageDeclarationContextAttrs<'input> for PageDeclarationContext<'input>{}
+impl<'input> Page_declContextAttrs<'input> for Page_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn pageDeclaration(&mut self,)
-	-> Result<Rc<PageDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn page_decl(&mut self,)
+	-> Result<Rc<Page_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = PageDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 42, RULE_pageDeclaration);
-        let mut _localctx: Rc<PageDeclarationContextAll> = _localctx;
+		let mut _localctx = Page_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 42, RULE_page_decl);
+        let mut _localctx: Rc<Page_declContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -2834,9 +2834,9 @@ where
 			while _la==IDENTIFIER {
 				{
 				{
-				/*InvokeRule componentBodyDeclaration*/
+				/*InvokeRule component_body_decl*/
 				recog.base.set_state(202);
-				recog.componentBodyDeclaration()?;
+				recog.component_body_decl()?;
 
 				}
 				}
@@ -2863,45 +2863,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- componentDeclaration ----------------
-pub type ComponentDeclarationContextAll<'input> = ComponentDeclarationContext<'input>;
+//------------------- component_decl ----------------
+pub type Component_declContextAll<'input> = Component_declContext<'input>;
 
 
-pub type ComponentDeclarationContext<'input> = BaseParserRuleContext<'input,ComponentDeclarationContextExt<'input>>;
+pub type Component_declContext<'input> = BaseParserRuleContext<'input,Component_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ComponentDeclarationContextExt<'input>{
+pub struct Component_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ComponentDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Component_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ComponentDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_componentDeclaration(self);
+		listener.enter_component_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ComponentDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Component_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_componentDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_componentDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_component_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_component_decl }
 }
-antlr_rust::type_id!{ComponentDeclarationContextExt<'a>}
+antlr_rust::type_id!{Component_declContextExt<'a>}
 
-impl<'input> ComponentDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ComponentDeclarationContextAll<'input>> {
+impl<'input> Component_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Component_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ComponentDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Component_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ComponentDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ComponentDeclarationContextExt<'input>>{
+pub trait Component_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Component_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token COMPONENT
 /// Returns `None` if there is no child corresponding to token COMPONENT
@@ -2923,29 +2923,29 @@ fn LBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> whe
 fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(RBRACE, 0)
 }
-fn componentBodyDeclaration_all(&self) ->  Vec<Rc<ComponentBodyDeclarationContextAll<'input>>> where Self:Sized{
+fn component_body_decl_all(&self) ->  Vec<Rc<Component_body_declContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn componentBodyDeclaration(&self, i: usize) -> Option<Rc<ComponentBodyDeclarationContextAll<'input>>> where Self:Sized{
+fn component_body_decl(&self, i: usize) -> Option<Rc<Component_body_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 
 }
 
-impl<'input> ComponentDeclarationContextAttrs<'input> for ComponentDeclarationContext<'input>{}
+impl<'input> Component_declContextAttrs<'input> for Component_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn componentDeclaration(&mut self,)
-	-> Result<Rc<ComponentDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn component_decl(&mut self,)
+	-> Result<Rc<Component_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ComponentDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 44, RULE_componentDeclaration);
-        let mut _localctx: Rc<ComponentDeclarationContextAll> = _localctx;
+		let mut _localctx = Component_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 44, RULE_component_decl);
+        let mut _localctx: Rc<Component_declContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -2967,9 +2967,9 @@ where
 			while _la==IDENTIFIER {
 				{
 				{
-				/*InvokeRule componentBodyDeclaration*/
+				/*InvokeRule component_body_decl*/
 				recog.base.set_state(213);
-				recog.componentBodyDeclaration()?;
+				recog.component_body_decl()?;
 
 				}
 				}
@@ -2996,50 +2996,50 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- componentBodyDeclaration ----------------
-pub type ComponentBodyDeclarationContextAll<'input> = ComponentBodyDeclarationContext<'input>;
+//------------------- component_body_decl ----------------
+pub type Component_body_declContextAll<'input> = Component_body_declContext<'input>;
 
 
-pub type ComponentBodyDeclarationContext<'input> = BaseParserRuleContext<'input,ComponentBodyDeclarationContextExt<'input>>;
+pub type Component_body_declContext<'input> = BaseParserRuleContext<'input,Component_body_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ComponentBodyDeclarationContextExt<'input>{
+pub struct Component_body_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ComponentBodyDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Component_body_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ComponentBodyDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_componentBodyDeclaration(self);
+		listener.enter_component_body_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ComponentBodyDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Component_body_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_componentBodyDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_componentBodyDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_component_body_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_component_body_decl }
 }
-antlr_rust::type_id!{ComponentBodyDeclarationContextExt<'a>}
+antlr_rust::type_id!{Component_body_declContextExt<'a>}
 
-impl<'input> ComponentBodyDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ComponentBodyDeclarationContextAll<'input>> {
+impl<'input> Component_body_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Component_body_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ComponentBodyDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Component_body_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ComponentBodyDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ComponentBodyDeclarationContextExt<'input>>{
+pub trait Component_body_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Component_body_declContextExt<'input>>{
 
-fn componentName_all(&self) ->  Vec<Rc<ComponentNameContextAll<'input>>> where Self:Sized{
+fn component_name_all(&self) ->  Vec<Rc<Component_nameContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn componentName(&self, i: usize) -> Option<Rc<ComponentNameContextAll<'input>>> where Self:Sized{
+fn component_name(&self, i: usize) -> Option<Rc<Component_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 /// Retrieves all `TerminalNode`s corresponding to token COMMA in current rule
@@ -3051,7 +3051,7 @@ fn COMMA_all(&self) -> Vec<Rc<TerminalNode<'input,DesignParserContextType>>>  wh
 fn COMMA(&self, i: usize) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(COMMA, i)
 }
-fn configKey(&self) -> Option<Rc<ConfigKeyContextAll<'input>>> where Self:Sized{
+fn config_key(&self) -> Option<Rc<Config_keyContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token COLON
@@ -3059,26 +3059,26 @@ fn configKey(&self) -> Option<Rc<ConfigKeyContextAll<'input>>> where Self:Sized{
 fn COLON(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(COLON, 0)
 }
-fn configValue(&self) -> Option<Rc<ConfigValueContextAll<'input>>> where Self:Sized{
+fn config_value(&self) -> Option<Rc<Config_valueContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> ComponentBodyDeclarationContextAttrs<'input> for ComponentBodyDeclarationContext<'input>{}
+impl<'input> Component_body_declContextAttrs<'input> for Component_body_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn componentBodyDeclaration(&mut self,)
-	-> Result<Rc<ComponentBodyDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn component_body_decl(&mut self,)
+	-> Result<Rc<Component_body_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ComponentBodyDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 46, RULE_componentBodyDeclaration);
-        let mut _localctx: Rc<ComponentBodyDeclarationContextAll> = _localctx;
+		let mut _localctx = Component_body_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 46, RULE_component_body_decl);
+        let mut _localctx: Rc<Component_body_declContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -3089,9 +3089,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 1);
 					recog.base.enter_outer_alt(None, 1);
 					{
-					/*InvokeRule componentName*/
+					/*InvokeRule component_name*/
 					recog.base.set_state(221);
-					recog.componentName()?;
+					recog.component_name()?;
 
 					recog.base.set_state(226);
 					recog.err_handler.sync(&mut recog.base)?;
@@ -3102,9 +3102,9 @@ where
 						recog.base.set_state(222);
 						recog.base.match_token(COMMA,&mut recog.err_handler)?;
 
-						/*InvokeRule componentName*/
+						/*InvokeRule component_name*/
 						recog.base.set_state(223);
-						recog.componentName()?;
+						recog.component_name()?;
 
 						}
 						}
@@ -3119,16 +3119,16 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 2);
 					recog.base.enter_outer_alt(None, 2);
 					{
-					/*InvokeRule configKey*/
+					/*InvokeRule config_key*/
 					recog.base.set_state(229);
-					recog.configKey()?;
+					recog.config_key()?;
 
 					recog.base.set_state(230);
 					recog.base.match_token(COLON,&mut recog.err_handler)?;
 
-					/*InvokeRule configValue*/
+					/*InvokeRule config_value*/
 					recog.base.set_state(231);
-					recog.configValue()?;
+					recog.config_value()?;
 
 					}
 				}
@@ -3150,45 +3150,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- layoutDeclaration ----------------
-pub type LayoutDeclarationContextAll<'input> = LayoutDeclarationContext<'input>;
+//------------------- layout_decl ----------------
+pub type Layout_declContextAll<'input> = Layout_declContext<'input>;
 
 
-pub type LayoutDeclarationContext<'input> = BaseParserRuleContext<'input,LayoutDeclarationContextExt<'input>>;
+pub type Layout_declContext<'input> = BaseParserRuleContext<'input,Layout_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct LayoutDeclarationContextExt<'input>{
+pub struct Layout_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for LayoutDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Layout_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for LayoutDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Layout_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_layoutDeclaration(self);
+		listener.enter_layout_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for LayoutDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Layout_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_layoutDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_layoutDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_layout_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_layout_decl }
 }
-antlr_rust::type_id!{LayoutDeclarationContextExt<'a>}
+antlr_rust::type_id!{Layout_declContextExt<'a>}
 
-impl<'input> LayoutDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<LayoutDeclarationContextAll<'input>> {
+impl<'input> Layout_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Layout_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,LayoutDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Layout_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait LayoutDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<LayoutDeclarationContextExt<'input>>{
+pub trait Layout_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Layout_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token LAYOUT
 /// Returns `None` if there is no child corresponding to token LAYOUT
@@ -3210,29 +3210,29 @@ fn LBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> whe
 fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(RBRACE, 0)
 }
-fn layoutRow_all(&self) ->  Vec<Rc<LayoutRowContextAll<'input>>> where Self:Sized{
+fn layout_row_all(&self) ->  Vec<Rc<Layout_rowContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn layoutRow(&self, i: usize) -> Option<Rc<LayoutRowContextAll<'input>>> where Self:Sized{
+fn layout_row(&self, i: usize) -> Option<Rc<Layout_rowContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 
 }
 
-impl<'input> LayoutDeclarationContextAttrs<'input> for LayoutDeclarationContext<'input>{}
+impl<'input> Layout_declContextAttrs<'input> for Layout_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn layoutDeclaration(&mut self,)
-	-> Result<Rc<LayoutDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn layout_decl(&mut self,)
+	-> Result<Rc<Layout_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = LayoutDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 48, RULE_layoutDeclaration);
-        let mut _localctx: Rc<LayoutDeclarationContextAll> = _localctx;
+		let mut _localctx = Layout_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 48, RULE_layout_decl);
+        let mut _localctx: Rc<Layout_declContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -3254,9 +3254,9 @@ where
 			while _la==T__3 || _la==T__4 {
 				{
 				{
-				/*InvokeRule layoutRow*/
+				/*InvokeRule layout_row*/
 				recog.base.set_state(238);
-				recog.layoutRow()?;
+				recog.layout_row()?;
 
 				}
 				}
@@ -3283,66 +3283,66 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- layoutRow ----------------
-pub type LayoutRowContextAll<'input> = LayoutRowContext<'input>;
+//------------------- layout_row ----------------
+pub type Layout_rowContextAll<'input> = Layout_rowContext<'input>;
 
 
-pub type LayoutRowContext<'input> = BaseParserRuleContext<'input,LayoutRowContextExt<'input>>;
+pub type Layout_rowContext<'input> = BaseParserRuleContext<'input,Layout_rowContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct LayoutRowContextExt<'input>{
+pub struct Layout_rowContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for LayoutRowContext<'input>{}
+impl<'input> DesignParserContext<'input> for Layout_rowContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for LayoutRowContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Layout_rowContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_layoutRow(self);
+		listener.enter_layout_row(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for LayoutRowContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Layout_rowContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_layoutRow }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_layoutRow }
+	fn get_rule_index(&self) -> usize { RULE_layout_row }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_layout_row }
 }
-antlr_rust::type_id!{LayoutRowContextExt<'a>}
+antlr_rust::type_id!{Layout_rowContextExt<'a>}
 
-impl<'input> LayoutRowContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<LayoutRowContextAll<'input>> {
+impl<'input> Layout_rowContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Layout_rowContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,LayoutRowContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Layout_rowContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait LayoutRowContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<LayoutRowContextExt<'input>>{
+pub trait Layout_rowContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Layout_rowContextExt<'input>>{
 
-fn layoutLines(&self) -> Option<Rc<LayoutLinesContextAll<'input>>> where Self:Sized{
+fn layout_lines(&self) -> Option<Rc<Layout_linesContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> LayoutRowContextAttrs<'input> for LayoutRowContext<'input>{}
+impl<'input> Layout_rowContextAttrs<'input> for Layout_rowContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn layoutRow(&mut self,)
-	-> Result<Rc<LayoutRowContextAll<'input>>,ANTLRError> {
+	pub fn layout_row(&mut self,)
+	-> Result<Rc<Layout_rowContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = LayoutRowContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 50, RULE_layoutRow);
-        let mut _localctx: Rc<LayoutRowContextAll> = _localctx;
+		let mut _localctx = Layout_rowContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 50, RULE_layout_row);
+        let mut _localctx: Rc<Layout_rowContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			let mut _alt: isize;
@@ -3382,9 +3382,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 2);
 					recog.base.enter_outer_alt(None, 2);
 					{
-					/*InvokeRule layoutLines*/
+					/*InvokeRule layout_lines*/
 					recog.base.set_state(253);
-					recog.layoutLines()?;
+					recog.layout_lines()?;
 
 					recog.base.set_state(254);
 					recog.base.match_token(T__4,&mut recog.err_handler)?;
@@ -3409,78 +3409,78 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- layoutLines ----------------
-pub type LayoutLinesContextAll<'input> = LayoutLinesContext<'input>;
+//------------------- layout_lines ----------------
+pub type Layout_linesContextAll<'input> = Layout_linesContext<'input>;
 
 
-pub type LayoutLinesContext<'input> = BaseParserRuleContext<'input,LayoutLinesContextExt<'input>>;
+pub type Layout_linesContext<'input> = BaseParserRuleContext<'input,Layout_linesContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct LayoutLinesContextExt<'input>{
+pub struct Layout_linesContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for LayoutLinesContext<'input>{}
+impl<'input> DesignParserContext<'input> for Layout_linesContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for LayoutLinesContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Layout_linesContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_layoutLines(self);
+		listener.enter_layout_lines(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for LayoutLinesContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Layout_linesContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_layoutLines }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_layoutLines }
+	fn get_rule_index(&self) -> usize { RULE_layout_lines }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_layout_lines }
 }
-antlr_rust::type_id!{LayoutLinesContextExt<'a>}
+antlr_rust::type_id!{Layout_linesContextExt<'a>}
 
-impl<'input> LayoutLinesContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<LayoutLinesContextAll<'input>> {
+impl<'input> Layout_linesContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Layout_linesContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,LayoutLinesContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Layout_linesContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait LayoutLinesContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<LayoutLinesContextExt<'input>>{
+pub trait Layout_linesContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Layout_linesContextExt<'input>>{
 
-fn layoutLine_all(&self) ->  Vec<Rc<LayoutLineContextAll<'input>>> where Self:Sized{
+fn layout_line_all(&self) ->  Vec<Rc<Layout_lineContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn layoutLine(&self, i: usize) -> Option<Rc<LayoutLineContextAll<'input>>> where Self:Sized{
+fn layout_line(&self, i: usize) -> Option<Rc<Layout_lineContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 
 }
 
-impl<'input> LayoutLinesContextAttrs<'input> for LayoutLinesContext<'input>{}
+impl<'input> Layout_linesContextAttrs<'input> for Layout_linesContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn layoutLines(&mut self,)
-	-> Result<Rc<LayoutLinesContextAll<'input>>,ANTLRError> {
+	pub fn layout_lines(&mut self,)
+	-> Result<Rc<Layout_linesContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = LayoutLinesContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 52, RULE_layoutLines);
-        let mut _localctx: Rc<LayoutLinesContextAll> = _localctx;
+		let mut _localctx = Layout_linesContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 52, RULE_layout_lines);
+        let mut _localctx: Rc<Layout_linesContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			let mut _alt: isize;
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
 			recog.base.enter_outer_alt(None, 1);
 			{
-			/*InvokeRule layoutLine*/
+			/*InvokeRule layout_line*/
 			recog.base.set_state(258);
-			recog.layoutLine()?;
+			recog.layout_line()?;
 
 			recog.base.set_state(262);
 			recog.err_handler.sync(&mut recog.base)?;
@@ -3489,9 +3489,9 @@ where
 				if _alt==1 {
 					{
 					{
-					/*InvokeRule layoutLine*/
+					/*InvokeRule layout_line*/
 					recog.base.set_state(259);
-					recog.layoutLine()?;
+					recog.layout_line()?;
 
 					}
 					} 
@@ -3516,66 +3516,66 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- layoutLine ----------------
-pub type LayoutLineContextAll<'input> = LayoutLineContext<'input>;
+//------------------- layout_line ----------------
+pub type Layout_lineContextAll<'input> = Layout_lineContext<'input>;
 
 
-pub type LayoutLineContext<'input> = BaseParserRuleContext<'input,LayoutLineContextExt<'input>>;
+pub type Layout_lineContext<'input> = BaseParserRuleContext<'input,Layout_lineContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct LayoutLineContextExt<'input>{
+pub struct Layout_lineContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for LayoutLineContext<'input>{}
+impl<'input> DesignParserContext<'input> for Layout_lineContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for LayoutLineContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Layout_lineContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_layoutLine(self);
+		listener.enter_layout_line(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for LayoutLineContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Layout_lineContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_layoutLine }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_layoutLine }
+	fn get_rule_index(&self) -> usize { RULE_layout_line }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_layout_line }
 }
-antlr_rust::type_id!{LayoutLineContextExt<'a>}
+antlr_rust::type_id!{Layout_lineContextExt<'a>}
 
-impl<'input> LayoutLineContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<LayoutLineContextAll<'input>> {
+impl<'input> Layout_lineContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Layout_lineContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,LayoutLineContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Layout_lineContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait LayoutLineContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<LayoutLineContextExt<'input>>{
+pub trait Layout_lineContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Layout_lineContextExt<'input>>{
 
-fn componentUseDeclaration(&self) -> Option<Rc<ComponentUseDeclarationContextAll<'input>>> where Self:Sized{
+fn component_use_decl(&self) -> Option<Rc<Component_use_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> LayoutLineContextAttrs<'input> for LayoutLineContext<'input>{}
+impl<'input> Layout_lineContextAttrs<'input> for Layout_lineContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn layoutLine(&mut self,)
-	-> Result<Rc<LayoutLineContextAll<'input>>,ANTLRError> {
+	pub fn layout_line(&mut self,)
+	-> Result<Rc<Layout_lineContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = LayoutLineContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 54, RULE_layoutLine);
-        let mut _localctx: Rc<LayoutLineContextAll> = _localctx;
+		let mut _localctx = Layout_lineContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 54, RULE_layout_line);
+        let mut _localctx: Rc<Layout_lineContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -3584,9 +3584,9 @@ where
 			recog.base.set_state(265);
 			recog.base.match_token(T__4,&mut recog.err_handler)?;
 
-			/*InvokeRule componentUseDeclaration*/
+			/*InvokeRule component_use_decl*/
 			recog.base.set_state(266);
-			recog.componentUseDeclaration()?;
+			recog.component_use_decl()?;
 
 			}
 		};
@@ -3604,45 +3604,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- componentUseDeclaration ----------------
-pub type ComponentUseDeclarationContextAll<'input> = ComponentUseDeclarationContext<'input>;
+//------------------- component_use_decl ----------------
+pub type Component_use_declContextAll<'input> = Component_use_declContext<'input>;
 
 
-pub type ComponentUseDeclarationContext<'input> = BaseParserRuleContext<'input,ComponentUseDeclarationContextExt<'input>>;
+pub type Component_use_declContext<'input> = BaseParserRuleContext<'input,Component_use_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ComponentUseDeclarationContextExt<'input>{
+pub struct Component_use_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ComponentUseDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Component_use_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ComponentUseDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_use_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_componentUseDeclaration(self);
+		listener.enter_component_use_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ComponentUseDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Component_use_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_componentUseDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_componentUseDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_component_use_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_component_use_decl }
 }
-antlr_rust::type_id!{ComponentUseDeclarationContextExt<'a>}
+antlr_rust::type_id!{Component_use_declContextExt<'a>}
 
-impl<'input> ComponentUseDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ComponentUseDeclarationContextAll<'input>> {
+impl<'input> Component_use_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Component_use_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ComponentUseDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Component_use_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ComponentUseDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ComponentUseDeclarationContextExt<'input>>{
+pub trait Component_use_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Component_use_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token DECIMAL_LITERAL
 /// Returns `None` if there is no child corresponding to token DECIMAL_LITERAL
@@ -3654,7 +3654,7 @@ fn DECIMAL_LITERAL(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextTy
 fn POSITION(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(POSITION, 0)
 }
-fn componentName(&self) -> Option<Rc<ComponentNameContextAll<'input>>> where Self:Sized{
+fn component_name(&self) -> Option<Rc<Component_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token LPAREN
@@ -3662,7 +3662,7 @@ fn componentName(&self) -> Option<Rc<ComponentNameContextAll<'input>>> where Sel
 fn LPAREN(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(LPAREN, 0)
 }
-fn componentLayoutValue(&self) -> Option<Rc<ComponentLayoutValueContextAll<'input>>> where Self:Sized{
+fn component_layout_value(&self) -> Option<Rc<Component_layout_valueContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token RPAREN
@@ -3678,20 +3678,20 @@ fn STRING_LITERAL(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextTyp
 
 }
 
-impl<'input> ComponentUseDeclarationContextAttrs<'input> for ComponentUseDeclarationContext<'input>{}
+impl<'input> Component_use_declContextAttrs<'input> for Component_use_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn componentUseDeclaration(&mut self,)
-	-> Result<Rc<ComponentUseDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn component_use_decl(&mut self,)
+	-> Result<Rc<Component_use_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ComponentUseDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 56, RULE_componentUseDeclaration);
-        let mut _localctx: Rc<ComponentUseDeclarationContextAll> = _localctx;
+		let mut _localctx = Component_use_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 56, RULE_component_use_decl);
+        let mut _localctx: Rc<Component_use_declContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -3725,9 +3725,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 3);
 					recog.base.enter_outer_alt(None, 3);
 					{
-					/*InvokeRule componentName*/
+					/*InvokeRule component_name*/
 					recog.base.set_state(270);
-					recog.componentName()?;
+					recog.component_name()?;
 
 					recog.base.set_state(275);
 					recog.err_handler.sync(&mut recog.base)?;
@@ -3737,9 +3737,9 @@ where
 						recog.base.set_state(271);
 						recog.base.match_token(LPAREN,&mut recog.err_handler)?;
 
-						/*InvokeRule componentLayoutValue*/
+						/*InvokeRule component_layout_value*/
 						recog.base.set_state(272);
-						recog.componentLayoutValue()?;
+						recog.component_layout_value()?;
 
 						recog.base.set_state(273);
 						recog.base.match_token(RPAREN,&mut recog.err_handler)?;
@@ -3778,45 +3778,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- componentLayoutValue ----------------
-pub type ComponentLayoutValueContextAll<'input> = ComponentLayoutValueContext<'input>;
+//------------------- component_layout_value ----------------
+pub type Component_layout_valueContextAll<'input> = Component_layout_valueContext<'input>;
 
 
-pub type ComponentLayoutValueContext<'input> = BaseParserRuleContext<'input,ComponentLayoutValueContextExt<'input>>;
+pub type Component_layout_valueContext<'input> = BaseParserRuleContext<'input,Component_layout_valueContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct ComponentLayoutValueContextExt<'input>{
+pub struct Component_layout_valueContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for ComponentLayoutValueContext<'input>{}
+impl<'input> DesignParserContext<'input> for Component_layout_valueContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for ComponentLayoutValueContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_layout_valueContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_componentLayoutValue(self);
+		listener.enter_component_layout_value(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for ComponentLayoutValueContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Component_layout_valueContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_componentLayoutValue }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_componentLayoutValue }
+	fn get_rule_index(&self) -> usize { RULE_component_layout_value }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_component_layout_value }
 }
-antlr_rust::type_id!{ComponentLayoutValueContextExt<'a>}
+antlr_rust::type_id!{Component_layout_valueContextExt<'a>}
 
-impl<'input> ComponentLayoutValueContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<ComponentLayoutValueContextAll<'input>> {
+impl<'input> Component_layout_valueContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Component_layout_valueContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,ComponentLayoutValueContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Component_layout_valueContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait ComponentLayoutValueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<ComponentLayoutValueContextExt<'input>>{
+pub trait Component_layout_valueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Component_layout_valueContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token DIGITS_IDENTIFIER
 /// Returns `None` if there is no child corresponding to token DIGITS_IDENTIFIER
@@ -3836,20 +3836,20 @@ fn STRING_LITERAL(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextTyp
 
 }
 
-impl<'input> ComponentLayoutValueContextAttrs<'input> for ComponentLayoutValueContext<'input>{}
+impl<'input> Component_layout_valueContextAttrs<'input> for Component_layout_valueContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn componentLayoutValue(&mut self,)
-	-> Result<Rc<ComponentLayoutValueContextAll<'input>>,ANTLRError> {
+	pub fn component_layout_value(&mut self,)
+	-> Result<Rc<Component_layout_valueContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = ComponentLayoutValueContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 58, RULE_componentLayoutValue);
-        let mut _localctx: Rc<ComponentLayoutValueContextAll> = _localctx;
+		let mut _localctx = Component_layout_valueContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 58, RULE_component_layout_value);
+        let mut _localctx: Rc<Component_layout_valueContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -3883,52 +3883,52 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- styleDeclaration ----------------
-pub type StyleDeclarationContextAll<'input> = StyleDeclarationContext<'input>;
+//------------------- style_decl ----------------
+pub type Style_declContextAll<'input> = Style_declContext<'input>;
 
 
-pub type StyleDeclarationContext<'input> = BaseParserRuleContext<'input,StyleDeclarationContextExt<'input>>;
+pub type Style_declContext<'input> = BaseParserRuleContext<'input,Style_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct StyleDeclarationContextExt<'input>{
+pub struct Style_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for StyleDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Style_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for StyleDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Style_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_styleDeclaration(self);
+		listener.enter_style_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for StyleDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Style_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_styleDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_styleDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_style_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_style_decl }
 }
-antlr_rust::type_id!{StyleDeclarationContextExt<'a>}
+antlr_rust::type_id!{Style_declContextExt<'a>}
 
-impl<'input> StyleDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<StyleDeclarationContextAll<'input>> {
+impl<'input> Style_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Style_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,StyleDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Style_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait StyleDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<StyleDeclarationContextExt<'input>>{
+pub trait Style_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Style_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token STYLE
 /// Returns `None` if there is no child corresponding to token STYLE
 fn STYLE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(STYLE, 0)
 }
-fn styleName(&self) -> Option<Rc<StyleNameContextAll<'input>>> where Self:Sized{
+fn style_name(&self) -> Option<Rc<Style_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token LBRACE
@@ -3936,7 +3936,7 @@ fn styleName(&self) -> Option<Rc<StyleNameContextAll<'input>>> where Self:Sized{
 fn LBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(LBRACE, 0)
 }
-fn styleBody(&self) -> Option<Rc<StyleBodyContextAll<'input>>> where Self:Sized{
+fn style_body(&self) -> Option<Rc<Style_bodyContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token RBRACE
@@ -3947,20 +3947,20 @@ fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> whe
 
 }
 
-impl<'input> StyleDeclarationContextAttrs<'input> for StyleDeclarationContext<'input>{}
+impl<'input> Style_declContextAttrs<'input> for Style_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn styleDeclaration(&mut self,)
-	-> Result<Rc<StyleDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn style_decl(&mut self,)
+	-> Result<Rc<Style_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = StyleDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 60, RULE_styleDeclaration);
-        let mut _localctx: Rc<StyleDeclarationContextAll> = _localctx;
+		let mut _localctx = Style_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 60, RULE_style_decl);
+        let mut _localctx: Rc<Style_declContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -3969,16 +3969,16 @@ where
 			recog.base.set_state(282);
 			recog.base.match_token(STYLE,&mut recog.err_handler)?;
 
-			/*InvokeRule styleName*/
+			/*InvokeRule style_name*/
 			recog.base.set_state(283);
-			recog.styleName()?;
+			recog.style_name()?;
 
 			recog.base.set_state(284);
 			recog.base.match_token(LBRACE,&mut recog.err_handler)?;
 
-			/*InvokeRule styleBody*/
+			/*InvokeRule style_body*/
 			recog.base.set_state(285);
-			recog.styleBody()?;
+			recog.style_body()?;
 
 			recog.base.set_state(286);
 			recog.base.match_token(RBRACE,&mut recog.err_handler)?;
@@ -3999,45 +3999,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- styleName ----------------
-pub type StyleNameContextAll<'input> = StyleNameContext<'input>;
+//------------------- style_name ----------------
+pub type Style_nameContextAll<'input> = Style_nameContext<'input>;
 
 
-pub type StyleNameContext<'input> = BaseParserRuleContext<'input,StyleNameContextExt<'input>>;
+pub type Style_nameContext<'input> = BaseParserRuleContext<'input,Style_nameContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct StyleNameContextExt<'input>{
+pub struct Style_nameContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for StyleNameContext<'input>{}
+impl<'input> DesignParserContext<'input> for Style_nameContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for StyleNameContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Style_nameContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_styleName(self);
+		listener.enter_style_name(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for StyleNameContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Style_nameContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_styleName }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_styleName }
+	fn get_rule_index(&self) -> usize { RULE_style_name }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_style_name }
 }
-antlr_rust::type_id!{StyleNameContextExt<'a>}
+antlr_rust::type_id!{Style_nameContextExt<'a>}
 
-impl<'input> StyleNameContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<StyleNameContextAll<'input>> {
+impl<'input> Style_nameContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Style_nameContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,StyleNameContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Style_nameContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait StyleNameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<StyleNameContextExt<'input>>{
+pub trait Style_nameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Style_nameContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -4047,20 +4047,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> StyleNameContextAttrs<'input> for StyleNameContext<'input>{}
+impl<'input> Style_nameContextAttrs<'input> for Style_nameContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn styleName(&mut self,)
-	-> Result<Rc<StyleNameContextAll<'input>>,ANTLRError> {
+	pub fn style_name(&mut self,)
+	-> Result<Rc<Style_nameContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = StyleNameContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 62, RULE_styleName);
-        let mut _localctx: Rc<StyleNameContextAll> = _localctx;
+		let mut _localctx = Style_nameContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 62, RULE_style_name);
+        let mut _localctx: Rc<Style_nameContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -4085,69 +4085,69 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- styleBody ----------------
-pub type StyleBodyContextAll<'input> = StyleBodyContext<'input>;
+//------------------- style_body ----------------
+pub type Style_bodyContextAll<'input> = Style_bodyContext<'input>;
 
 
-pub type StyleBodyContext<'input> = BaseParserRuleContext<'input,StyleBodyContextExt<'input>>;
+pub type Style_bodyContext<'input> = BaseParserRuleContext<'input,Style_bodyContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct StyleBodyContextExt<'input>{
+pub struct Style_bodyContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for StyleBodyContext<'input>{}
+impl<'input> DesignParserContext<'input> for Style_bodyContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for StyleBodyContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Style_bodyContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_styleBody(self);
+		listener.enter_style_body(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for StyleBodyContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Style_bodyContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_styleBody }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_styleBody }
+	fn get_rule_index(&self) -> usize { RULE_style_body }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_style_body }
 }
-antlr_rust::type_id!{StyleBodyContextExt<'a>}
+antlr_rust::type_id!{Style_bodyContextExt<'a>}
 
-impl<'input> StyleBodyContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<StyleBodyContextAll<'input>> {
+impl<'input> Style_bodyContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Style_bodyContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,StyleBodyContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Style_bodyContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait StyleBodyContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<StyleBodyContextExt<'input>>{
+pub trait Style_bodyContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Style_bodyContextExt<'input>>{
 
-fn configDeclaration_all(&self) ->  Vec<Rc<ConfigDeclarationContextAll<'input>>> where Self:Sized{
+fn config_decl_all(&self) ->  Vec<Rc<Config_declContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn configDeclaration(&self, i: usize) -> Option<Rc<ConfigDeclarationContextAll<'input>>> where Self:Sized{
+fn config_decl(&self, i: usize) -> Option<Rc<Config_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 
 }
 
-impl<'input> StyleBodyContextAttrs<'input> for StyleBodyContext<'input>{}
+impl<'input> Style_bodyContextAttrs<'input> for Style_bodyContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn styleBody(&mut self,)
-	-> Result<Rc<StyleBodyContextAll<'input>>,ANTLRError> {
+	pub fn style_body(&mut self,)
+	-> Result<Rc<Style_bodyContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = StyleBodyContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 64, RULE_styleBody);
-        let mut _localctx: Rc<StyleBodyContextAll> = _localctx;
+		let mut _localctx = Style_bodyContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 64, RULE_style_body);
+        let mut _localctx: Rc<Style_bodyContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -4160,9 +4160,9 @@ where
 			while _la==IDENTIFIER {
 				{
 				{
-				/*InvokeRule configDeclaration*/
+				/*InvokeRule config_decl*/
 				recog.base.set_state(290);
-				recog.configDeclaration()?;
+				recog.config_decl()?;
 
 				recog.base.set_state(291);
 				recog.base.match_token(T__5,&mut recog.err_handler)?;
@@ -4189,52 +4189,52 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- libraryDeclaration ----------------
-pub type LibraryDeclarationContextAll<'input> = LibraryDeclarationContext<'input>;
+//------------------- library_decl ----------------
+pub type Library_declContextAll<'input> = Library_declContext<'input>;
 
 
-pub type LibraryDeclarationContext<'input> = BaseParserRuleContext<'input,LibraryDeclarationContextExt<'input>>;
+pub type Library_declContext<'input> = BaseParserRuleContext<'input,Library_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct LibraryDeclarationContextExt<'input>{
+pub struct Library_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for LibraryDeclarationContext<'input>{}
+impl<'input> DesignParserContext<'input> for Library_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for LibraryDeclarationContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_libraryDeclaration(self);
+		listener.enter_library_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for LibraryDeclarationContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Library_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_libraryDeclaration }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_libraryDeclaration }
+	fn get_rule_index(&self) -> usize { RULE_library_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_library_decl }
 }
-antlr_rust::type_id!{LibraryDeclarationContextExt<'a>}
+antlr_rust::type_id!{Library_declContextExt<'a>}
 
-impl<'input> LibraryDeclarationContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<LibraryDeclarationContextAll<'input>> {
+impl<'input> Library_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Library_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,LibraryDeclarationContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Library_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait LibraryDeclarationContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<LibraryDeclarationContextExt<'input>>{
+pub trait Library_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Library_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token LIBRARY
 /// Returns `None` if there is no child corresponding to token LIBRARY
 fn LIBRARY(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(LIBRARY, 0)
 }
-fn libraryName(&self) -> Option<Rc<LibraryNameContextAll<'input>>> where Self:Sized{
+fn library_name(&self) -> Option<Rc<Library_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token LBRACE
@@ -4247,29 +4247,29 @@ fn LBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> whe
 fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(RBRACE, 0)
 }
-fn libraryExpress_all(&self) ->  Vec<Rc<LibraryExpressContextAll<'input>>> where Self:Sized{
+fn library_exp_all(&self) ->  Vec<Rc<Library_expContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn libraryExpress(&self, i: usize) -> Option<Rc<LibraryExpressContextAll<'input>>> where Self:Sized{
+fn library_exp(&self, i: usize) -> Option<Rc<Library_expContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 
 }
 
-impl<'input> LibraryDeclarationContextAttrs<'input> for LibraryDeclarationContext<'input>{}
+impl<'input> Library_declContextAttrs<'input> for Library_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn libraryDeclaration(&mut self,)
-	-> Result<Rc<LibraryDeclarationContextAll<'input>>,ANTLRError> {
+	pub fn library_decl(&mut self,)
+	-> Result<Rc<Library_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = LibraryDeclarationContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 66, RULE_libraryDeclaration);
-        let mut _localctx: Rc<LibraryDeclarationContextAll> = _localctx;
+		let mut _localctx = Library_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 66, RULE_library_decl);
+        let mut _localctx: Rc<Library_declContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -4279,9 +4279,9 @@ where
 			recog.base.set_state(298);
 			recog.base.match_token(LIBRARY,&mut recog.err_handler)?;
 
-			/*InvokeRule libraryName*/
+			/*InvokeRule library_name*/
 			recog.base.set_state(299);
-			recog.libraryName()?;
+			recog.library_name()?;
 
 			recog.base.set_state(300);
 			recog.base.match_token(LBRACE,&mut recog.err_handler)?;
@@ -4292,9 +4292,9 @@ where
 			while _la==IDENTIFIER {
 				{
 				{
-				/*InvokeRule libraryExpress*/
+				/*InvokeRule library_exp*/
 				recog.base.set_state(301);
-				recog.libraryExpress()?;
+				recog.library_exp()?;
 
 				}
 				}
@@ -4321,53 +4321,53 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- libraryExpress ----------------
-pub type LibraryExpressContextAll<'input> = LibraryExpressContext<'input>;
+//------------------- library_exp ----------------
+pub type Library_expContextAll<'input> = Library_expContext<'input>;
 
 
-pub type LibraryExpressContext<'input> = BaseParserRuleContext<'input,LibraryExpressContextExt<'input>>;
+pub type Library_expContext<'input> = BaseParserRuleContext<'input,Library_expContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct LibraryExpressContextExt<'input>{
+pub struct Library_expContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for LibraryExpressContext<'input>{}
+impl<'input> DesignParserContext<'input> for Library_expContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for LibraryExpressContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_expContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_libraryExpress(self);
+		listener.enter_library_exp(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for LibraryExpressContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Library_expContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_libraryExpress }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_libraryExpress }
+	fn get_rule_index(&self) -> usize { RULE_library_exp }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_library_exp }
 }
-antlr_rust::type_id!{LibraryExpressContextExt<'a>}
+antlr_rust::type_id!{Library_expContextExt<'a>}
 
-impl<'input> LibraryExpressContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<LibraryExpressContextAll<'input>> {
+impl<'input> Library_expContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Library_expContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,LibraryExpressContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Library_expContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait LibraryExpressContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<LibraryExpressContextExt<'input>>{
+pub trait Library_expContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Library_expContextExt<'input>>{
 
-fn presetKey(&self) -> Option<Rc<PresetKeyContextAll<'input>>> where Self:Sized{
+fn preset_key(&self) -> Option<Rc<Preset_keyContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn presetValue(&self) -> Option<Rc<PresetValueContextAll<'input>>> where Self:Sized{
+fn preset_value(&self) -> Option<Rc<Preset_valueContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn presetArray(&self) -> Option<Rc<PresetArrayContextAll<'input>>> where Self:Sized{
+fn preset_array(&self) -> Option<Rc<Preset_arrayContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token LBRACE
@@ -4389,20 +4389,20 @@ fn keyValue(&self, i: usize) -> Option<Rc<KeyValueContextAll<'input>>> where Sel
 
 }
 
-impl<'input> LibraryExpressContextAttrs<'input> for LibraryExpressContext<'input>{}
+impl<'input> Library_expContextAttrs<'input> for Library_expContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn libraryExpress(&mut self,)
-	-> Result<Rc<LibraryExpressContextAll<'input>>,ANTLRError> {
+	pub fn library_exp(&mut self,)
+	-> Result<Rc<Library_expContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = LibraryExpressContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 68, RULE_libraryExpress);
-        let mut _localctx: Rc<LibraryExpressContextAll> = _localctx;
+		let mut _localctx = Library_expContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 68, RULE_library_exp);
+        let mut _localctx: Rc<Library_expContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -4413,9 +4413,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 1);
 					recog.base.enter_outer_alt(None, 1);
 					{
-					/*InvokeRule presetKey*/
+					/*InvokeRule preset_key*/
 					recog.base.set_state(309);
-					recog.presetKey()?;
+					recog.preset_key()?;
 
 					recog.base.set_state(310);
 					recog.base.match_token(T__6,&mut recog.err_handler)?;
@@ -4427,9 +4427,9 @@ where
 					 FLOAT_LITERAL 
 						=> {
 							{
-							/*InvokeRule presetValue*/
+							/*InvokeRule preset_value*/
 							recog.base.set_state(311);
-							recog.presetValue()?;
+							recog.preset_value()?;
 
 							}
 						}
@@ -4437,9 +4437,9 @@ where
 					 LBRACK 
 						=> {
 							{
-							/*InvokeRule presetArray*/
+							/*InvokeRule preset_array*/
 							recog.base.set_state(312);
-							recog.presetArray()?;
+							recog.preset_array()?;
 
 							}
 						}
@@ -4464,9 +4464,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 2);
 					recog.base.enter_outer_alt(None, 2);
 					{
-					/*InvokeRule presetKey*/
+					/*InvokeRule preset_key*/
 					recog.base.set_state(318);
-					recog.presetKey()?;
+					recog.preset_key()?;
 
 					recog.base.set_state(319);
 					recog.base.match_token(LBRACE,&mut recog.err_handler)?;
@@ -4550,10 +4550,10 @@ impl<'input> KeyValueContextExt<'input>{
 
 pub trait KeyValueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<KeyValueContextExt<'input>>{
 
-fn presetKey(&self) -> Option<Rc<PresetKeyContextAll<'input>>> where Self:Sized{
+fn preset_key(&self) -> Option<Rc<Preset_keyContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn presetValue(&self) -> Option<Rc<PresetValueContextAll<'input>>> where Self:Sized{
+fn preset_value(&self) -> Option<Rc<Preset_valueContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
@@ -4578,16 +4578,16 @@ where
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
 			recog.base.enter_outer_alt(None, 1);
 			{
-			/*InvokeRule presetKey*/
+			/*InvokeRule preset_key*/
 			recog.base.set_state(330);
-			recog.presetKey()?;
+			recog.preset_key()?;
 
 			recog.base.set_state(331);
 			recog.base.match_token(T__6,&mut recog.err_handler)?;
 
-			/*InvokeRule presetValue*/
+			/*InvokeRule preset_value*/
 			recog.base.set_state(332);
-			recog.presetValue()?;
+			recog.preset_value()?;
 
 			}
 		};
@@ -4605,45 +4605,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- presetKey ----------------
-pub type PresetKeyContextAll<'input> = PresetKeyContext<'input>;
+//------------------- preset_key ----------------
+pub type Preset_keyContextAll<'input> = Preset_keyContext<'input>;
 
 
-pub type PresetKeyContext<'input> = BaseParserRuleContext<'input,PresetKeyContextExt<'input>>;
+pub type Preset_keyContext<'input> = BaseParserRuleContext<'input,Preset_keyContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct PresetKeyContextExt<'input>{
+pub struct Preset_keyContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for PresetKeyContext<'input>{}
+impl<'input> DesignParserContext<'input> for Preset_keyContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for PresetKeyContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Preset_keyContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_presetKey(self);
+		listener.enter_preset_key(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for PresetKeyContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Preset_keyContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_presetKey }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_presetKey }
+	fn get_rule_index(&self) -> usize { RULE_preset_key }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_preset_key }
 }
-antlr_rust::type_id!{PresetKeyContextExt<'a>}
+antlr_rust::type_id!{Preset_keyContextExt<'a>}
 
-impl<'input> PresetKeyContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<PresetKeyContextAll<'input>> {
+impl<'input> Preset_keyContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Preset_keyContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,PresetKeyContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Preset_keyContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait PresetKeyContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<PresetKeyContextExt<'input>>{
+pub trait Preset_keyContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Preset_keyContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -4653,20 +4653,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> PresetKeyContextAttrs<'input> for PresetKeyContext<'input>{}
+impl<'input> Preset_keyContextAttrs<'input> for Preset_keyContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn presetKey(&mut self,)
-	-> Result<Rc<PresetKeyContextAll<'input>>,ANTLRError> {
+	pub fn preset_key(&mut self,)
+	-> Result<Rc<Preset_keyContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = PresetKeyContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 72, RULE_presetKey);
-        let mut _localctx: Rc<PresetKeyContextAll> = _localctx;
+		let mut _localctx = Preset_keyContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 72, RULE_preset_key);
+        let mut _localctx: Rc<Preset_keyContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
@@ -4691,74 +4691,74 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- presetValue ----------------
-pub type PresetValueContextAll<'input> = PresetValueContext<'input>;
+//------------------- preset_value ----------------
+pub type Preset_valueContextAll<'input> = Preset_valueContext<'input>;
 
 
-pub type PresetValueContext<'input> = BaseParserRuleContext<'input,PresetValueContextExt<'input>>;
+pub type Preset_valueContext<'input> = BaseParserRuleContext<'input,Preset_valueContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct PresetValueContextExt<'input>{
+pub struct Preset_valueContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for PresetValueContext<'input>{}
+impl<'input> DesignParserContext<'input> for Preset_valueContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for PresetValueContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Preset_valueContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_presetValue(self);
+		listener.enter_preset_value(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for PresetValueContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Preset_valueContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_presetValue }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_presetValue }
+	fn get_rule_index(&self) -> usize { RULE_preset_value }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_preset_value }
 }
-antlr_rust::type_id!{PresetValueContextExt<'a>}
+antlr_rust::type_id!{Preset_valueContextExt<'a>}
 
-impl<'input> PresetValueContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<PresetValueContextAll<'input>> {
+impl<'input> Preset_valueContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Preset_valueContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,PresetValueContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Preset_valueContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait PresetValueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<PresetValueContextExt<'input>>{
+pub trait Preset_valueContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Preset_valueContextExt<'input>>{
 
-fn configValue(&self) -> Option<Rc<ConfigValueContextAll<'input>>> where Self:Sized{
+fn config_value(&self) -> Option<Rc<Config_valueContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 
 }
 
-impl<'input> PresetValueContextAttrs<'input> for PresetValueContext<'input>{}
+impl<'input> Preset_valueContextAttrs<'input> for Preset_valueContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn presetValue(&mut self,)
-	-> Result<Rc<PresetValueContextAll<'input>>,ANTLRError> {
+	pub fn preset_value(&mut self,)
+	-> Result<Rc<Preset_valueContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = PresetValueContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 74, RULE_presetValue);
-        let mut _localctx: Rc<PresetValueContextAll> = _localctx;
+		let mut _localctx = Preset_valueContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 74, RULE_preset_value);
+        let mut _localctx: Rc<Preset_valueContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
 			recog.base.enter_outer_alt(None, 1);
 			{
-			/*InvokeRule configValue*/
+			/*InvokeRule config_value*/
 			recog.base.set_state(336);
-			recog.configValue()?;
+			recog.config_value()?;
 
 			}
 		};
@@ -4776,55 +4776,55 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- presetArray ----------------
-pub type PresetArrayContextAll<'input> = PresetArrayContext<'input>;
+//------------------- preset_array ----------------
+pub type Preset_arrayContextAll<'input> = Preset_arrayContext<'input>;
 
 
-pub type PresetArrayContext<'input> = BaseParserRuleContext<'input,PresetArrayContextExt<'input>>;
+pub type Preset_arrayContext<'input> = BaseParserRuleContext<'input,Preset_arrayContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct PresetArrayContextExt<'input>{
+pub struct Preset_arrayContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for PresetArrayContext<'input>{}
+impl<'input> DesignParserContext<'input> for Preset_arrayContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for PresetArrayContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Preset_arrayContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_presetArray(self);
+		listener.enter_preset_array(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for PresetArrayContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Preset_arrayContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_presetArray }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_presetArray }
+	fn get_rule_index(&self) -> usize { RULE_preset_array }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_preset_array }
 }
-antlr_rust::type_id!{PresetArrayContextExt<'a>}
+antlr_rust::type_id!{Preset_arrayContextExt<'a>}
 
-impl<'input> PresetArrayContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<PresetArrayContextAll<'input>> {
+impl<'input> Preset_arrayContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Preset_arrayContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,PresetArrayContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Preset_arrayContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait PresetArrayContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<PresetArrayContextExt<'input>>{
+pub trait Preset_arrayContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Preset_arrayContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token LBRACK
 /// Returns `None` if there is no child corresponding to token LBRACK
 fn LBRACK(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
 	self.get_token(LBRACK, 0)
 }
-fn presetCall_all(&self) ->  Vec<Rc<PresetCallContextAll<'input>>> where Self:Sized{
+fn preset_call_all(&self) ->  Vec<Rc<Preset_callContextAll<'input>>> where Self:Sized{
 	self.children_of_type()
 }
-fn presetCall(&self, i: usize) -> Option<Rc<PresetCallContextAll<'input>>> where Self:Sized{
+fn preset_call(&self, i: usize) -> Option<Rc<Preset_callContextAll<'input>>> where Self:Sized{
 	self.child_of_type(i)
 }
 /// Retrieves first TerminalNode corresponding to token RBRACK
@@ -4844,20 +4844,20 @@ fn COMMA(&self, i: usize) -> Option<Rc<TerminalNode<'input,DesignParserContextTy
 
 }
 
-impl<'input> PresetArrayContextAttrs<'input> for PresetArrayContext<'input>{}
+impl<'input> Preset_arrayContextAttrs<'input> for Preset_arrayContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn presetArray(&mut self,)
-	-> Result<Rc<PresetArrayContextAll<'input>>,ANTLRError> {
+	pub fn preset_array(&mut self,)
+	-> Result<Rc<Preset_arrayContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = PresetArrayContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 76, RULE_presetArray);
-        let mut _localctx: Rc<PresetArrayContextAll> = _localctx;
+		let mut _localctx = Preset_arrayContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 76, RULE_preset_array);
+        let mut _localctx: Rc<Preset_arrayContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 
@@ -4867,9 +4867,9 @@ where
 			recog.base.set_state(338);
 			recog.base.match_token(LBRACK,&mut recog.err_handler)?;
 
-			/*InvokeRule presetCall*/
+			/*InvokeRule preset_call*/
 			recog.base.set_state(339);
-			recog.presetCall()?;
+			recog.preset_call()?;
 
 			recog.base.set_state(344);
 			recog.err_handler.sync(&mut recog.base)?;
@@ -4880,9 +4880,9 @@ where
 				recog.base.set_state(340);
 				recog.base.match_token(COMMA,&mut recog.err_handler)?;
 
-				/*InvokeRule presetCall*/
+				/*InvokeRule preset_call*/
 				recog.base.set_state(341);
-				recog.presetCall()?;
+				recog.preset_call()?;
 
 				}
 				}
@@ -4909,47 +4909,47 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- presetCall ----------------
-pub type PresetCallContextAll<'input> = PresetCallContext<'input>;
+//------------------- preset_call ----------------
+pub type Preset_callContextAll<'input> = Preset_callContext<'input>;
 
 
-pub type PresetCallContext<'input> = BaseParserRuleContext<'input,PresetCallContextExt<'input>>;
+pub type Preset_callContext<'input> = BaseParserRuleContext<'input,Preset_callContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct PresetCallContextExt<'input>{
+pub struct Preset_callContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for PresetCallContext<'input>{}
+impl<'input> DesignParserContext<'input> for Preset_callContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for PresetCallContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Preset_callContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_presetCall(self);
+		listener.enter_preset_call(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for PresetCallContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Preset_callContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_presetCall }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_presetCall }
+	fn get_rule_index(&self) -> usize { RULE_preset_call }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_preset_call }
 }
-antlr_rust::type_id!{PresetCallContextExt<'a>}
+antlr_rust::type_id!{Preset_callContextExt<'a>}
 
-impl<'input> PresetCallContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<PresetCallContextAll<'input>> {
+impl<'input> Preset_callContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Preset_callContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,PresetCallContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Preset_callContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait PresetCallContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<PresetCallContextExt<'input>>{
+pub trait Preset_callContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Preset_callContextExt<'input>>{
 
-fn libraryName(&self) -> Option<Rc<LibraryNameContextAll<'input>>> where Self:Sized{
+fn library_name(&self) -> Option<Rc<Library_nameContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 /// Retrieves first TerminalNode corresponding to token DOT
@@ -4965,28 +4965,28 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> PresetCallContextAttrs<'input> for PresetCallContext<'input>{}
+impl<'input> Preset_callContextAttrs<'input> for Preset_callContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn presetCall(&mut self,)
-	-> Result<Rc<PresetCallContextAll<'input>>,ANTLRError> {
+	pub fn preset_call(&mut self,)
+	-> Result<Rc<Preset_callContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = PresetCallContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 78, RULE_presetCall);
-        let mut _localctx: Rc<PresetCallContextAll> = _localctx;
+		let mut _localctx = Preset_callContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 78, RULE_preset_call);
+        let mut _localctx: Rc<Preset_callContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
 			recog.base.enter_outer_alt(None, 1);
 			{
-			/*InvokeRule libraryName*/
+			/*InvokeRule library_name*/
 			recog.base.set_state(349);
-			recog.libraryName()?;
+			recog.library_name()?;
 
 			recog.base.set_state(350);
 			recog.base.match_token(DOT,&mut recog.err_handler)?;
@@ -5010,45 +5010,45 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- libraryName ----------------
-pub type LibraryNameContextAll<'input> = LibraryNameContext<'input>;
+//------------------- library_name ----------------
+pub type Library_nameContextAll<'input> = Library_nameContext<'input>;
 
 
-pub type LibraryNameContext<'input> = BaseParserRuleContext<'input,LibraryNameContextExt<'input>>;
+pub type Library_nameContext<'input> = BaseParserRuleContext<'input,Library_nameContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct LibraryNameContextExt<'input>{
+pub struct Library_nameContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for LibraryNameContext<'input>{}
+impl<'input> DesignParserContext<'input> for Library_nameContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for LibraryNameContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_nameContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_libraryName(self);
+		listener.enter_library_name(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for LibraryNameContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Library_nameContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_libraryName }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_libraryName }
+	fn get_rule_index(&self) -> usize { RULE_library_name }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_library_name }
 }
-antlr_rust::type_id!{LibraryNameContextExt<'a>}
+antlr_rust::type_id!{Library_nameContextExt<'a>}
 
-impl<'input> LibraryNameContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<LibraryNameContextAll<'input>> {
+impl<'input> Library_nameContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Library_nameContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,LibraryNameContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Library_nameContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait LibraryNameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<LibraryNameContextExt<'input>>{
+pub trait Library_nameContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Library_nameContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token IDENTIFIER
 /// Returns `None` if there is no child corresponding to token IDENTIFIER
@@ -5058,20 +5058,20 @@ fn IDENTIFIER(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>>
 
 }
 
-impl<'input> LibraryNameContextAttrs<'input> for LibraryNameContext<'input>{}
+impl<'input> Library_nameContextAttrs<'input> for Library_nameContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn libraryName(&mut self,)
-	-> Result<Rc<LibraryNameContextAll<'input>>,ANTLRError> {
+	pub fn library_name(&mut self,)
+	-> Result<Rc<Library_nameContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = LibraryNameContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 80, RULE_libraryName);
-        let mut _localctx: Rc<LibraryNameContextAll> = _localctx;
+		let mut _localctx = Library_nameContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 80, RULE_library_name);
+        let mut _localctx: Rc<Library_nameContextAll> = _localctx;
 		let result: Result<(), ANTLRError> = try {
 
 			//recog.base.enter_outer_alt(_localctx.clone(), 1);
