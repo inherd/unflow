@@ -73,5 +73,8 @@ width: 1080px
         let react_inter = &result.flows[0].clone().interactions[0].ui_react[0];
         assert_eq!("Success", react_inter.scene_name);
         assert_eq!("bounce", react_inter.animate_name);
+        assert_eq!("SHOW", react_inter.react_action);
+        assert_eq!("Toast", react_inter.react_component_name);
+        assert_eq!("登出成功", react_inter.react_component_data);
     }
 }

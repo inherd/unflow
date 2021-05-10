@@ -6,7 +6,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext, Do_declContextExt, See_declContextExt, React_declContextExt};
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext, Do_declContextExt, See_declContextExt, React_declContextExt, Show_actionContext};
 #[allow(unused_imports)]
 use crate::{
     Config_declContextAttrs,
@@ -15,7 +15,12 @@ use crate::{
     See_declContextAttrs,
     Do_declContextAttrs,
     React_declContextAttrs,
-    Animate_declContextAttrs
+    Animate_declContextAttrs,
+
+    React_actionContextAttrs,
+    // sub action
+    Show_actionContextAttrs,
+    Goto_actionContextAttrs
 };
 use std::rc::Rc;
 use antlr_rust::parser_rule_context::BaseParserRuleContext;
@@ -235,12 +240,31 @@ impl<'i>  UnflowParser<'i> {
             }
         }
 
+        let mut component_data = "".to_string();
+        let mut react_action = "".to_string();
+        let mut component_name = "".to_string();
+        if let Some(action) = &decl.react_action() {
+            let sub_action = action.get_child(0).unwrap();
+            let type_name = format!("{:?}", sub_action);
+
+            if type_name.as_str().contains("Show_actionContextExt") {
+                let show = action.show_action().unwrap() as  Rc<Show_actionContext<'c>>;
+                let text: String = show.STRING_LITERAL().unwrap().get_text();
+                let without_quote: &str = &text[1..text.len() - 1];
+
+                react_action = "SHOW".to_string();
+                component_data = without_quote.to_string();
+
+                component_name = show.component_name().unwrap().get_text();
+            }
+        }
+
         let interaction = ReactInteraction {
             scene_name,
-            react_action: "".to_string(),
-            react_component_name: "".to_string(),
+            react_action: react_action,
+            react_component_name: component_name,
             animate_name,
-            react_component_data: "".to_string()
+            react_component_data: component_data
         };
         interaction
     }
