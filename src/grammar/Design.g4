@@ -26,7 +26,7 @@ unit: 'rem'
 
 declarations
     : config_decl
-    | flow_Decl
+    | flow_decl
     | page_decl
     | style_decl
     | component_decl
@@ -35,7 +35,7 @@ declarations
     ;
 
 // Flow
-flow_Decl: FLOW IDENTIFIER LBRACE interaction_decl* RBRACE;
+flow_decl: FLOW IDENTIFIER LBRACE interaction_decl* RBRACE;
 
 interaction_decl
     : see_decl

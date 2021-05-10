@@ -92,7 +92,7 @@ use std::any::{Any,TypeId};
 	pub const RULE_config_value:usize = 4; 
 	pub const RULE_unit:usize = 5; 
 	pub const RULE_declarations:usize = 6; 
-	pub const RULE_flow_Decl:usize = 7; 
+	pub const RULE_flow_decl:usize = 7; 
 	pub const RULE_interaction_decl:usize = 8; 
 	pub const RULE_see_decl:usize = 9; 
 	pub const RULE_do_decl:usize = 10; 
@@ -128,7 +128,7 @@ use std::any::{Any,TypeId};
 	pub const RULE_library_name:usize = 40;
 	pub const ruleNames: [&'static str; 41] =  [
 		"start", "comment", "config_decl", "config_key", "config_value", "unit", 
-		"declarations", "flow_Decl", "interaction_decl", "see_decl", "do_decl", 
+		"declarations", "flow_decl", "interaction_decl", "see_decl", "do_decl", 
 		"react_decl", "animate_decl", "react_action", "goto_action", "show_action", 
 		"action_name", "component_value", "component_name", "scene_name", "animate_name", 
 		"page_decl", "component_decl", "component_body_decl", "layout_decl", "layout_row", 
@@ -1144,7 +1144,7 @@ pub trait DeclarationsContextAttrs<'input>: DesignParserContext<'input> + Borrow
 fn config_decl(&self) -> Option<Rc<Config_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
-fn flow_Decl(&self) -> Option<Rc<Flow_DeclContextAll<'input>>> where Self:Sized{
+fn flow_decl(&self) -> Option<Rc<Flow_declContextAll<'input>>> where Self:Sized{
 	self.child_of_type(0)
 }
 fn page_decl(&self) -> Option<Rc<Page_declContextAll<'input>>> where Self:Sized{
@@ -1201,9 +1201,9 @@ where
 					//recog.base.enter_outer_alt(_localctx.clone(), 2);
 					recog.base.enter_outer_alt(None, 2);
 					{
-					/*InvokeRule flow_Decl*/
+					/*InvokeRule flow_decl*/
 					recog.base.set_state(122);
-					recog.flow_Decl()?;
+					recog.flow_decl()?;
 
 					}
 				}
@@ -1285,55 +1285,55 @@ where
 		Ok(_localctx)
 	}
 }
-//------------------- flow_Decl ----------------
-pub type Flow_DeclContextAll<'input> = Flow_DeclContext<'input>;
+//------------------- flow_decl ----------------
+pub type Flow_declContextAll<'input> = Flow_declContext<'input>;
 
 
-pub type Flow_DeclContext<'input> = BaseParserRuleContext<'input,Flow_DeclContextExt<'input>>;
+pub type Flow_declContext<'input> = BaseParserRuleContext<'input,Flow_declContextExt<'input>>;
 
 #[derive(Clone)]
-pub struct Flow_DeclContextExt<'input>{
+pub struct Flow_declContextExt<'input>{
 ph:PhantomData<&'input str>
 }
 
-impl<'input> DesignParserContext<'input> for Flow_DeclContext<'input>{}
+impl<'input> DesignParserContext<'input> for Flow_declContext<'input>{}
 
-impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Flow_DeclContext<'input>{
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Flow_declContext<'input>{
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
-		listener.enter_flow_Decl(self);
+		listener.enter_flow_decl(self);
 	}
 	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_flow_Decl(self);
+		listener.exit_flow_decl(self);
 		listener.exit_every_rule(self);
 	}
 }
 
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Flow_DeclContext<'input>{
+impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Flow_declContext<'input>{
 	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_flow_Decl(self);
+		visitor.visit_flow_decl(self);
 	}
 }
 
-impl<'input> CustomRuleContext<'input> for Flow_DeclContextExt<'input>{
+impl<'input> CustomRuleContext<'input> for Flow_declContextExt<'input>{
 	type TF = LocalTokenFactory<'input>;
 	type Ctx = DesignParserContextType;
-	fn get_rule_index(&self) -> usize { RULE_flow_Decl }
-	//fn type_rule_index() -> usize where Self: Sized { RULE_flow_Decl }
+	fn get_rule_index(&self) -> usize { RULE_flow_decl }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_flow_decl }
 }
-antlr_rust::type_id!{Flow_DeclContextExt<'a>}
+antlr_rust::type_id!{Flow_declContextExt<'a>}
 
-impl<'input> Flow_DeclContextExt<'input>{
-	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Flow_DeclContextAll<'input>> {
+impl<'input> Flow_declContextExt<'input>{
+	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Flow_declContextAll<'input>> {
 		Rc::new(
-			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Flow_DeclContextExt{
+			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Flow_declContextExt{
 				ph:PhantomData
 			}),
 		)
 	}
 }
 
-pub trait Flow_DeclContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Flow_DeclContextExt<'input>>{
+pub trait Flow_declContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Flow_declContextExt<'input>>{
 
 /// Retrieves first TerminalNode corresponding to token FLOW
 /// Returns `None` if there is no child corresponding to token FLOW
@@ -1364,20 +1364,20 @@ fn interaction_decl(&self, i: usize) -> Option<Rc<Interaction_declContextAll<'in
 
 }
 
-impl<'input> Flow_DeclContextAttrs<'input> for Flow_DeclContext<'input>{}
+impl<'input> Flow_declContextAttrs<'input> for Flow_declContext<'input>{}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
     I: TokenStream<'input, TF = LocalTokenFactory<'input> > + TidAble<'input>,
     H: ErrorStrategy<'input,BaseParserType<'input,I>>
 {
-	pub fn flow_Decl(&mut self,)
-	-> Result<Rc<Flow_DeclContextAll<'input>>,ANTLRError> {
+	pub fn flow_decl(&mut self,)
+	-> Result<Rc<Flow_declContextAll<'input>>,ANTLRError> {
 		let mut recog = self;
 		let _parentctx = recog.ctx.take();
-		let mut _localctx = Flow_DeclContextExt::new(_parentctx.clone(), recog.base.get_state());
-        recog.base.enter_rule(_localctx.clone(), 14, RULE_flow_Decl);
-        let mut _localctx: Rc<Flow_DeclContextAll> = _localctx;
+		let mut _localctx = Flow_declContextExt::new(_parentctx.clone(), recog.base.get_state());
+        recog.base.enter_rule(_localctx.clone(), 14, RULE_flow_decl);
+        let mut _localctx: Rc<Flow_declContextAll> = _localctx;
 		let mut _la: isize;
 		let result: Result<(), ANTLRError> = try {
 

@@ -83,15 +83,15 @@ fn enter_declarations(&mut self, _ctx: &DeclarationsContext<'input>) { }
 fn exit_declarations(&mut self, _ctx: &DeclarationsContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#flow_Decl}.
+ * Enter a parse tree produced by {@link DesignParser#flow_decl}.
  * @param ctx the parse tree
  */
-fn enter_flow_Decl(&mut self, _ctx: &Flow_DeclContext<'input>) { }
+fn enter_flow_decl(&mut self, _ctx: &Flow_declContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#flow_Decl}.
+ * Exit a parse tree produced by {@link DesignParser#flow_decl}.
  * @param ctx the parse tree
  */
-fn exit_flow_Decl(&mut self, _ctx: &Flow_DeclContext<'input>) { }
+fn exit_flow_decl(&mut self, _ctx: &Flow_declContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#interaction_decl}.

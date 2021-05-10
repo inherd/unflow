@@ -6,11 +6,11 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_DeclContext, Interaction_declContextAll, See_declContext};
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext};
 #[allow(unused_imports)]
 use crate::{
     Config_declContextAttrs,
-    Flow_DeclContextAttrs,
+    Flow_declContextAttrs,
     Interaction_declContextAttrs,
     See_declContextAttrs,
     Do_declContextAttrs,
@@ -139,7 +139,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         );
     }
 
-    fn visit_flow_Decl(&mut self, ctx: &Flow_DeclContext<'i>) {
+    fn visit_flow_decl(&mut self, ctx: &Flow_declContext<'i>) {
         let flow_name = ctx.IDENTIFIER().unwrap().get_text();
         let mut flow = UiFlow::new(flow_name);
 

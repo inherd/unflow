@@ -51,10 +51,10 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_declarations(&mut self, ctx: &DeclarationsContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by {@link DesignParser#flow_Decl}.
+	 * Visit a parse tree produced by {@link DesignParser#flow_decl}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_flow_Decl(&mut self, ctx: &Flow_DeclContext<'input>) { self.visit_children(ctx) }
+	fn visit_flow_decl(&mut self, ctx: &Flow_declContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#interaction_decl}.
