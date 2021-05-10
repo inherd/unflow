@@ -25,7 +25,7 @@ use crate::{
     React_actionContextAttrs,
     React_declContextAttrs,
     See_declContextAttrs,
-    Show_actionContextAttrs
+    Show_actionContextAttrs,
 };
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -57,7 +57,7 @@ impl Default for DoInteraction {
         DoInteraction {
             component_name: "".to_string(),
             data: "".to_string(),
-            ui_event: "".to_string()
+            ui_event: "".to_string(),
         }
     }
 }
@@ -106,8 +106,8 @@ impl UiFlow {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Component {
     pub name: String,
-    pub child_components: Vec<Component>,
-    pub configs: HashMap<String, String>
+    pub child_components: Vec<String>,
+    pub configs: HashMap<String, String>,
 }
 
 impl Default for Component {
@@ -115,7 +115,7 @@ impl Default for Component {
         Component {
             name: "".to_string(),
             child_components: vec![],
-            configs: Default::default()
+            configs: Default::default(),
         }
     }
 }
@@ -124,7 +124,7 @@ impl Default for Component {
 pub struct Unflow {
     pub config: HashMap<String, String>,
     pub flows: Vec<UiFlow>,
-    pub components: Vec<Component>
+    pub components: Vec<Component>,
 }
 
 impl Default for Unflow {
@@ -132,7 +132,7 @@ impl Default for Unflow {
         Unflow {
             config: Default::default(),
             flows: vec![],
-            components: vec![]
+            components: vec![],
         }
     }
 }
@@ -234,6 +234,14 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
                 component.configs.insert(key, value);
             }
+
+            if type_name.contains("Component_nameContextExt") {
+                for name in decl.get_children() {
+                    if format!("{:?}", name).contains("Component_nameContextExt") {
+                        component.child_components.push(name.get_text());
+                    }
+                }
+            }
         }
 
         self.flow.components.push(component);
@@ -241,7 +249,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 }
 
 
-impl<'i>  UnflowParser<'i> {
+impl<'i> UnflowParser<'i> {
     fn build_do_interaction<'c>(do_decl: &Rc<BaseParserRuleContext<'c, Do_declContextExt<'c>>>) -> DoInteraction {
         let text: String = do_decl.STRING_LITERAL().unwrap().get_text();
         let without_quote: &str = &text[1..text.len() - 1];
@@ -249,7 +257,7 @@ impl<'i>  UnflowParser<'i> {
         let do_inter = DoInteraction {
             component_name: do_decl.component_name().unwrap().get_text(),
             data: without_quote.to_string(),
-            ui_event: do_decl.action_name().unwrap().get_text()
+            ui_event: do_decl.action_name().unwrap().get_text(),
         };
         do_inter
     }
@@ -313,7 +321,7 @@ impl<'i>  UnflowParser<'i> {
             react_action,
             react_component_name,
             animate_name,
-            react_component_data
+            react_component_data,
         };
 
         interaction

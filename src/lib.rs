@@ -89,11 +89,18 @@ width: 1080px
     width: 320px
     height: 240px
 }
+
+component BlogList {
+    BlogDetail, Space8
+}
 "#;
         let result = unflow_parser::parse(data);
 
-        assert_eq!(1, result.components.len());
+        assert_eq!(2, result.components.len());
         assert_eq!("Dialog", result.components[0].name);
         assert_eq!(2, result.components[0].configs.len());
+        assert_eq!(2, result.components[1].child_components.len());
+        assert_eq!("BlogDetail", result.components[1].child_components[0]);
+        assert_eq!("Space8", result.components[1].child_components[1]);
     }
 }
