@@ -33,4 +33,9 @@ mod tests {
     fn should_parse_flow() {
         parse("flow login { }");
     }
+
+    #[test]
+    fn should_parse_utf8_flow() {
+        parse("flow 登录 { }");
+    }
 }
