@@ -4807,7 +4807,37 @@ where
 	}
 }
 //------------------- library_exp ----------------
-pub type Library_expContextAll<'input> = Library_expContext<'input>;
+#[derive(Debug)]
+pub enum Library_expContextAll<'input>{
+	Library_objectContext(Library_objectContext<'input>),
+	Library_configContext(Library_configContext<'input>),
+Error(Library_expContext<'input>)
+}
+antlr_rust::type_id!{Library_expContextAll<'a>}
+
+impl<'input> antlr_rust::parser_rule_context::DerefSeal for Library_expContextAll<'input>{}
+
+impl<'input> DesignParserContext<'input> for Library_expContextAll<'input>{}
+
+impl<'input> Deref for Library_expContextAll<'input>{
+	type Target = dyn Library_expContextAttrs<'input> + 'input;
+	fn deref(&self) -> &Self::Target{
+		use Library_expContextAll::*;
+		match self{
+			Library_objectContext(inner) => inner,
+			Library_configContext(inner) => inner,
+Error(inner) => inner
+		}
+	}
+}
+impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_expContextAll<'input>{
+	fn accept(&self, visitor: &mut (dyn DesignVisitor<'input> + 'a)) { self.deref().accept(visitor) }
+}
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_expContextAll<'input>{
+    fn enter(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().enter(listener) }
+    fn exit(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().exit(listener) }
+}
+
 
 
 pub type Library_expContext<'input> = BaseParserRuleContext<'input,Library_expContextExt<'input>>;
@@ -4820,20 +4850,9 @@ ph:PhantomData<&'input str>
 impl<'input> DesignParserContext<'input> for Library_expContext<'input>{}
 
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_expContext<'input>{
-	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.enter_every_rule(self);
-		listener.enter_library_exp(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_library_exp(self);
-		listener.exit_every_rule(self);
-	}
 }
 
 impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_expContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_library_exp(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Library_expContextExt<'input>{
@@ -4847,44 +4866,173 @@ antlr_rust::type_id!{Library_expContextExt<'a>}
 impl<'input> Library_expContextExt<'input>{
 	fn new(parent: Option<Rc<dyn DesignParserContext<'input> + 'input > >, invoking_state: isize) -> Rc<Library_expContextAll<'input>> {
 		Rc::new(
+		Library_expContextAll::Error(
 			BaseParserRuleContext::new_parser_ctx(parent, invoking_state,Library_expContextExt{
 				ph:PhantomData
 			}),
+		)
 		)
 	}
 }
 
 pub trait Library_expContextAttrs<'input>: DesignParserContext<'input> + BorrowMut<Library_expContextExt<'input>>{
 
-fn preset_key(&self) -> Option<Rc<Preset_keyContextAll<'input>>> where Self:Sized{
-	self.child_of_type(0)
-}
-fn preset_value(&self) -> Option<Rc<Preset_valueContextAll<'input>>> where Self:Sized{
-	self.child_of_type(0)
-}
-fn preset_array(&self) -> Option<Rc<Preset_arrayContextAll<'input>>> where Self:Sized{
-	self.child_of_type(0)
-}
-/// Retrieves first TerminalNode corresponding to token LBRACE
-/// Returns `None` if there is no child corresponding to token LBRACE
-fn LBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
-	self.get_token(LBRACE, 0)
-}
-/// Retrieves first TerminalNode corresponding to token RBRACE
-/// Returns `None` if there is no child corresponding to token RBRACE
-fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
-	self.get_token(RBRACE, 0)
-}
-fn keyValue_all(&self) ->  Vec<Rc<KeyValueContextAll<'input>>> where Self:Sized{
-	self.children_of_type()
-}
-fn keyValue(&self, i: usize) -> Option<Rc<KeyValueContextAll<'input>>> where Self:Sized{
-	self.child_of_type(i)
-}
 
 }
 
 impl<'input> Library_expContextAttrs<'input> for Library_expContext<'input>{}
+
+pub type Library_objectContext<'input> = BaseParserRuleContext<'input,Library_objectContextExt<'input>>;
+
+pub trait Library_objectContextAttrs<'input>: DesignParserContext<'input>{
+	fn preset_key(&self) -> Option<Rc<Preset_keyContextAll<'input>>> where Self:Sized{
+		self.child_of_type(0)
+	}
+	/// Retrieves first TerminalNode corresponding to token LBRACE
+	/// Returns `None` if there is no child corresponding to token LBRACE
+	fn LBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
+		self.get_token(LBRACE, 0)
+	}
+	/// Retrieves first TerminalNode corresponding to token RBRACE
+	/// Returns `None` if there is no child corresponding to token RBRACE
+	fn RBRACE(&self) -> Option<Rc<TerminalNode<'input,DesignParserContextType>>> where Self:Sized{
+		self.get_token(RBRACE, 0)
+	}
+	fn keyValue_all(&self) ->  Vec<Rc<KeyValueContextAll<'input>>> where Self:Sized{
+		self.children_of_type()
+	}
+	fn keyValue(&self, i: usize) -> Option<Rc<KeyValueContextAll<'input>>> where Self:Sized{
+		self.child_of_type(i)
+	}
+}
+
+impl<'input> Library_objectContextAttrs<'input> for Library_objectContext<'input>{}
+
+pub struct Library_objectContextExt<'input>{
+	base:Library_expContextExt<'input>,
+	ph:PhantomData<&'input str>
+}
+
+antlr_rust::type_id!{Library_objectContextExt<'a>}
+
+impl<'input> DesignParserContext<'input> for Library_objectContext<'input>{}
+
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_objectContext<'input>{
+	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
+		listener.enter_every_rule(self);
+		listener.enter_library_object(self);
+	}
+	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
+		listener.exit_library_object(self);
+		listener.exit_every_rule(self);
+	}
+}
+
+impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_objectContext<'input>{
+	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
+		visitor.visit_library_object(self);
+	}
+}
+
+impl<'input> CustomRuleContext<'input> for Library_objectContextExt<'input>{
+	type TF = LocalTokenFactory<'input>;
+	type Ctx = DesignParserContextType;
+	fn get_rule_index(&self) -> usize { RULE_library_exp }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_library_exp }
+}
+
+impl<'input> Borrow<Library_expContextExt<'input>> for Library_objectContext<'input>{
+	fn borrow(&self) -> &Library_expContextExt<'input> { &self.base }
+}
+impl<'input> BorrowMut<Library_expContextExt<'input>> for Library_objectContext<'input>{
+	fn borrow_mut(&mut self) -> &mut Library_expContextExt<'input> { &mut self.base }
+}
+
+impl<'input> Library_expContextAttrs<'input> for Library_objectContext<'input> {}
+
+impl<'input> Library_objectContextExt<'input>{
+	fn new(ctx: &dyn Library_expContextAttrs<'input>) -> Rc<Library_expContextAll<'input>>  {
+		Rc::new(
+			Library_expContextAll::Library_objectContext(
+				BaseParserRuleContext::copy_from(ctx,Library_objectContextExt{
+        			base: ctx.borrow().clone(),
+        			ph:PhantomData
+				})
+			)
+		)
+	}
+}
+
+pub type Library_configContext<'input> = BaseParserRuleContext<'input,Library_configContextExt<'input>>;
+
+pub trait Library_configContextAttrs<'input>: DesignParserContext<'input>{
+	fn preset_key(&self) -> Option<Rc<Preset_keyContextAll<'input>>> where Self:Sized{
+		self.child_of_type(0)
+	}
+	fn preset_value(&self) -> Option<Rc<Preset_valueContextAll<'input>>> where Self:Sized{
+		self.child_of_type(0)
+	}
+	fn preset_array(&self) -> Option<Rc<Preset_arrayContextAll<'input>>> where Self:Sized{
+		self.child_of_type(0)
+	}
+}
+
+impl<'input> Library_configContextAttrs<'input> for Library_configContext<'input>{}
+
+pub struct Library_configContextExt<'input>{
+	base:Library_expContextExt<'input>,
+	ph:PhantomData<&'input str>
+}
+
+antlr_rust::type_id!{Library_configContextExt<'a>}
+
+impl<'input> DesignParserContext<'input> for Library_configContext<'input>{}
+
+impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_configContext<'input>{
+	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
+		listener.enter_every_rule(self);
+		listener.enter_library_config(self);
+	}
+	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
+		listener.exit_library_config(self);
+		listener.exit_every_rule(self);
+	}
+}
+
+impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_configContext<'input>{
+	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
+		visitor.visit_library_config(self);
+	}
+}
+
+impl<'input> CustomRuleContext<'input> for Library_configContextExt<'input>{
+	type TF = LocalTokenFactory<'input>;
+	type Ctx = DesignParserContextType;
+	fn get_rule_index(&self) -> usize { RULE_library_exp }
+	//fn type_rule_index() -> usize where Self: Sized { RULE_library_exp }
+}
+
+impl<'input> Borrow<Library_expContextExt<'input>> for Library_configContext<'input>{
+	fn borrow(&self) -> &Library_expContextExt<'input> { &self.base }
+}
+impl<'input> BorrowMut<Library_expContextExt<'input>> for Library_configContext<'input>{
+	fn borrow_mut(&mut self) -> &mut Library_expContextExt<'input> { &mut self.base }
+}
+
+impl<'input> Library_expContextAttrs<'input> for Library_configContext<'input> {}
+
+impl<'input> Library_configContextExt<'input>{
+	fn new(ctx: &dyn Library_expContextAttrs<'input>) -> Rc<Library_expContextAll<'input>>  {
+		Rc::new(
+			Library_expContextAll::Library_configContext(
+				BaseParserRuleContext::copy_from(ctx,Library_configContextExt{
+        			base: ctx.borrow().clone(),
+        			ph:PhantomData
+				})
+			)
+		)
+	}
+}
 
 impl<'input, I, H> DesignParser<'input, I, H>
 where
@@ -4905,8 +5053,9 @@ where
 			recog.err_handler.sync(&mut recog.base)?;
 			match  recog.interpreter.adaptive_predict(29,&mut recog.base)? {
 				1 =>{
-					//recog.base.enter_outer_alt(_localctx.clone(), 1);
-					recog.base.enter_outer_alt(None, 1);
+					let tmp = Library_configContextExt::new(&**_localctx);
+					recog.base.enter_outer_alt(Some(tmp.clone()), 1);
+					_localctx = tmp;
 					{
 					/*InvokeRule preset_key*/
 					recog.base.set_state(308);
@@ -4956,8 +5105,9 @@ where
 				}
 			,
 				2 =>{
-					//recog.base.enter_outer_alt(_localctx.clone(), 2);
-					recog.base.enter_outer_alt(None, 2);
+					let tmp = Library_objectContextExt::new(&**_localctx);
+					recog.base.enter_outer_alt(Some(tmp.clone()), 2);
+					_localctx = tmp;
 					{
 					/*InvokeRule preset_key*/
 					recog.base.set_state(317);

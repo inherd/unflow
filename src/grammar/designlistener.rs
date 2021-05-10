@@ -395,15 +395,30 @@ fn enter_library_decl(&mut self, _ctx: &Library_declContext<'input>) { }
 fn exit_library_decl(&mut self, _ctx: &Library_declContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#library_exp}.
+ * Enter a parse tree produced by the {@code library_config}
+ * labeled alternative in {@link DesignParser#library_exp}.
  * @param ctx the parse tree
  */
-fn enter_library_exp(&mut self, _ctx: &Library_expContext<'input>) { }
+fn enter_library_config(&mut self, _ctx: &Library_configContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#library_exp}.
+ * Exit a parse tree produced by the {@code library_config}
+ * labeled alternative in {@link DesignParser#library_exp}.
  * @param ctx the parse tree
  */
-fn exit_library_exp(&mut self, _ctx: &Library_expContext<'input>) { }
+fn exit_library_config(&mut self, _ctx: &Library_configContext<'input>) { }
+
+/**
+ * Enter a parse tree produced by the {@code library_object}
+ * labeled alternative in {@link DesignParser#library_exp}.
+ * @param ctx the parse tree
+ */
+fn enter_library_object(&mut self, _ctx: &Library_objectContext<'input>) { }
+/**
+ * Exit a parse tree produced by the {@code library_object}
+ * labeled alternative in {@link DesignParser#library_exp}.
+ * @param ctx the parse tree
+ */
+fn exit_library_object(&mut self, _ctx: &Library_objectContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#keyValue}.

@@ -128,8 +128,8 @@ STYLE: 'style' | 'STYLE' | 'CSS' | 'css';
 library_decl: LIBRARY library_name LBRACE library_exp* RBRACE;
 
 library_exp
-    : preset_key '=' (preset_value |preset_array) ';'?
-    | preset_key '{' keyValue* '}'
+    : preset_key '=' (preset_value |preset_array) ';'?  # library_config
+    | preset_key '{' keyValue* '}'                      # library_object
     ;
 
 keyValue: preset_key '=' preset_value;

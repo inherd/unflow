@@ -221,10 +221,18 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_library_decl(&mut self, ctx: &Library_declContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by {@link DesignParser#library_exp}.
+	 * Visit a parse tree produced by the {@code library_config}
+	 * labeled alternative in {@link DesignParser#library_exp}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_library_exp(&mut self, ctx: &Library_expContext<'input>) { self.visit_children(ctx) }
+	fn visit_library_config(&mut self, ctx: &Library_configContext<'input>) { self.visit_children(ctx) }
+
+	/**
+	 * Visit a parse tree produced by the {@code library_object}
+	 * labeled alternative in {@link DesignParser#library_exp}.
+	 * @param ctx the parse tree
+	 */
+	fn visit_library_object(&mut self, ctx: &Library_objectContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#keyValue}.
