@@ -4,18 +4,13 @@ start = ${ SOI ~ NEWLINE* ~ config_definition* ~ declarations* ~ EOI }
 
 config_definition = { config_key ~ WHITESPACE* ~ ":" ~ WHITESPACE* ~ config_value }
 config_key = { identifier }
-config_value = { identifier | int | float }
+config_value = { identifier }
 
 declarations = {
     flow_definition
 }
 
-flow_definition = { flow ~ WHITESPACE* ~ identifier ~ WHITESPACE* ~ "{" ~ WHITESPACE* ~ config_definition* ~ WHITESPACE* ~ "}" }
-// inner_chr = @{ identifier | unicode* }
-//
-// hex = _{ '0'..'9' | 'a'..'f' | 'A'..'F' }
-// unicode_hex = { hex{1, 6} }
-// unicode    = { "u" ~ "{" ~ unicode_hex ~ "}" }
+flow_definition = { flow ~ WHITESPACE* ~ identifier ~ WHITESPACE* ~ "{" ~ WHITESPACE* ~ "}" }
 
 int   = @{ "-" ? ~ ("0" | '1'..'9' ~ '0'..'9' * ) }
 float = @{
@@ -75,15 +70,18 @@ colon = { ":"}
 dot =   { "."}
 comma = { ","}
 
-identifier = @{ (ASCII_ALPHA | ASCII_ALPHANUMERIC | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
+// todo: remove
+// origin identifier
+chars = @{ (ASCII_ALPHA | ASCII_ALPHANUMERIC | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
 
-// ident_utf = _{ '\u{D800}'..'\u{DBFF}' }
+Char = _{ "\u{0009}" | "\u{000A}" | "\u{000D}" |
+          '\u{0020}'..'\u{D7FF}' | '\u{E000}'..'\u{FFFD}' |
+          '\u{10000}'..'\u{10FFFF}' }
 
-all_chars = _{'a'..'z' | 'A'..'Z' | "_" | '0'..'9'}
-any = {
-    (('a'..'z' | 'A'..'Z' | "_") ~ all_chars*)
-//     | ('\u{D800}'..'\u{10FFFF}')*
-}
+S = _{ "\u{0020}" | "\u{0009}" | "\u{000D}" | "\u{000A}" }
+utf8 = { (!S ~ Char)* }
+
+identifier = { chars | utf8 }
 
 WHITESPACE = _{ " " | "\t" | "\\" ~ NEWLINE}
 COMMENT = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") | ("//" ~ (!NEWLINE ~ ANY)*) }

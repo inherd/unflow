@@ -35,7 +35,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn should_parse_utf8_flow() {
         parse("flow 登录 { }");
     }
