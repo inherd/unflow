@@ -8,7 +8,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, Layout_declContext};
+use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, Layout_declContext, Library_declContext};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -22,6 +22,7 @@ use crate::{
     Flow_declContextAttrs,
     Goto_actionContextAttrs,
     Interaction_declContextAttrs,
+    Library_declContextAttrs,
     React_actionContextAttrs,
     React_declContextAttrs,
     See_declContextAttrs,
@@ -105,6 +106,15 @@ pub struct UiLibrary {
     pub presets: Vec<UiLibraryPreset>
 }
 
+impl Default for UiLibrary {
+    fn default() -> Self {
+        UiLibrary {
+            name: "".to_string(),
+            presets: vec![]
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiLibraryPreset {
     pub key: String,
@@ -164,6 +174,7 @@ pub struct Unflow {
     pub config: HashMap<String, String>,
     pub flows: Vec<UiFlow>,
     pub components: Vec<Component>,
+    pub libraries: Vec<UiLibrary>,
 }
 
 impl Default for Unflow {
@@ -172,6 +183,7 @@ impl Default for Unflow {
             config: Default::default(),
             flows: vec![],
             components: vec![],
+            libraries: vec![]
         }
     }
 }
@@ -288,6 +300,13 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
     fn visit_layout_decl(&mut self, _ctx: &Layout_declContext<'i>) {
 
+    }
+
+    fn visit_library_decl(&mut self, ctx: &Library_declContext<'i>) {
+        let mut library = UiLibrary::default();
+        library.name = ctx.library_name().unwrap().get_text();
+
+        self.flow.libraries.push(library);
     }
 }
 

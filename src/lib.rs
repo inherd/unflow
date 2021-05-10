@@ -103,4 +103,22 @@ component BlogList {
         assert_eq!("BlogDetail", result.components[1].child_components[0]);
         assert_eq!("Space8", result.components[1].child_components[1]);
     }
+
+    #[test]
+    fn should_parse_libraries() {
+        let data = r#"library FontSize {
+    H1 = 32px
+    H2 = 28px
+    H3 = 24px
+    H4 = 20px
+    H5 = 18px
+    H6 = 16px
+}
+
+"#;
+        let result = unflow_parser::parse(data);
+
+        assert_eq!(1, result.libraries.len());
+        assert_eq!("FontSize", result.libraries[0].name);
+    }
 }
