@@ -13,14 +13,74 @@ use crate::{
 };
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Interaction {
+    pub ui_do: DoInteraction,
+    pub ui_see: SeeInteraction,
+    pub ui_react: Vec<ReactInteraction>
+}
+
+impl Default for Interaction {
+    fn default() -> Self {
+        Interaction {
+            ui_do: Default::default(),
+            ui_see: Default::default(),
+            ui_react: vec![]
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct DoInteraction {
+    pub component_name: String,
+    pub data: String
+}
+
+impl Default for DoInteraction {
+    fn default() -> Self {
+        DoInteraction {
+            component_name: "".to_string(),
+            data: "".to_string()
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct SeeInteraction {
+    pub ui_event: String,
+    pub component_name: String,
+    pub data: String
+}
+
+impl Default for SeeInteraction {
+    fn default() -> Self {
+        SeeInteraction {
+            ui_event: "".to_string(),
+            component_name: "".to_string(),
+            data: "".to_string()
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct ReactInteraction {
+    pub scene_name: String,
+    pub react_action: String,
+    pub react_component_name: String,
+    pub animate_name: String,
+    pub react_component_data: String
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiFlow {
     pub name: String,
+    pub interactions: Vec<Interaction>
 }
 
 impl UiFlow {
     fn new(name: String) -> Self {
         UiFlow {
-            name
+            name,
+            interactions: vec![]
         }
     }
 }
@@ -75,6 +135,13 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
     fn visit_flow_Decl(&mut self, ctx: &Flow_DeclContext<'i>) {
         let flow_name = ctx.IDENTIFIER().unwrap().get_text();
-        self.flow.flows.push(UiFlow::new(flow_name));
+        let mut flow = UiFlow::new(flow_name);
+
+        let interaction = Interaction::default();
+
+        // ctx.interaction_decl_all()
+
+        flow.interactions.push(interaction);
+        self.flow.flows.push(flow);
     }
 }
