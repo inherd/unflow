@@ -1,13 +1,13 @@
 grammar Design;
 
-start: (comment | configDeclaration | decalartions)* EOF;
+start: (comment | config_decl | decalartions)* EOF;
 
 comment: IDENTIFIER;
 
-configDeclaration: configKey COLON configValue;
+config_decl: config_key COLON config_value;
 
-configKey: IDENTIFIER;
-configValue
+config_key: IDENTIFIER;
+config_value
     : DIGITS_IDENTIFIER unit?
     | DECIMAL_LITERAL unit?
     | FLOAT_LITERAL unit?
@@ -21,43 +21,43 @@ unit: 'rem'
     ;
 
 decalartions
-    : configDeclaration
-    | flowDeclaration
-    | pageDeclaration
-    | styleDeclaration
-    | componentDeclaration
-    | libraryDeclaration
-    | layoutDeclaration
+    : config_decl
+    | flow_Decl
+    | page_decl
+    | style_decl
+    | component_decl
+    | library_decl
+    | layout_decl
     ;
 
 // Flow
-flowDeclaration: FLOW IDENTIFIER LBRACE interactionDeclaration* RBRACE;
+flow_Decl: FLOW IDENTIFIER LBRACE interaction_decl* RBRACE;
 
-interactionDeclaration
-    : seeDeclaration
-    | doDeclaration
-    | reactDeclaration
+interaction_decl
+    : see_decl
+    | do_decl
+    | react_decl
     ;
 
-seeDeclaration: SEE (IDENTIFIER | STRING_LITERAL DOT componentName);
-doDeclaration: DO LBRACK actionName RBRACK STRING_LITERAL DOT componentName ;
-reactDeclaration: REACT sceneName? COLON reactAction animateDeclaration?;
+see_decl: SEE (IDENTIFIER | STRING_LITERAL DOT component_name);
+do_decl: DO LBRACK action_name RBRACK STRING_LITERAL DOT component_name ;
+react_decl: REACT scene_name? COLON react_action animate_decl?;
 
-animateDeclaration: WITHTEXT ANIMATE LPAREN animateName RPAREN;
+animate_decl: WITHTEXT ANIMATE LPAREN animate_name RPAREN;
 
-reactAction
-    : gotoAction
-    | showAction
+react_action
+    : goto_action
+    | show_action
     ;
 
-gotoAction: GOTO_KEY componentName;
-showAction: SHOW_KEY STRING_LITERAL DOT componentName;
+goto_action: GOTO_KEY component_name;
+show_action: SHOW_KEY STRING_LITERAL DOT component_name;
 
-actionName: IDENTIFIER;
-componentValue: IDENTIFIER;
-componentName: IDENTIFIER;
-sceneName: IDENTIFIER;
-animateName: IDENTIFIER;
+action_name: IDENTIFIER;
+component_value: IDENTIFIER;
+component_name: IDENTIFIER;
+scene_name: IDENTIFIER;
+animate_name: IDENTIFIER;
 
 GOTO_KEY: 'goto' | 'GOTO' | '跳转';
 SHOW_KEY: 'show' | 'SHOW' | '展示';
@@ -72,36 +72,36 @@ ANIMATE: 'animate' | 'ANIMATE' | '动画';
 
 //PAGE
 
-pageDeclaration: PAGE IDENTIFIER LBRACE componentBodyDeclaration* RBRACE;
-componentDeclaration: COMPONENT IDENTIFIER LBRACE componentBodyDeclaration* RBRACE;
+page_decl: PAGE IDENTIFIER LBRACE component_body_decl* RBRACE;
+component_decl: COMPONENT IDENTIFIER LBRACE component_body_decl* RBRACE;
 
-componentBodyDeclaration
-    : componentName (',' componentName)*
-    | configKey COLON configValue
+component_body_decl
+    : component_name (',' component_name)*
+    | config_key COLON config_value
     ;
 
-layoutDeclaration: LAYOUT IDENTIFIER LBRACE layoutRow* RBRACE;
+layout_decl: LAYOUT IDENTIFIER LBRACE layout_row* RBRACE;
 
 
 REPEAT: 'repeat';
 REPEAT_TIMES: INTEGER;
 
-layoutRow
+layout_row
     : '-' '-'*
-    | layoutLines  '|'
+    | layout_lines  '|'
     ;
 
-layoutLines: layoutLine layoutLine*;
-layoutLine: '|' componentUseDeclaration;
+layout_lines: layout_line layout_line*;
+layout_line: '|' component_use_decl;
 
-componentUseDeclaration
+component_use_decl
     : DECIMAL_LITERAL
     | POSITION
-    | componentName (LPAREN componentLayoutValue RPAREN)?
+    | component_name (LPAREN component_layout_value RPAREN)?
     | STRING_LITERAL
     ;
 
-componentLayoutValue: DIGITS_IDENTIFIER | POSITION | STRING_LITERAL;
+component_layout_value: DIGITS_IDENTIFIER | POSITION | STRING_LITERAL;
 
 LAYOUT: 'layout' | 'Layout' | '布局';
 POSITION: 'LEFT' | 'RIGHT' | 'TOP' | 'BOTTOM';
@@ -111,32 +111,32 @@ COMPONENT: 'component' | 'COMPONENT' | '组件';
 
 // STYLE
 
-styleDeclaration: STYLE styleName LBRACE styleBody RBRACE;
+style_decl: STYLE style_name LBRACE style_body RBRACE;
 
-styleName: IDENTIFIER;
-styleBody: (configDeclaration ';')*;
+style_name: IDENTIFIER;
+style_body: (config_decl ';')*;
 
 STYLE: 'style' | 'STYLE' | 'CSS' | 'css';
 
 // LIBRARY
 
 
-libraryDeclaration: LIBRARY libraryName LBRACE libraryExpress* RBRACE;
+library_decl: LIBRARY library_name LBRACE library_exp* RBRACE;
 
-libraryExpress
-    : presetKey '=' (presetValue |presetArray) ';'?
-    | presetKey '{' keyValue* '}'
+library_exp
+    : preset_key '=' (preset_value |preset_array) ';'?
+    | preset_key '{' keyValue* '}'
     ;
 
-keyValue: presetKey '=' presetValue;
+keyValue: preset_key '=' preset_value;
 
-presetKey: IDENTIFIER;
-presetValue: configValue;
-presetArray: LBRACK presetCall (',' presetCall)* RBRACK;
+preset_key: IDENTIFIER;
+preset_value: config_value;
+preset_array: LBRACK preset_call (',' preset_call)* RBRACK;
 
-presetCall: libraryName DOT IDENTIFIER;
+preset_call: library_name DOT IDENTIFIER;
 
-libraryName: IDENTIFIER;
+library_name: IDENTIFIER;
 
 LIBRARY: 'library' | 'LIBRARY' | '库';
 
