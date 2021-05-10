@@ -6,10 +6,11 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_DeclContext, Interaction_declContextAll };
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_DeclContext, Interaction_declContextAll, See_declContextAll};
 use crate::{
     Config_declContextAttrs,
     Flow_DeclContextAttrs,
+    Interaction_declContextAttrs
 };
 use std::rc::Rc;
 
@@ -17,7 +18,7 @@ use std::rc::Rc;
 pub struct Interaction {
     pub ui_do: DoInteraction,
     pub ui_see: SeeInteraction,
-    pub ui_react: Vec<ReactInteraction>
+    pub ui_react: Vec<ReactInteraction>,
 }
 
 impl Default for Interaction {
@@ -25,7 +26,7 @@ impl Default for Interaction {
         Interaction {
             ui_do: Default::default(),
             ui_see: Default::default(),
-            ui_react: vec![]
+            ui_react: vec![],
         }
     }
 }
@@ -33,14 +34,14 @@ impl Default for Interaction {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct DoInteraction {
     pub component_name: String,
-    pub data: String
+    pub data: String,
 }
 
 impl Default for DoInteraction {
     fn default() -> Self {
         DoInteraction {
             component_name: "".to_string(),
-            data: "".to_string()
+            data: "".to_string(),
         }
     }
 }
@@ -49,7 +50,7 @@ impl Default for DoInteraction {
 pub struct SeeInteraction {
     pub ui_event: String,
     pub component_name: String,
-    pub data: String
+    pub data: String,
 }
 
 impl Default for SeeInteraction {
@@ -57,7 +58,7 @@ impl Default for SeeInteraction {
         SeeInteraction {
             ui_event: "".to_string(),
             component_name: "".to_string(),
-            data: "".to_string()
+            data: "".to_string(),
         }
     }
 }
@@ -68,20 +69,20 @@ pub struct ReactInteraction {
     pub react_action: String,
     pub react_component_name: String,
     pub animate_name: String,
-    pub react_component_data: String
+    pub react_component_data: String,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiFlow {
     pub name: String,
-    pub interactions: Vec<Interaction>
+    pub interactions: Vec<Interaction>,
 }
 
 impl UiFlow {
     fn new(name: String) -> Self {
         UiFlow {
             name,
-            interactions: vec![]
+            interactions: vec![],
         }
     }
 }
@@ -89,14 +90,14 @@ impl UiFlow {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Unflow {
     pub config: HashMap<String, String>,
-    pub flows: Vec<UiFlow>
+    pub flows: Vec<UiFlow>,
 }
 
 impl Default for Unflow {
     fn default() -> Self {
         Unflow {
             config: Default::default(),
-            flows: vec![]
+            flows: vec![],
         }
     }
 }
@@ -116,7 +117,7 @@ pub fn parse<'input>(data: &str) -> Unflow {
 
     let mut unflow = UnflowParser {
         inputs: vec![],
-        flow: Default::default()
+        flow: Default::default(),
     };
 
     result.accept(&mut unflow);
@@ -146,14 +147,11 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
             let type_name = format!("{:?}", child);
             match type_name.as_str() {
                 "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::See_declContextExt>" => {
-                    // println!("{:?}", child);
-                },
-                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {
-
-                },
-                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {
-
+                    let see_decl = decl.see_decl().unwrap() as Rc<See_declContextAll<'i>>;
+                    println!("{:?}", see_decl.get_text());
                 }
+                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {}
+                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {}
                 _ => {}
             }
             println!("{:?}", type_name);
