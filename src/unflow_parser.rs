@@ -1,31 +1,32 @@
 use std::collections::HashMap;
+use std::rc::Rc;
 
 use antlr_rust::common_token_stream::CommonTokenStream;
 use antlr_rust::InputStream;
+use antlr_rust::parser_rule_context::BaseParserRuleContext;
 use antlr_rust::token_factory::ArenaCommonFactory;
-use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable, Tree};
+use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Flow_declContext, Interaction_declContextAll, See_declContext, Do_declContext, React_declContext, Do_declContextExt, See_declContextExt, React_declContextExt, Show_actionContext, Goto_actionContext, Component_declContext};
+use crate::{Component_body_declContextAll, Component_declContext, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext};
 #[allow(unused_imports)]
 use crate::{
-    Config_declContextAttrs,
-    Flow_declContextAttrs,
-    Interaction_declContextAttrs,
-    See_declContextAttrs,
-    Do_declContextAttrs,
-    React_declContextAttrs,
     Animate_declContextAttrs,
-
-    React_actionContextAttrs,
-    // sub action
-    Show_actionContextAttrs,
-    Goto_actionContextAttrs,
-
+    Component_body_configContextAttrs,
+    Component_body_declContextAttrs,
+    Component_body_nameContextAttrs,
     Component_declContextAttrs,
+    Config_declContextAttrs,
+    Config_keyContextAttrs,
+    Do_declContextAttrs,
+    Flow_declContextAttrs,
+    Goto_actionContextAttrs,
+    Interaction_declContextAttrs,
+    React_actionContextAttrs,
+    React_declContextAttrs,
+    See_declContextAttrs,
+    Show_actionContextAttrs
 };
-use std::rc::Rc;
-use antlr_rust::parser_rule_context::BaseParserRuleContext;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Interaction {
@@ -221,6 +222,21 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         let mut component = Component::default();
         let component_name = ctx.IDENTIFIER().unwrap().get_text();
         component.name = component_name;
+
+        let decls: Vec<Rc<Component_body_declContextAll<'i>>> = ctx.component_body_decl_all();
+        for decl in &decls {
+
+            let child = decl.get_child(0).unwrap();
+            let type_name = format!("{:?}", child);
+            println!("{:?}", child);
+
+            if type_name.contains("Config_keyContextExt") {
+                // let key = child.config_key().unwrap().get_text();
+                // let value = child.config_value().unwrap().get_text();
+
+                // component.configs.insert(key, value);
+            }
+        }
 
         self.flow.components.push(component);
     }
