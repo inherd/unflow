@@ -123,7 +123,8 @@ use std::ops::{Deref, DerefMut};
 
 
 pub type LexerContext<'input> = BaseRuleContext<'input,EmptyCustomRuleContext<'input,LocalTokenFactory<'input> >>;
-pub type LocalTokenFactory<'input> = CommonTokenFactory;
+
+  pub type LocalTokenFactory<'input> = antlr_rust::token_factory::ArenaCommonFactory<'input>;
 
 type From<'a> = <LocalTokenFactory<'a> as TokenFactory<'a> >::From;
 

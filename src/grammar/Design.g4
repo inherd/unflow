@@ -1,5 +1,9 @@
 grammar Design;
 
+@tokenfactory{
+  pub type LocalTokenFactory<'input> = antlr_rust::token_factory::ArenaCommonFactory<'input>;
+}
+
 start: (comment | declarations)* EOF;
 
 comment: IDENTIFIER;

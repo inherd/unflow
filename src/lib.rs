@@ -7,7 +7,7 @@ pub mod unflow_parser;
 
 #[cfg(test)]
 mod tests {
-    use crate::unflow_parser::UnflowParser;
+    use crate::unflow_parser;
 
     #[test]
     fn should_parse_config() {
@@ -18,6 +18,6 @@ width: 1080px
 
 "#;
 
-        UnflowParser::parse(data);
+        unflow_parser::parse(data);
     }
 }

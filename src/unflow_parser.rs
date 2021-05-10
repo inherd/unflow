@@ -1,46 +1,28 @@
-use std::collections::HashMap;
-
 use antlr_rust::common_token_stream::CommonTokenStream;
 use antlr_rust::InputStream;
-use antlr_rust::tree::{ParseTreeListener, ParseTree};
+use antlr_rust::tree::{Visitable, ParseTree, ParseTreeVisitor};
 
-use crate::{DesignLexer, DesignParserContextType, DesignParser, DesignListener, Config_declContext, DeclarationsContext, designparser};
-use antlr_rust::parser::ParserNodeType;
+use crate::{DesignLexer, DesignParserContextType, DesignParser, Config_declContext, DesignVisitor};
+use antlr_rust::token_factory::ArenaCommonFactory;
 
-pub struct UnflowParser {
-    pub config: HashMap<String, String>,
+pub struct UnflowParser<'i, T>(pub(crate) Vec<&'i str>, pub(crate) T);
+
+pub fn parse<'input>(data: &str) {
+    let tf = ArenaCommonFactory::default();
+    let lexer = DesignLexer::new_with_token_factory(InputStream::new(data.into()), &tf);
+    let token_source = CommonTokenStream::new(lexer);
+    let mut parser = DesignParser::new(token_source);
+    let result = parser.start().expect("parsed unsuccessfully");
+
+    let mut test = 5;
+    let mut unflow = UnflowParser(vec![], &mut test);
+    result.accept(&mut unflow);
 }
 
-impl UnflowParser {
-    pub fn parse(data: &str) {
-        let lexer = DesignLexer::new(InputStream::new(&*data));
-        let token_source = CommonTokenStream::new(lexer);
-        let mut parser = DesignParser::new(token_source);
-        let unflow = UnflowParser { config: Default::default() };
-        parser.add_parse_listener(Box::new(unflow));
-        let _ = parser.start();
-    }
-}
+impl<'i, T> ParseTreeVisitor<'i, DesignParserContextType> for UnflowParser<'i, T> {}
 
-
-impl<'input> ParseTreeListener<'input, DesignParserContextType> for UnflowParser {
-    fn enter_every_rule(&mut self, ctx: &<DesignParserContextType as ParserNodeType<'input>>::Type) {
-        println!(
-            "rule entered {}",
-            designparser::ruleNames
-                .get(ctx.get_rule_index())
-                .unwrap_or(&"error")
-        );
-        println!("value: {:?}", ctx.get_text());
-    }
-}
-
-impl<'input> DesignListener<'input> for UnflowParser {
-    fn enter_config_decl(&mut self, _ctx: &Config_declContext<'input>) {
-        // println!("{:?}", ctx.get_text());
-    }
-
-    fn enter_declarations(&mut self, _ctx: &DeclarationsContext<'input>) {
-        // println!("{:?}", ctx.get_text());
+impl<'i, T> DesignVisitor<'i> for UnflowParser<'i, T> {
+    fn visit_config_decl(&mut self, ctx: &Config_declContext<'i>) {
+        println!("{:?}", ctx.get_text());
     }
 }
