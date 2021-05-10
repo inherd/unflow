@@ -10,7 +10,12 @@ declarations = {
     flow_definition
 }
 
-flow_definition = { flow ~ WHITESPACE* ~ any ~ WHITESPACE* ~ lbrace ~ WHITESPACE* ~ "}" }
+flow_definition = { flow ~ WHITESPACE* ~ identifier ~ WHITESPACE* ~ "{" ~ WHITESPACE* ~ config_definition* ~ WHITESPACE* ~ "}" }
+// inner_chr = @{ identifier | unicode* }
+//
+// hex = _{ '0'..'9' | 'a'..'f' | 'A'..'F' }
+// unicode_hex = { hex{1, 6} }
+// unicode    = { "u" ~ "{" ~ unicode_hex ~ "}" }
 
 int   = @{ "-" ? ~ ("0" | '1'..'9' ~ '0'..'9' * ) }
 float = @{
