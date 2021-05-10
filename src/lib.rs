@@ -18,6 +18,7 @@ width: 1080px
 
 "#;
 
-        unflow_parser::parse(data);
+        let result = unflow_parser::parse(data);
+        assert_eq!(4, result.config.len())
     }
 }

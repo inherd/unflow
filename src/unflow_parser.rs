@@ -1,30 +1,57 @@
+use std::collections::HashMap;
+
 use antlr_rust::common_token_stream::CommonTokenStream;
 use antlr_rust::InputStream;
-use antlr_rust::tree::{Visitable, ParseTree, ParseTreeVisitor};
-
-use crate::{DesignLexer, DesignParserContextType, DesignParser, Config_declContext, DesignVisitor};
 use antlr_rust::token_factory::ArenaCommonFactory;
+use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Visitable};
+use serde::{Deserialize, Serialize};
+
+use crate::{Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor};
 use crate::Config_declContextAttrs;
 
-pub struct UnflowParser<'i, T>(pub(crate) Vec<&'i str>, pub(crate) T);
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Unflow {
+    pub config: HashMap<String, String>
+}
 
-pub fn parse<'input>(data: &str) {
+impl Default for Unflow {
+    fn default() -> Self {
+        Unflow {
+            config: Default::default()
+        }
+    }
+}
+
+pub struct UnflowParser<'i> {
+    #[allow(dead_code)]
+    inputs: Vec<&'i str>,
+    pub(crate) flow: Unflow,
+}
+
+pub fn parse<'input>(data: &str) -> Unflow {
     let tf = ArenaCommonFactory::default();
     let lexer = DesignLexer::new_with_token_factory(InputStream::new(data.into()), &tf);
     let token_source = CommonTokenStream::new(lexer);
     let mut parser = DesignParser::new(token_source);
     let result = parser.start().expect("parsed unsuccessfully");
 
-    let mut test = 5;
-    let mut unflow = UnflowParser(vec![], &mut test);
+    let mut unflow = UnflowParser {
+        inputs: vec![],
+        flow: Default::default()
+    };
+
     result.accept(&mut unflow);
+
+    unflow.flow
 }
 
-impl<'i, T> ParseTreeVisitor<'i, DesignParserContextType> for UnflowParser<'i, T> {}
+impl<'i> ParseTreeVisitor<'i, DesignParserContextType> for UnflowParser<'i> {}
 
-impl<'i, T> DesignVisitor<'i> for UnflowParser<'i, T> {
+impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
     fn visit_config_decl(&mut self, ctx: &Config_declContext<'i>) {
-        println!("{:?}", ctx.config_key().unwrap().get_text());
-        println!("{:?}", ctx.get_text());
+        self.flow.config.insert(
+            ctx.config_key().unwrap().get_text(),
+            ctx.config_value().unwrap().get_text(),
+        );
     }
 }
