@@ -7,6 +7,7 @@ pub mod grammar;
 
 pub mod unflow_parser;
 pub mod layout;
+pub mod ui_library;
 
 #[cfg(test)]
 mod tests {

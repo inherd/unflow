@@ -1,4 +1,4 @@
-use crate::FlexChild;
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiLayout {
