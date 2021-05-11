@@ -131,5 +131,7 @@ Refs: [AutoLayout.js](https://github.com/IjzerenHein/autolayout.js), [Apple's Au
 License
 ---
 
+code based on: [https://github.com/phodal/design](https://github.com/phodal/design)
+
 This code is distributed under the MIT license. See `LICENSE` in this directory.
 
