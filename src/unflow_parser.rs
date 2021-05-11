@@ -203,13 +203,14 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
                     preset.key = lib_ctx.preset_key().unwrap().get_text();
                     let key_values: Vec<Rc<Key_valueContextAll<'i>>> = lib_ctx.key_value_all();
 
-                    let mut preset_call = PresetCall::default();
                     for key_value in key_values {
-                        preset_call.name = key_value.preset_key().unwrap().get_text();
-                        preset_call.preset = key_value.preset_value().unwrap().get_text();
-                    }
+                        let mut preset_call = PresetCall::default();
 
-                    preset.preset_calls.push(preset_call);
+                        preset_call.name = key_value.preset_key().unwrap().get_text();
+                        preset_call.preset = remove_quote(key_value.preset_value().unwrap().get_text());
+
+                        preset.preset_calls.push(preset_call);
+                    }
                 }
                 Library_expContextAll::Library_configContext(con_ctx) => {
                     preset.key = con_ctx.preset_key().unwrap().get_text();

@@ -171,4 +171,29 @@ component BlogList {
         assert_eq!("H1", result.libraries[0].presets[0].key);
         assert_eq!("32px", result.libraries[0].presets[0].value);
     }
+
+    #[test]
+    fn should_parse_libraries_objects() {
+        let data = "library Color {
+    Primary {
+        label = \"Primary\"
+        value = \"#E53935\"
+    }
+    Secondary {
+        label = \"Blue\"
+        value = \"#1E88E5\"
+    }
+    Third {
+        label = \"Third\"
+        value = \"#000000\"
+    }
+}";
+        let result = unflow_parser::parse(data);
+
+        let calls = &result.libraries[0].presets[0].preset_calls;
+
+        assert_eq!(2, calls.len());
+        assert_eq!("Primary", calls[0].preset);
+        assert_eq!("#E53935", calls[1].preset);
+    }
 }
