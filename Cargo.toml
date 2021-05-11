@@ -1,6 +1,6 @@
 [package]
 name = "unflow"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Inherd Group <group@inherd.org>", "Phodal Huang <h@phodal.com>"]
 edition = "2018"
 license = "MIT"
