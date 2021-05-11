@@ -129,4 +129,20 @@ component BlogList {
         assert_eq!(1, result.libraries.len());
         assert_eq!("FontSize", result.libraries[0].name);
     }
+
+    #[test]
+    fn should_parse_layouts() {
+        let data = r#"Layout Navigation {
+--------------------------------------
+| "home" |"detail" | Button("Login") |
+--------------------------------------
+}
+
+
+"#;
+        let result = unflow_parser::parse(data);
+
+        assert_eq!(1, result.layouts.len());
+        assert_eq!("Navigation", result.layouts[0].name);
+    }
 }

@@ -6,6 +6,15 @@ pub struct UiLayout {
     pub flex_child: Vec<FlexChild>
 }
 
+impl Default for UiLayout {
+    fn default() -> Self {
+        UiLayout {
+            name: "".to_string(),
+            flex_child: vec![]
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct FlexChild {
     pub flex: Flex,

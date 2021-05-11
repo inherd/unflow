@@ -9,7 +9,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext};
+use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, Flex_childContextAll};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -23,6 +23,7 @@ use crate::{
     Flow_declContextAttrs,
     Goto_actionContextAttrs,
     Interaction_declContextAttrs,
+    Layout_declContextAttrs,
     Library_declContextAttrs,
     Library_objectContextAttrs,
     React_actionContextAttrs,
@@ -39,6 +40,7 @@ pub struct Unflow {
     pub flows: Vec<UiFlow>,
     pub components: Vec<Component>,
     pub libraries: Vec<UiLibrary>,
+    pub layouts: Vec<UiLayout>,
 }
 
 impl Default for Unflow {
@@ -47,7 +49,8 @@ impl Default for Unflow {
             config: Default::default(),
             flows: vec![],
             components: vec![],
-            libraries: vec![]
+            libraries: vec![],
+            layouts: vec![]
         }
     }
 }
@@ -160,8 +163,21 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         self.flow.components.push(component);
     }
 
-    fn visit_layout_decl(&mut self, _ctx: &Layout_declContext<'i>) {
+    fn visit_layout_decl(&mut self, ctx: &Layout_declContext<'i>) {
+        let mut layout = UiLayout::default();
+        layout.name = ctx.IDENTIFIER().unwrap().get_text();
 
+        let decls: Vec<Rc<Flex_childContextAll<'i>>> = ctx.flex_child_all();
+        for decl in &decls {
+            match decl.deref() {
+                Flex_childContextAll::Flex_layout_linesContext(inner) => {
+                    println!("{:?}", inner);
+                }
+                _ => {}
+            }
+        }
+
+        self.flow.layouts.push(layout);
     }
 
     fn visit_library_decl(&mut self, ctx: &Library_declContext<'i>) {
