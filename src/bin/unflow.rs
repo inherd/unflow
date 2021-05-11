@@ -7,6 +7,7 @@ use tower_lsp::lsp_types::*;
 use tower_lsp::{Client, LanguageServer, LspService, Server};
 
 use serde_json::Value;
+use std::fs;
 
 #[derive(Debug)]
 pub struct FileOffsets {
@@ -46,8 +47,17 @@ pub fn main() {
 
 impl UnflowServer {
     /// Parse file
-    async fn parse_file(&self, _uri: Url) {
-        // if let Ok(path) = uri.to_file_path() {}
+    async fn parse_file(&self, uri: Url) {
+        if let Ok(path) = uri.to_file_path() {
+            // let result = fs::read_to_string(path).unwrap();
+            let mut digs = vec![];
+            let diagnostic = Diagnostic::default();
+            digs.push(diagnostic);
+
+            let res = self.client.publish_diagnostics(uri, diags, None);
+
+            res.await;
+        }
     }
 }
 
