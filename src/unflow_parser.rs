@@ -17,6 +17,7 @@ use crate::{
     Component_body_declContextAttrs,
     Component_body_nameContextAttrs,
     Component_declContextAttrs,
+    Component_use_name_valueContextAttrs,
     Config_declContextAttrs,
     Config_keyContextAttrs,
     Do_declContextAttrs,
@@ -174,10 +175,16 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
                 let mut flex_child = FlexChild::default();
                 let components: Vec<Rc<Component_use_declContextAll<'i>>> = uses.component_use_decl_all();
                 for component in components {
-                    let cell = FlexCell::default();
+                    let mut cell = FlexCell::default();
                     match component.deref() {
-                        Component_use_declContextAll::Component_use_name_valueContext(_sub_ctx) => {
+                        Component_use_declContextAll::Component_use_name_valueContext(sub_ctx) => {
+                            cell.component_name = sub_ctx.component_name().unwrap().get_text();
+                            let mut layout_value = "".to_string();
+                            if let Some(value) = sub_ctx.component_layout_value() {
+                                layout_value = value.get_text();
+                            }
 
+                            cell.layout_info = layout_value[1..layout_value.len() - 1].to_string();
                         }
                         Component_use_declContextAll::Component_use_decimalContext(_sub_ctx) => {}
                         Component_use_declContextAll::Component_use_stringContext(_sub_ctx) => {}
