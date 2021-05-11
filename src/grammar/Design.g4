@@ -63,17 +63,6 @@ component_name: IDENTIFIER;
 scene_name: IDENTIFIER;
 animate_name: IDENTIFIER;
 
-GOTO_KEY: 'goto' | 'GOTO' | '跳转';
-SHOW_KEY: 'show' | 'SHOW' | '展示';
-
-FLOW: 'flow' | '流' ;
-SEE: 'see' | 'SEE' | '看到';
-DO: 'do' | 'DO' | '做';
-REACT: 'react' | 'REACT' | '响应';
-
-WITHTEXT: 'with' | 'WITH' | '使用';
-ANIMATE: 'animate' | 'ANIMATE' | '动画';
-
 //PAGE
 
 page_decl: PAGE IDENTIFIER LBRACE component_body_decl* RBRACE;
@@ -85,10 +74,6 @@ component_body_decl
     ;
 
 layout_decl: LAYOUT IDENTIFIER LBRACE flex_child* RBRACE;
-
-
-REPEAT: 'repeat';
-REPEAT_TIMES: INTEGER;
 
 flex_child
     : '-' '-'*              # empty_line
@@ -107,24 +92,13 @@ component_use_decl
 
 component_layout_value: DIGITS_IDENTIFIER | POSITION | STRING_LITERAL;
 
-LAYOUT: 'layout' | 'Layout' | '布局';
-POSITION: 'LEFT' | 'RIGHT' | 'TOP' | 'BOTTOM';
-
-PAGE: 'page' | 'PAGE' | '页面';
-COMPONENT: 'component' | 'COMPONENT' | '组件';
-
 // STYLE
-
 style_decl: STYLE style_name LBRACE style_body RBRACE;
 
 style_name: IDENTIFIER;
 style_body: (config_decl ';')*;
 
-STYLE: 'style' | 'STYLE' | 'CSS' | 'css';
-
 // LIBRARY
-
-
 library_decl: LIBRARY library_name LBRACE library_exp* RBRACE;
 
 library_exp
@@ -142,7 +116,26 @@ preset_call: library_name DOT IDENTIFIER;
 
 library_name: IDENTIFIER;
 
+REPEAT: 'repeat';
+REPEAT_TIMES: INTEGER;
+
+GOTO_KEY: 'goto' | 'GOTO' | '跳转';
+SHOW_KEY: 'show' | 'SHOW' | '展示';
+
+FLOW: 'flow' | '流' ;
+SEE: 'see' | 'SEE' | '看到';
+DO: 'do' | 'DO' | '做';
+REACT: 'react' | 'REACT' | '响应';
+
+WITHTEXT: 'with' | 'WITH' | '使用';
+ANIMATE: 'animate' | 'ANIMATE' | '动画';
+
+PAGE: 'page' | 'PAGE' | '页面';
 LIBRARY: 'library' | 'LIBRARY' | '库';
+COMPONENT: 'component' | 'COMPONENT' | '组件';
+LAYOUT: 'layout' | 'Layout' | '布局';
+POSITION: 'LEFT' | 'RIGHT' | 'TOP' | 'BOTTOM';
+STYLE: 'style' | 'STYLE' | 'CSS' | 'css';
 
 
 // WORD

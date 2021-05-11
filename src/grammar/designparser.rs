@@ -45,22 +45,22 @@ use std::any::{Any,TypeId};
 		pub const T__4:isize=5; 
 		pub const T__5:isize=6; 
 		pub const T__6:isize=7; 
-		pub const GOTO_KEY:isize=8; 
-		pub const SHOW_KEY:isize=9; 
-		pub const FLOW:isize=10; 
-		pub const SEE:isize=11; 
-		pub const DO:isize=12; 
-		pub const REACT:isize=13; 
-		pub const WITHTEXT:isize=14; 
-		pub const ANIMATE:isize=15; 
-		pub const REPEAT:isize=16; 
-		pub const REPEAT_TIMES:isize=17; 
-		pub const LAYOUT:isize=18; 
-		pub const POSITION:isize=19; 
-		pub const PAGE:isize=20; 
-		pub const COMPONENT:isize=21; 
-		pub const STYLE:isize=22; 
-		pub const LIBRARY:isize=23; 
+		pub const REPEAT:isize=8; 
+		pub const REPEAT_TIMES:isize=9; 
+		pub const GOTO_KEY:isize=10; 
+		pub const SHOW_KEY:isize=11; 
+		pub const FLOW:isize=12; 
+		pub const SEE:isize=13; 
+		pub const DO:isize=14; 
+		pub const REACT:isize=15; 
+		pub const WITHTEXT:isize=16; 
+		pub const ANIMATE:isize=17; 
+		pub const PAGE:isize=18; 
+		pub const LIBRARY:isize=19; 
+		pub const COMPONENT:isize=20; 
+		pub const LAYOUT:isize=21; 
+		pub const POSITION:isize=22; 
+		pub const STYLE:isize=23; 
 		pub const STRING_LITERAL:isize=24; 
 		pub const WS:isize=25; 
 		pub const COMMENT:isize=26; 
@@ -141,23 +141,22 @@ use std::any::{Any,TypeId};
 
 	pub const _LITERAL_NAMES: [Option<&'static str>;42] = [
 		None, Some("'rem'"), Some("'px'"), Some("'em'"), Some("'-'"), Some("'|'"), 
-		Some("';'"), Some("'='"), None, None, None, None, None, None, None, None, 
-		Some("'repeat'"), None, None, None, None, None, None, None, None, None, 
+		Some("';'"), Some("'='"), Some("'repeat'"), None, None, None, None, None, 
+		None, None, None, None, None, None, None, None, None, None, None, None, 
 		None, None, None, None, None, Some("'('"), Some("')'"), Some("'{'"), Some("'}'"), 
 		Some("'['"), Some("']'"), Some("'\"'"), Some("'''"), Some("':'"), Some("'.'"), 
 		Some("','")
 	];
 	pub const _SYMBOLIC_NAMES: [Option<&'static str>;48]  = [
-		None, None, None, None, None, None, None, None, Some("GOTO_KEY"), Some("SHOW_KEY"), 
-		Some("FLOW"), Some("SEE"), Some("DO"), Some("REACT"), Some("WITHTEXT"), 
-		Some("ANIMATE"), Some("REPEAT"), Some("REPEAT_TIMES"), Some("LAYOUT"), 
-		Some("POSITION"), Some("PAGE"), Some("COMPONENT"), Some("STYLE"), Some("LIBRARY"), 
-		Some("STRING_LITERAL"), Some("WS"), Some("COMMENT"), Some("LINE_COMMENT"), 
-		Some("EmptyLine"), Some("Space"), Some("NewLine"), Some("LPAREN"), Some("RPAREN"), 
-		Some("LBRACE"), Some("RBRACE"), Some("LBRACK"), Some("RBRACK"), Some("Quote"), 
-		Some("SingleQuote"), Some("COLON"), Some("DOT"), Some("COMMA"), Some("LETTER"), 
-		Some("IDENTIFIER"), Some("DIGITS"), Some("DIGITS_IDENTIFIER"), Some("DECIMAL_LITERAL"), 
-		Some("FLOAT_LITERAL")
+		None, None, None, None, None, None, None, None, Some("REPEAT"), Some("REPEAT_TIMES"), 
+		Some("GOTO_KEY"), Some("SHOW_KEY"), Some("FLOW"), Some("SEE"), Some("DO"), 
+		Some("REACT"), Some("WITHTEXT"), Some("ANIMATE"), Some("PAGE"), Some("LIBRARY"), 
+		Some("COMPONENT"), Some("LAYOUT"), Some("POSITION"), Some("STYLE"), Some("STRING_LITERAL"), 
+		Some("WS"), Some("COMMENT"), Some("LINE_COMMENT"), Some("EmptyLine"), 
+		Some("Space"), Some("NewLine"), Some("LPAREN"), Some("RPAREN"), Some("LBRACE"), 
+		Some("RBRACE"), Some("LBRACK"), Some("RBRACK"), Some("Quote"), Some("SingleQuote"), 
+		Some("COLON"), Some("DOT"), Some("COMMA"), Some("LETTER"), Some("IDENTIFIER"), 
+		Some("DIGITS"), Some("DIGITS_IDENTIFIER"), Some("DECIMAL_LITERAL"), Some("FLOAT_LITERAL")
 	];
 	lazy_static!{
 	    static ref _shared_context_cache: Arc<PredictionContextCache> = Arc::new(PredictionContextCache::new());
@@ -408,7 +407,7 @@ where
 			recog.base.set_state(86);
 			recog.err_handler.sync(&mut recog.base)?;
 			_la = recog.base.input.la(1);
-			while (((_la) & !0x3f) == 0 && ((1usize << _la) & ((1usize << FLOW) | (1usize << LAYOUT) | (1usize << PAGE) | (1usize << COMPONENT) | (1usize << STYLE) | (1usize << LIBRARY) | (1usize << IDENTIFIER))) != 0) {
+			while (((_la) & !0x3f) == 0 && ((1usize << _la) & ((1usize << FLOW) | (1usize << PAGE) | (1usize << LIBRARY) | (1usize << COMPONENT) | (1usize << LAYOUT) | (1usize << STYLE) | (1usize << IDENTIFIER))) != 0) {
 				{
 				recog.base.set_state(84);
 				recog.err_handler.sync(&mut recog.base)?;
@@ -6292,7 +6291,7 @@ const _serializedATN:&'static str =
 	\x28\x03\x29\x03\x29\x03\x29\x03\x29\x03\x2a\x03\x2a\x03\x2a\x02\x02\x2b\
 	\x02\x04\x06\x08\x0a\x0c\x0e\x10\x12\x14\x16\x18\x1a\x1c\x1e\x20\x22\x24\
 	\x26\x28\x2a\x2c\x2e\x30\x32\x34\x36\x38\x3a\x3c\x3e\x40\x42\x44\x46\x48\
-	\x4a\x4c\x4e\x50\x52\x02\x04\x03\x02\x03\x05\x05\x02\x15\x15\x1a\x1a\x2f\
+	\x4a\x4c\x4e\x50\x52\x02\x04\x03\x02\x03\x05\x05\x02\x18\x18\x1a\x1a\x2f\
 	\x2f\x02\u{165}\x02\x58\x03\x02\x02\x02\x04\x5d\x03\x02\x02\x02\x06\x5f\
 	\x03\x02\x02\x02\x08\x63\x03\x02\x02\x02\x0a\x77\x03\x02\x02\x02\x0c\x79\
 	\x03\x02\x02\x02\x0e\u{82}\x03\x02\x02\x02\x10\u{84}\x03\x02\x02\x02\x12\
@@ -6329,40 +6328,40 @@ const _serializedATN:&'static str =
 	\x05\x44\x23\x02\u{81}\u{83}\x05\x32\x1a\x02\u{82}\x7b\x03\x02\x02\x02\u{82}\
 	\x7c\x03\x02\x02\x02\u{82}\x7d\x03\x02\x02\x02\u{82}\x7e\x03\x02\x02\x02\
 	\u{82}\x7f\x03\x02\x02\x02\u{82}\u{80}\x03\x02\x02\x02\u{82}\u{81}\x03\x02\
-	\x02\x02\u{83}\x0f\x03\x02\x02\x02\u{84}\u{85}\x07\x0c\x02\x02\u{85}\u{86}\
+	\x02\x02\u{83}\x0f\x03\x02\x02\x02\u{84}\u{85}\x07\x0e\x02\x02\u{85}\u{86}\
 	\x07\x2d\x02\x02\u{86}\u{8a}\x07\x23\x02\x02\u{87}\u{89}\x05\x12\x0a\x02\
 	\u{88}\u{87}\x03\x02\x02\x02\u{89}\u{8c}\x03\x02\x02\x02\u{8a}\u{88}\x03\
 	\x02\x02\x02\u{8a}\u{8b}\x03\x02\x02\x02\u{8b}\u{8d}\x03\x02\x02\x02\u{8c}\
 	\u{8a}\x03\x02\x02\x02\u{8d}\u{8e}\x07\x24\x02\x02\u{8e}\x11\x03\x02\x02\
 	\x02\u{8f}\u{93}\x05\x14\x0b\x02\u{90}\u{93}\x05\x16\x0c\x02\u{91}\u{93}\
 	\x05\x18\x0d\x02\u{92}\u{8f}\x03\x02\x02\x02\u{92}\u{90}\x03\x02\x02\x02\
-	\u{92}\u{91}\x03\x02\x02\x02\u{93}\x13\x03\x02\x02\x02\u{94}\u{99}\x07\x0d\
+	\u{92}\u{91}\x03\x02\x02\x02\u{93}\x13\x03\x02\x02\x02\u{94}\u{99}\x07\x0f\
 	\x02\x02\u{95}\u{9a}\x07\x2d\x02\x02\u{96}\u{97}\x07\x1a\x02\x02\u{97}\u{98}\
 	\x07\x2a\x02\x02\u{98}\u{9a}\x05\x26\x14\x02\u{99}\u{95}\x03\x02\x02\x02\
-	\u{99}\u{96}\x03\x02\x02\x02\u{9a}\x15\x03\x02\x02\x02\u{9b}\u{9c}\x07\x0e\
+	\u{99}\u{96}\x03\x02\x02\x02\u{9a}\x15\x03\x02\x02\x02\u{9b}\u{9c}\x07\x10\
 	\x02\x02\u{9c}\u{9d}\x07\x25\x02\x02\u{9d}\u{9e}\x05\x22\x12\x02\u{9e}\u{9f}\
 	\x07\x26\x02\x02\u{9f}\u{a0}\x07\x1a\x02\x02\u{a0}\u{a1}\x07\x2a\x02\x02\
-	\u{a1}\u{a2}\x05\x26\x14\x02\u{a2}\x17\x03\x02\x02\x02\u{a3}\u{a5}\x07\x0f\
+	\u{a1}\u{a2}\x05\x26\x14\x02\u{a2}\x17\x03\x02\x02\x02\u{a3}\u{a5}\x07\x11\
 	\x02\x02\u{a4}\u{a6}\x05\x28\x15\x02\u{a5}\u{a4}\x03\x02\x02\x02\u{a5}\u{a6}\
 	\x03\x02\x02\x02\u{a6}\u{a7}\x03\x02\x02\x02\u{a7}\u{a8}\x07\x29\x02\x02\
 	\u{a8}\u{aa}\x05\x1c\x0f\x02\u{a9}\u{ab}\x05\x1a\x0e\x02\u{aa}\u{a9}\x03\
 	\x02\x02\x02\u{aa}\u{ab}\x03\x02\x02\x02\u{ab}\x19\x03\x02\x02\x02\u{ac}\
-	\u{ad}\x07\x10\x02\x02\u{ad}\u{ae}\x07\x11\x02\x02\u{ae}\u{af}\x07\x21\x02\
+	\u{ad}\x07\x12\x02\x02\u{ad}\u{ae}\x07\x13\x02\x02\u{ae}\u{af}\x07\x21\x02\
 	\x02\u{af}\u{b0}\x05\x2a\x16\x02\u{b0}\u{b1}\x07\x22\x02\x02\u{b1}\x1b\x03\
 	\x02\x02\x02\u{b2}\u{b5}\x05\x1e\x10\x02\u{b3}\u{b5}\x05\x20\x11\x02\u{b4}\
 	\u{b2}\x03\x02\x02\x02\u{b4}\u{b3}\x03\x02\x02\x02\u{b5}\x1d\x03\x02\x02\
-	\x02\u{b6}\u{b7}\x07\x0a\x02\x02\u{b7}\u{b8}\x05\x26\x14\x02\u{b8}\x1f\x03\
-	\x02\x02\x02\u{b9}\u{ba}\x07\x0b\x02\x02\u{ba}\u{bb}\x07\x1a\x02\x02\u{bb}\
+	\x02\u{b6}\u{b7}\x07\x0c\x02\x02\u{b7}\u{b8}\x05\x26\x14\x02\u{b8}\x1f\x03\
+	\x02\x02\x02\u{b9}\u{ba}\x07\x0d\x02\x02\u{ba}\u{bb}\x07\x1a\x02\x02\u{bb}\
 	\u{bc}\x07\x2a\x02\x02\u{bc}\u{bd}\x05\x26\x14\x02\u{bd}\x21\x03\x02\x02\
 	\x02\u{be}\u{bf}\x07\x2d\x02\x02\u{bf}\x23\x03\x02\x02\x02\u{c0}\u{c1}\x07\
 	\x2d\x02\x02\u{c1}\x25\x03\x02\x02\x02\u{c2}\u{c3}\x07\x2d\x02\x02\u{c3}\
 	\x27\x03\x02\x02\x02\u{c4}\u{c5}\x07\x2d\x02\x02\u{c5}\x29\x03\x02\x02\x02\
-	\u{c6}\u{c7}\x07\x2d\x02\x02\u{c7}\x2b\x03\x02\x02\x02\u{c8}\u{c9}\x07\x16\
+	\u{c6}\u{c7}\x07\x2d\x02\x02\u{c7}\x2b\x03\x02\x02\x02\u{c8}\u{c9}\x07\x14\
 	\x02\x02\u{c9}\u{ca}\x07\x2d\x02\x02\u{ca}\u{ce}\x07\x23\x02\x02\u{cb}\u{cd}\
 	\x05\x30\x19\x02\u{cc}\u{cb}\x03\x02\x02\x02\u{cd}\u{d0}\x03\x02\x02\x02\
 	\u{ce}\u{cc}\x03\x02\x02\x02\u{ce}\u{cf}\x03\x02\x02\x02\u{cf}\u{d1}\x03\
 	\x02\x02\x02\u{d0}\u{ce}\x03\x02\x02\x02\u{d1}\u{d2}\x07\x24\x02\x02\u{d2}\
-	\x2d\x03\x02\x02\x02\u{d3}\u{d4}\x07\x17\x02\x02\u{d4}\u{d5}\x07\x2d\x02\
+	\x2d\x03\x02\x02\x02\u{d3}\u{d4}\x07\x16\x02\x02\u{d4}\u{d5}\x07\x2d\x02\
 	\x02\u{d5}\u{d9}\x07\x23\x02\x02\u{d6}\u{d8}\x05\x30\x19\x02\u{d7}\u{d6}\
 	\x03\x02\x02\x02\u{d8}\u{db}\x03\x02\x02\x02\u{d9}\u{d7}\x03\x02\x02\x02\
 	\u{d9}\u{da}\x03\x02\x02\x02\u{da}\u{dc}\x03\x02\x02\x02\u{db}\u{d9}\x03\
@@ -6373,7 +6372,7 @@ const _serializedATN:&'static str =
 	\u{e5}\u{e3}\x03\x02\x02\x02\u{e6}\u{e7}\x05\x08\x05\x02\u{e7}\u{e8}\x07\
 	\x29\x02\x02\u{e8}\u{e9}\x05\x0a\x06\x02\u{e9}\u{eb}\x03\x02\x02\x02\u{ea}\
 	\u{de}\x03\x02\x02\x02\u{ea}\u{e6}\x03\x02\x02\x02\u{eb}\x31\x03\x02\x02\
-	\x02\u{ec}\u{ed}\x07\x14\x02\x02\u{ed}\u{ee}\x07\x2d\x02\x02\u{ee}\u{f2}\
+	\x02\u{ec}\u{ed}\x07\x17\x02\x02\u{ed}\u{ee}\x07\x2d\x02\x02\u{ee}\u{f2}\
 	\x07\x23\x02\x02\u{ef}\u{f1}\x05\x34\x1b\x02\u{f0}\u{ef}\x03\x02\x02\x02\
 	\u{f1}\u{f4}\x03\x02\x02\x02\u{f2}\u{f0}\x03\x02\x02\x02\u{f2}\u{f3}\x03\
 	\x02\x02\x02\u{f3}\u{f5}\x03\x02\x02\x02\u{f4}\u{f2}\x03\x02\x02\x02\u{f5}\
@@ -6388,21 +6387,21 @@ const _serializedATN:&'static str =
 	\x03\x02\x02\x02\u{107}\u{108}\x03\x02\x02\x02\u{108}\x37\x03\x02\x02\x02\
 	\u{109}\u{107}\x03\x02\x02\x02\u{10a}\u{10b}\x07\x07\x02\x02\u{10b}\u{10c}\
 	\x05\x3a\x1e\x02\u{10c}\x39\x03\x02\x02\x02\u{10d}\u{118}\x07\x30\x02\x02\
-	\u{10e}\u{118}\x07\x15\x02\x02\u{10f}\u{114}\x05\x26\x14\x02\u{110}\u{111}\
+	\u{10e}\u{118}\x07\x18\x02\x02\u{10f}\u{114}\x05\x26\x14\x02\u{110}\u{111}\
 	\x07\x21\x02\x02\u{111}\u{112}\x05\x3c\x1f\x02\u{112}\u{113}\x07\x22\x02\
 	\x02\u{113}\u{115}\x03\x02\x02\x02\u{114}\u{110}\x03\x02\x02\x02\u{114}\
 	\u{115}\x03\x02\x02\x02\u{115}\u{118}\x03\x02\x02\x02\u{116}\u{118}\x07\
 	\x1a\x02\x02\u{117}\u{10d}\x03\x02\x02\x02\u{117}\u{10e}\x03\x02\x02\x02\
 	\u{117}\u{10f}\x03\x02\x02\x02\u{117}\u{116}\x03\x02\x02\x02\u{118}\x3b\
 	\x03\x02\x02\x02\u{119}\u{11a}\x09\x03\x02\x02\u{11a}\x3d\x03\x02\x02\x02\
-	\u{11b}\u{11c}\x07\x18\x02\x02\u{11c}\u{11d}\x05\x40\x21\x02\u{11d}\u{11e}\
+	\u{11b}\u{11c}\x07\x19\x02\x02\u{11c}\u{11d}\x05\x40\x21\x02\u{11d}\u{11e}\
 	\x07\x23\x02\x02\u{11e}\u{11f}\x05\x42\x22\x02\u{11f}\u{120}\x07\x24\x02\
 	\x02\u{120}\x3f\x03\x02\x02\x02\u{121}\u{122}\x07\x2d\x02\x02\u{122}\x41\
 	\x03\x02\x02\x02\u{123}\u{124}\x05\x06\x04\x02\u{124}\u{125}\x07\x08\x02\
 	\x02\u{125}\u{127}\x03\x02\x02\x02\u{126}\u{123}\x03\x02\x02\x02\u{127}\
 	\u{12a}\x03\x02\x02\x02\u{128}\u{126}\x03\x02\x02\x02\u{128}\u{129}\x03\
 	\x02\x02\x02\u{129}\x43\x03\x02\x02\x02\u{12a}\u{128}\x03\x02\x02\x02\u{12b}\
-	\u{12c}\x07\x19\x02\x02\u{12c}\u{12d}\x05\x52\x2a\x02\u{12d}\u{131}\x07\
+	\u{12c}\x07\x15\x02\x02\u{12c}\u{12d}\x05\x52\x2a\x02\u{12d}\u{131}\x07\
 	\x23\x02\x02\u{12e}\u{130}\x05\x46\x24\x02\u{12f}\u{12e}\x03\x02\x02\x02\
 	\u{130}\u{133}\x03\x02\x02\x02\u{131}\u{12f}\x03\x02\x02\x02\u{131}\u{132}\
 	\x03\x02\x02\x02\u{132}\u{134}\x03\x02\x02\x02\u{133}\u{131}\x03\x02\x02\
