@@ -13,9 +13,13 @@ pub mod ui_layout;
 pub mod ui_library;
 pub mod ui_interaction;
 
+pub fn parse(str: &str) -> Unflow {
+    str_to_flow(str)
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::unflow_parser;
+    use crate::parse;
 
     #[test]
     fn should_parse_config() {
@@ -26,7 +30,7 @@ width: 1080px
 
 "#;
 
-        let result = unflow_parser::parse(data);
+        let result = parse(data);
         assert_eq!(4, result.config.len())
     }
 
@@ -48,7 +52,7 @@ width: 1080px
 
     #[test]
     fn should_parse_flow_see() {
-        let result = unflow_parser::parse(get_examples_flows().as_str());
+        let result = parse(get_examples_flows().as_str());
 
         assert_eq!(1, result.flows.len());
         assert_eq!("登出", &result.flows[0].name);
@@ -64,7 +68,7 @@ width: 1080px
 
     #[test]
     fn should_parse_flow_do() {
-        let result = unflow_parser::parse(get_examples_flows().as_str());
+        let result = parse(get_examples_flows().as_str());
 
         let interaction = &result.flows[0].clone().interactions[0];
         assert_eq!("登出", interaction.ui_do.data);
@@ -77,7 +81,7 @@ width: 1080px
 
     #[test]
     fn should_parse_flow_react() {
-        let result = unflow_parser::parse(get_examples_flows().as_str());
+        let result = parse(get_examples_flows().as_str());
 
         let react_inter = &result.flows[0].clone().interactions[0].ui_react[0];
         assert_eq!("Success", react_inter.scene_name);
@@ -102,7 +106,7 @@ component BlogList {
     BlogDetail, Space8
 }
 "#;
-        let result = unflow_parser::parse(data);
+        let result = parse(data);
 
         assert_eq!(2, result.components.len());
         assert_eq!("Dialog", result.components[0].name);
@@ -124,7 +128,7 @@ component BlogList {
 }
 
 "#;
-        let result = unflow_parser::parse(data);
+        let result = parse(data);
 
         assert_eq!(1, result.libraries.len());
         assert_eq!("FontSize", result.libraries[0].name);
@@ -140,7 +144,7 @@ component BlogList {
 
 
 "#;
-        let result = unflow_parser::parse(data);
+        let result = parse(data);
 
         assert_eq!(1, result.layouts.len());
         assert_eq!("Navigation", result.layouts[0].name);
@@ -164,7 +168,7 @@ component BlogList {
     H6 = 16px
 }
 "#;
-        let result = unflow_parser::parse(data);
+        let result = parse(data);
 
         assert_eq!(1, result.libraries.len());
         assert_eq!(6, result.libraries[0].presets.len());
@@ -188,7 +192,7 @@ component BlogList {
         value = \"#000000\"
     }
 }";
-        let result = unflow_parser::parse(data);
+        let result = parse(data);
 
         let calls = &result.libraries[0].presets[0].preset_calls;
 

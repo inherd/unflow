@@ -68,7 +68,7 @@ pub struct UnflowParser<'i> {
     pub(crate) flow: Unflow,
 }
 
-pub fn parse<'input>(data: &str) -> Unflow {
+pub fn str_to_flow<'input>(data: &str) -> Unflow {
     let tf = ArenaCommonFactory::default();
     let lexer = DesignLexer::new_with_token_factory(InputStream::new(data.into()), &tf);
     let token_source = CommonTokenStream::new(lexer);
