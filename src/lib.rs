@@ -152,4 +152,23 @@ component BlogList {
         assert_eq!("Button", cells[2].component_name);
         assert_eq!("Login", cells[2].layout_info);
     }
+
+    #[test]
+    fn should_parse_libraries_keys() {
+        let data = r#"library FontSize {
+    H1 = 32px
+    H2 = 28px
+    H3 = 24px
+    H4 = 20px
+    H5 = 18px
+    H6 = 16px
+}
+"#;
+        let result = unflow_parser::parse(data);
+
+        assert_eq!(1, result.libraries.len());
+        assert_eq!(6, result.libraries[0].presets.len());
+        assert_eq!("H1", result.libraries[0].presets[0].key);
+        assert_eq!("32px", result.libraries[0].presets[0].value);
+    }
 }

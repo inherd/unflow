@@ -9,7 +9,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, Flex_childContextAll, Component_use_declContextAll, FlexChild, FlexCell};
+use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, Flex_childContextAll, Component_use_declContextAll, FlexChild, FlexCell, UiLibraryPreset, Key_valueContextAll, PresetCall};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -28,8 +28,10 @@ use crate::{
     Flow_declContextAttrs,
     Goto_actionContextAttrs,
     Interaction_declContextAttrs,
+    Key_valueContextAttrs,
     Layout_declContextAttrs,
     Library_declContextAttrs,
+    Library_configContextAttrs,
     Library_objectContextAttrs,
     React_actionContextAttrs,
     React_declContextAttrs,
@@ -195,11 +197,30 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
         let exps: Vec<Rc<Library_expContextAll<'i>>> = ctx.library_exp_all();
         for exp in exps {
+            let mut preset = UiLibraryPreset::default();
             match exp.deref() {
-                Library_expContextAll::Library_objectContext(_) => {}
-                Library_expContextAll::Library_configContext(_) => {}
+                Library_expContextAll::Library_objectContext(lib_ctx) => {
+                    preset.key = lib_ctx.preset_key().unwrap().get_text();
+                    let key_values: Vec<Rc<Key_valueContextAll<'i>>> = lib_ctx.key_value_all();
+
+                    let mut preset_call = PresetCall::default();
+                    for key_value in key_values {
+                        preset_call.name = key_value.preset_key().unwrap().get_text();
+                        preset_call.preset = key_value.preset_value().unwrap().get_text();
+                    }
+
+                    preset.preset_calls.push(preset_call);
+                }
+                Library_expContextAll::Library_configContext(con_ctx) => {
+                    preset.key = con_ctx.preset_key().unwrap().get_text();
+                    if let Some(value) = con_ctx.preset_value() {
+                        preset.value = value.get_text();
+                    }
+                }
                 Library_expContextAll::Error(_) => {}
             }
+
+            library.presets.push(preset);
         }
 
         self.flow.libraries.push(library);

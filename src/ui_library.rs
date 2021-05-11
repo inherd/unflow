@@ -27,10 +27,30 @@ pub struct UiLibraryPreset {
     pub sub_properties: Vec<UiProperty>
 }
 
+impl Default for UiLibraryPreset {
+    fn default() -> Self {
+        UiLibraryPreset {
+            key: "".to_string(),
+            value: "".to_string(),
+            preset_calls: vec![],
+            sub_properties: vec![]
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct PresetCall {
     pub name: String,
     pub preset: String
+}
+
+impl Default for PresetCall {
+    fn default() -> Self {
+        PresetCall {
+            name: "".to_string(),
+            preset: "".to_string()
+        }
+    }
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
