@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 
-use crate::Interaction;
+use crate::ui_interaction::UiInteraction;
 use crate::ui_layout::UiLayout;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -42,7 +42,7 @@ pub struct UiProperty {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiFlow {
     pub name: String,
-    pub interactions: Vec<Interaction>,
+    pub interactions: Vec<UiInteraction>,
     pub layout: Vec<UiLayout>
 }
 

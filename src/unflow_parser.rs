@@ -30,67 +30,8 @@ use crate::{
     See_declContextAttrs,
     Show_actionContextAttrs,
 };
+use crate::ui_interaction::{DoInteraction, SeeInteraction, UiInteraction, ReactInteraction};
 use crate::ui_library::{Component, UiFlow, UiLibrary};
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct Interaction {
-    pub ui_do: DoInteraction,
-    pub ui_see: SeeInteraction,
-    pub ui_react: Vec<ReactInteraction>,
-}
-
-impl Default for Interaction {
-    fn default() -> Self {
-        Interaction {
-            ui_do: Default::default(),
-            ui_see: Default::default(),
-            ui_react: vec![],
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct DoInteraction {
-    pub component_name: String,
-    pub data: String,
-    pub ui_event: String,
-}
-
-impl Default for DoInteraction {
-    fn default() -> Self {
-        DoInteraction {
-            component_name: "".to_string(),
-            data: "".to_string(),
-            ui_event: "".to_string(),
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct SeeInteraction {
-    pub ui_event: String,
-    pub component_name: String,
-    pub data: String,
-}
-
-impl Default for SeeInteraction {
-    fn default() -> Self {
-        SeeInteraction {
-            ui_event: "".to_string(),
-            component_name: "".to_string(),
-            data: "".to_string(),
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct ReactInteraction {
-    pub scene_name: String,
-    pub react_action: String,
-    pub react_component_name: String,
-    pub animate_name: String,
-    pub react_component_data: String,
-}
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Unflow {
@@ -150,7 +91,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
         let decls: Vec<Rc<Interaction_declContextAll<'i>>> = ctx.interaction_decl_all();
         let mut index = 0;
-        let mut current_interaction = Interaction::default();
+        let mut current_interaction = UiInteraction::default();
 
         for decl in &decls {
             let child = decl.get_child(0).unwrap();
@@ -180,7 +121,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
                     if has_next_see {
                         flow.interactions.push(current_interaction);
-                        current_interaction = Interaction::default();
+                        current_interaction = UiInteraction::default();
                     }
                 }
                 _ => {}
