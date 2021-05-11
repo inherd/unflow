@@ -3,14 +3,14 @@ use serde::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiLayout {
     pub name: String,
-    pub flex_child: Vec<FlexChild>
+    pub flex_childs: Vec<FlexChild>
 }
 
 impl Default for UiLayout {
     fn default() -> Self {
         UiLayout {
             name: "".to_string(),
-            flex_child: vec![]
+            flex_childs: vec![]
         }
     }
 }
@@ -35,6 +35,16 @@ pub struct FlexCell {
     pub component_name: String,
     pub layout_info: String,
     pub normal_info: String
+}
+
+impl Default for FlexCell {
+    fn default() -> Self {
+        FlexCell {
+            component_name: "".to_string(),
+            layout_info: "".to_string(),
+            normal_info: "".to_string()
+        }
+    }
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

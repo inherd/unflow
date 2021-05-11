@@ -144,5 +144,6 @@ component BlogList {
 
         assert_eq!(1, result.layouts.len());
         assert_eq!("Navigation", result.layouts[0].name);
+        assert_eq!(1, result.layouts[0].flex_childs.len());
     }
 }

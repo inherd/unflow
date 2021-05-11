@@ -9,7 +9,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, Flex_childContextAll, Component_use_declContextAll};
+use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, Flex_childContextAll, Component_use_declContextAll, FlexChild, FlexCell};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -51,7 +51,7 @@ impl Default for Unflow {
             flows: vec![],
             components: vec![],
             libraries: vec![],
-            layouts: vec![]
+            layouts: vec![],
         }
     }
 }
@@ -171,17 +171,24 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         let decls: Vec<Rc<Flex_childContextAll<'i>>> = ctx.flex_child_all();
         for decl in &decls {
             if let Flex_childContextAll::Flex_component_useContext(uses) = decl.deref() {
+                let mut flex_child = FlexChild::default();
                 let components: Vec<Rc<Component_use_declContextAll<'i>>> = uses.component_use_decl_all();
                 for component in components {
+                    let cell = FlexCell::default();
                     match component.deref() {
-                        Component_use_declContextAll::Component_use_name_valueContext(sub_ctx) => {}
-                        Component_use_declContextAll::Component_use_decimalContext(sub_ctx) => {}
-                        Component_use_declContextAll::Component_use_stringContext(sub_ctx) => {}
-                        Component_use_declContextAll::Component_use_positionContext(sub_ctx) => {}
+                        Component_use_declContextAll::Component_use_name_valueContext(_sub_ctx) => {
+
+                        }
+                        Component_use_declContextAll::Component_use_decimalContext(_sub_ctx) => {}
+                        Component_use_declContextAll::Component_use_stringContext(_sub_ctx) => {}
+                        Component_use_declContextAll::Component_use_positionContext(_sub_ctx) => {}
                         Component_use_declContextAll::Error(_) => {}
                     }
+
+                    flex_child.cells.push(cell);
                 }
-                println!("{:?}", all);
+
+                layout.flex_childs.push(flex_child);
             }
         }
 
