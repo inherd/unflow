@@ -2,6 +2,9 @@
 
 pub use grammar::*;
 pub use unflow_parser::*;
+pub use ui_interaction::*;
+pub use ui_layout::*;
+pub use ui_library::*;
 
 pub mod grammar;
 
