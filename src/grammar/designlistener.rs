@@ -309,39 +309,17 @@ fn enter_empty_line(&mut self, _ctx: &Empty_lineContext<'input>) { }
 fn exit_empty_line(&mut self, _ctx: &Empty_lineContext<'input>) { }
 
 /**
- * Enter a parse tree produced by the {@code flex_layout_lines}
+ * Enter a parse tree produced by the {@code flex_component_use}
  * labeled alternative in {@link DesignParser#flex_child}.
  * @param ctx the parse tree
  */
-fn enter_flex_layout_lines(&mut self, _ctx: &Flex_layout_linesContext<'input>) { }
+fn enter_flex_component_use(&mut self, _ctx: &Flex_component_useContext<'input>) { }
 /**
- * Exit a parse tree produced by the {@code flex_layout_lines}
+ * Exit a parse tree produced by the {@code flex_component_use}
  * labeled alternative in {@link DesignParser#flex_child}.
  * @param ctx the parse tree
  */
-fn exit_flex_layout_lines(&mut self, _ctx: &Flex_layout_linesContext<'input>) { }
-
-/**
- * Enter a parse tree produced by {@link DesignParser#layout_lines}.
- * @param ctx the parse tree
- */
-fn enter_layout_lines(&mut self, _ctx: &Layout_linesContext<'input>) { }
-/**
- * Exit a parse tree produced by {@link DesignParser#layout_lines}.
- * @param ctx the parse tree
- */
-fn exit_layout_lines(&mut self, _ctx: &Layout_linesContext<'input>) { }
-
-/**
- * Enter a parse tree produced by {@link DesignParser#layout_line}.
- * @param ctx the parse tree
- */
-fn enter_layout_line(&mut self, _ctx: &Layout_lineContext<'input>) { }
-/**
- * Exit a parse tree produced by {@link DesignParser#layout_line}.
- * @param ctx the parse tree
- */
-fn exit_layout_line(&mut self, _ctx: &Layout_lineContext<'input>) { }
+fn exit_flex_component_use(&mut self, _ctx: &Flex_component_useContext<'input>) { }
 
 /**
  * Enter a parse tree produced by the {@code component_use_decimal}

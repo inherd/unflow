@@ -174,23 +174,11 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_empty_line(&mut self, ctx: &Empty_lineContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by the {@code flex_layout_lines}
+	 * Visit a parse tree produced by the {@code flex_component_use}
 	 * labeled alternative in {@link DesignParser#flex_child}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_flex_layout_lines(&mut self, ctx: &Flex_layout_linesContext<'input>) { self.visit_children(ctx) }
-
-	/**
-	 * Visit a parse tree produced by {@link DesignParser#layout_lines}.
-	 * @param ctx the parse tree
-	 */
-	fn visit_layout_lines(&mut self, ctx: &Layout_linesContext<'input>) { self.visit_children(ctx) }
-
-	/**
-	 * Visit a parse tree produced by {@link DesignParser#layout_line}.
-	 * @param ctx the parse tree
-	 */
-	fn visit_layout_line(&mut self, ctx: &Layout_lineContext<'input>) { self.visit_children(ctx) }
+	fn visit_flex_component_use(&mut self, ctx: &Flex_component_useContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by the {@code component_use_decimal}

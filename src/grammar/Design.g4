@@ -76,12 +76,9 @@ component_body_decl
 layout_decl: LAYOUT IDENTIFIER LBRACE flex_child* RBRACE;
 
 flex_child
-    : '-' '-'*              # empty_line
-    | layout_lines  '|'     # flex_layout_lines
+    : '-' '-'*                                                    # empty_line
+    | ('|' component_use_decl) ('|' component_use_decl)*  '|'     # flex_component_use
     ;
-
-layout_lines: layout_line layout_line*;
-layout_line: '|' component_use_decl;
 
 component_use_decl
     : DECIMAL_LITERAL                                              # component_use_decimal
