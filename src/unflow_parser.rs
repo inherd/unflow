@@ -178,32 +178,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
                 let mut flex_child = FlexChild::default();
                 let components: Vec<Rc<Component_use_declContextAll<'i>>> = uses.component_use_decl_all();
                 for component in components {
-                    let mut cell = FlexCell::default();
-                    match component.deref() {
-                        Component_use_declContextAll::Component_use_name_valueContext(sub_ctx) => {
-                            cell.component_name = sub_ctx.component_name().unwrap().get_text();
-                            let mut layout_value = "".to_string();
-                            if let Some(value) = sub_ctx.component_layout_value() {
-                                layout_value = value.get_text();
-                            }
-
-                            cell.layout_info = remove_quote(layout_value);
-                        }
-                        Component_use_declContextAll::Component_use_decimalContext(sub_ctx) => {
-                            cell.normal_info = "value".to_string();
-                            cell.component_name = remove_quote(sub_ctx.DECIMAL_LITERAL().unwrap().get_text());
-                        }
-                        Component_use_declContextAll::Component_use_stringContext(sub_ctx) => {
-                            cell.normal_info = "value".to_string();
-                            cell.component_name = remove_quote(sub_ctx.STRING_LITERAL().unwrap().get_text());
-                        }
-                        Component_use_declContextAll::Component_use_positionContext(sub_ctx) => {
-                            cell.normal_info = "value".to_string();
-                            cell.component_name = remove_quote(sub_ctx.POSITION().unwrap().get_text());
-                        }
-                        Component_use_declContextAll::Error(_) => {}
-                    }
-
+                    let cell = <UnflowParser<'i>>::build_layout_cell(component);
                     flex_child.cells.push(cell);
                 }
 
@@ -308,6 +283,36 @@ impl<'i> UnflowParser<'i> {
         };
 
         interaction
+    }
+
+    fn build_layout_cell(component: Rc<Component_use_declContextAll>) -> FlexCell {
+        let mut cell = FlexCell::default();
+        match component.deref() {
+            Component_use_declContextAll::Component_use_name_valueContext(sub_ctx) => {
+                cell.component_name = sub_ctx.component_name().unwrap().get_text();
+                let mut layout_value = "".to_string();
+                if let Some(value) = sub_ctx.component_layout_value() {
+                    layout_value = value.get_text();
+                }
+
+                cell.layout_info = remove_quote(layout_value);
+            }
+            Component_use_declContextAll::Component_use_decimalContext(sub_ctx) => {
+                cell.normal_info = "value".to_string();
+                cell.component_name = remove_quote(sub_ctx.DECIMAL_LITERAL().unwrap().get_text());
+            }
+            Component_use_declContextAll::Component_use_stringContext(sub_ctx) => {
+                cell.normal_info = "value".to_string();
+                cell.component_name = remove_quote(sub_ctx.STRING_LITERAL().unwrap().get_text());
+            }
+            Component_use_declContextAll::Component_use_positionContext(sub_ctx) => {
+                cell.normal_info = "value".to_string();
+                cell.component_name = remove_quote(sub_ctx.POSITION().unwrap().get_text());
+            }
+            Component_use_declContextAll::Error(_) => {}
+        }
+
+        cell
     }
 }
 
