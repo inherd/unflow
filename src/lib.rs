@@ -145,6 +145,11 @@ component BlogList {
         assert_eq!(1, result.layouts.len());
         assert_eq!("Navigation", result.layouts[0].name);
         assert_eq!(1, result.layouts[0].flex_childs.len());
-        assert_eq!(3, result.layouts[0].flex_childs[0].cells.len());
+        let cells = &result.layouts[0].flex_childs[0].cells;
+        assert_eq!(3, cells.len());
+        assert_eq!("home", cells[0].component_name);
+        assert_eq!("detail", cells[1].component_name);
+        assert_eq!("Button", cells[2].component_name);
+        assert_eq!("Login", cells[2].layout_info);
     }
 }

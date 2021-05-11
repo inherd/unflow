@@ -18,6 +18,9 @@ use crate::{
     Component_body_nameContextAttrs,
     Component_declContextAttrs,
     Component_use_name_valueContextAttrs,
+    Component_use_decimalContextAttrs,
+    Component_use_stringContextAttrs,
+    Component_use_positionContextAttrs,
     Config_declContextAttrs,
     Config_keyContextAttrs,
     Do_declContextAttrs,
@@ -184,11 +187,20 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
                                 layout_value = value.get_text();
                             }
 
-                            cell.layout_info = layout_value[1..layout_value.len() - 1].to_string();
+                            cell.layout_info = remove_quote(layout_value);
                         }
-                        Component_use_declContextAll::Component_use_decimalContext(_sub_ctx) => {}
-                        Component_use_declContextAll::Component_use_stringContext(_sub_ctx) => {}
-                        Component_use_declContextAll::Component_use_positionContext(_sub_ctx) => {}
+                        Component_use_declContextAll::Component_use_decimalContext(sub_ctx) => {
+                            cell.normal_info = "value".to_string();
+                            cell.component_name = remove_quote(sub_ctx.DECIMAL_LITERAL().unwrap().get_text());
+                        }
+                        Component_use_declContextAll::Component_use_stringContext(sub_ctx) => {
+                            cell.normal_info = "value".to_string();
+                            cell.component_name = remove_quote(sub_ctx.STRING_LITERAL().unwrap().get_text());
+                        }
+                        Component_use_declContextAll::Component_use_positionContext(sub_ctx) => {
+                            cell.normal_info = "value".to_string();
+                            cell.component_name = remove_quote(sub_ctx.POSITION().unwrap().get_text());
+                        }
                         Component_use_declContextAll::Error(_) => {}
                     }
 
@@ -297,4 +309,8 @@ impl<'i> UnflowParser<'i> {
 
         interaction
     }
+}
+
+fn remove_quote(str: String) -> String {
+    str[1..str.len() - 1].to_string()
 }
