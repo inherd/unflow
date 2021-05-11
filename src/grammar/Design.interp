@@ -124,7 +124,7 @@ page_decl
 component_decl
 component_body_decl
 layout_decl
-layout_row
+flex_child
 layout_lines
 layout_line
 component_use_decl

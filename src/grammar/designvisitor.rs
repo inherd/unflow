@@ -167,10 +167,18 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_layout_decl(&mut self, ctx: &Layout_declContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by {@link DesignParser#layout_row}.
+	 * Visit a parse tree produced by the {@code empty_line}
+	 * labeled alternative in {@link DesignParser#flex_child}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_layout_row(&mut self, ctx: &Layout_rowContext<'input>) { self.visit_children(ctx) }
+	fn visit_empty_line(&mut self, ctx: &Empty_lineContext<'input>) { self.visit_children(ctx) }
+
+	/**
+	 * Visit a parse tree produced by the {@code flex_layout_lines}
+	 * labeled alternative in {@link DesignParser#flex_child}.
+	 * @param ctx the parse tree
+	 */
+	fn visit_flex_layout_lines(&mut self, ctx: &Flex_layout_linesContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#layout_lines}.
@@ -185,10 +193,32 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_layout_line(&mut self, ctx: &Layout_lineContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by {@link DesignParser#component_use_decl}.
+	 * Visit a parse tree produced by the {@code component_use_decimal}
+	 * labeled alternative in {@link DesignParser#component_use_decl}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_component_use_decl(&mut self, ctx: &Component_use_declContext<'input>) { self.visit_children(ctx) }
+	fn visit_component_use_decimal(&mut self, ctx: &Component_use_decimalContext<'input>) { self.visit_children(ctx) }
+
+	/**
+	 * Visit a parse tree produced by the {@code component_use_position}
+	 * labeled alternative in {@link DesignParser#component_use_decl}.
+	 * @param ctx the parse tree
+	 */
+	fn visit_component_use_position(&mut self, ctx: &Component_use_positionContext<'input>) { self.visit_children(ctx) }
+
+	/**
+	 * Visit a parse tree produced by the {@code component_use_name_value}
+	 * labeled alternative in {@link DesignParser#component_use_decl}.
+	 * @param ctx the parse tree
+	 */
+	fn visit_component_use_name_value(&mut self, ctx: &Component_use_name_valueContext<'input>) { self.visit_children(ctx) }
+
+	/**
+	 * Visit a parse tree produced by the {@code component_use_string}
+	 * labeled alternative in {@link DesignParser#component_use_decl}.
+	 * @param ctx the parse tree
+	 */
+	fn visit_component_use_string(&mut self, ctx: &Component_use_stringContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#component_layout_value}.

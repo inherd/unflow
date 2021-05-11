@@ -84,25 +84,25 @@ component_body_decl
     | config_key COLON config_value             # component_body_config
     ;
 
-layout_decl: LAYOUT IDENTIFIER LBRACE layout_row* RBRACE;
+layout_decl: LAYOUT IDENTIFIER LBRACE flex_child* RBRACE;
 
 
 REPEAT: 'repeat';
 REPEAT_TIMES: INTEGER;
 
-layout_row
-    : '-' '-'*
-    | layout_lines  '|'
+flex_child
+    : '-' '-'*              # empty_line
+    | layout_lines  '|'     # flex_layout_lines
     ;
 
 layout_lines: layout_line layout_line*;
 layout_line: '|' component_use_decl;
 
 component_use_decl
-    : DECIMAL_LITERAL
-    | POSITION
-    | component_name (LPAREN component_layout_value RPAREN)?
-    | STRING_LITERAL
+    : DECIMAL_LITERAL                                              # component_use_decimal
+    | POSITION                                                     # component_use_position
+    | component_name (LPAREN component_layout_value RPAREN)?       # component_use_name_value
+    | STRING_LITERAL                                               # component_use_string
     ;
 
 component_layout_value: DIGITS_IDENTIFIER | POSITION | STRING_LITERAL;
@@ -128,7 +128,7 @@ STYLE: 'style' | 'STYLE' | 'CSS' | 'css';
 library_decl: LIBRARY library_name LBRACE library_exp* RBRACE;
 
 library_exp
-    : preset_key '=' (preset_value |preset_array) ';'?  # library_config
+    : preset_key '=' (preset_value |preset_array) ';'?   # library_config
     | preset_key '{' key_value* '}'                      # library_object
     ;
 
@@ -215,7 +215,7 @@ fragment LetterOrDigit
     ;
 
 fragment Letter
-    : [a-zA-Z$_] // these are the "java letters" below 0x7F
-    | ~[\u0000-\u007F\uD800-\uDBFF] // covers all characters above 0x7F which are not a surrogate
-    | [\uD800-\uDBFF] [\uDC00-\uDFFF] // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
+    : [a-zA-Z$_]                           // these are the "java letters" below 0x7F
+    | ~[\u0000-\u007F\uD800-\uDBFF]        // covers all characters above 0x7F which are not a surrogate
+    | [\uD800-\uDBFF] [\uDC00-\uDFFF]      // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
     ;

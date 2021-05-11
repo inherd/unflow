@@ -296,15 +296,30 @@ fn enter_layout_decl(&mut self, _ctx: &Layout_declContext<'input>) { }
 fn exit_layout_decl(&mut self, _ctx: &Layout_declContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#layout_row}.
+ * Enter a parse tree produced by the {@code empty_line}
+ * labeled alternative in {@link DesignParser#flex_child}.
  * @param ctx the parse tree
  */
-fn enter_layout_row(&mut self, _ctx: &Layout_rowContext<'input>) { }
+fn enter_empty_line(&mut self, _ctx: &Empty_lineContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#layout_row}.
+ * Exit a parse tree produced by the {@code empty_line}
+ * labeled alternative in {@link DesignParser#flex_child}.
  * @param ctx the parse tree
  */
-fn exit_layout_row(&mut self, _ctx: &Layout_rowContext<'input>) { }
+fn exit_empty_line(&mut self, _ctx: &Empty_lineContext<'input>) { }
+
+/**
+ * Enter a parse tree produced by the {@code flex_layout_lines}
+ * labeled alternative in {@link DesignParser#flex_child}.
+ * @param ctx the parse tree
+ */
+fn enter_flex_layout_lines(&mut self, _ctx: &Flex_layout_linesContext<'input>) { }
+/**
+ * Exit a parse tree produced by the {@code flex_layout_lines}
+ * labeled alternative in {@link DesignParser#flex_child}.
+ * @param ctx the parse tree
+ */
+fn exit_flex_layout_lines(&mut self, _ctx: &Flex_layout_linesContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#layout_lines}.
@@ -329,15 +344,56 @@ fn enter_layout_line(&mut self, _ctx: &Layout_lineContext<'input>) { }
 fn exit_layout_line(&mut self, _ctx: &Layout_lineContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#component_use_decl}.
+ * Enter a parse tree produced by the {@code component_use_decimal}
+ * labeled alternative in {@link DesignParser#component_use_decl}.
  * @param ctx the parse tree
  */
-fn enter_component_use_decl(&mut self, _ctx: &Component_use_declContext<'input>) { }
+fn enter_component_use_decimal(&mut self, _ctx: &Component_use_decimalContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#component_use_decl}.
+ * Exit a parse tree produced by the {@code component_use_decimal}
+ * labeled alternative in {@link DesignParser#component_use_decl}.
  * @param ctx the parse tree
  */
-fn exit_component_use_decl(&mut self, _ctx: &Component_use_declContext<'input>) { }
+fn exit_component_use_decimal(&mut self, _ctx: &Component_use_decimalContext<'input>) { }
+
+/**
+ * Enter a parse tree produced by the {@code component_use_position}
+ * labeled alternative in {@link DesignParser#component_use_decl}.
+ * @param ctx the parse tree
+ */
+fn enter_component_use_position(&mut self, _ctx: &Component_use_positionContext<'input>) { }
+/**
+ * Exit a parse tree produced by the {@code component_use_position}
+ * labeled alternative in {@link DesignParser#component_use_decl}.
+ * @param ctx the parse tree
+ */
+fn exit_component_use_position(&mut self, _ctx: &Component_use_positionContext<'input>) { }
+
+/**
+ * Enter a parse tree produced by the {@code component_use_name_value}
+ * labeled alternative in {@link DesignParser#component_use_decl}.
+ * @param ctx the parse tree
+ */
+fn enter_component_use_name_value(&mut self, _ctx: &Component_use_name_valueContext<'input>) { }
+/**
+ * Exit a parse tree produced by the {@code component_use_name_value}
+ * labeled alternative in {@link DesignParser#component_use_decl}.
+ * @param ctx the parse tree
+ */
+fn exit_component_use_name_value(&mut self, _ctx: &Component_use_name_valueContext<'input>) { }
+
+/**
+ * Enter a parse tree produced by the {@code component_use_string}
+ * labeled alternative in {@link DesignParser#component_use_decl}.
+ * @param ctx the parse tree
+ */
+fn enter_component_use_string(&mut self, _ctx: &Component_use_stringContext<'input>) { }
+/**
+ * Exit a parse tree produced by the {@code component_use_string}
+ * labeled alternative in {@link DesignParser#component_use_decl}.
+ * @param ctx the parse tree
+ */
+fn exit_component_use_string(&mut self, _ctx: &Component_use_stringContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#component_layout_value}.
