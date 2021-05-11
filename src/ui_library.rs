@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 
 use crate::Interaction;
-use crate::layout::UiLayout;
+use crate::ui_layout::UiLayout;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiLibrary {
