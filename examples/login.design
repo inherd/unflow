@@ -48,6 +48,12 @@ Layout HomePage {
 --------------------------
 }
 
+Layout Navigation {
+--------------------------------------
+| "home" |"detail" | Button("Login") |
+--------------------------------------
+}
+
 component Navigation {
     LayoutId: Navigation
 }
@@ -57,30 +63,28 @@ component Dialog {
     height: 240px
 }
 
-
-Layout Navigation {
---------------------------------------
-| "home" |"detail" | Button("Login") |
---------------------------------------
-}
-
 component TitleComponent {}
+
 component ImageComponent {
     width: 1080px
     height: 320px
 }
+
 component Toast {
     width: 320px
     height: 120px
 }
+
 component 窗口 {
     width: 320px
     height: 120px
 }
+
 component Message {
     width: 320px
     height: 120px
 }
+
 component BlogList {
     BlogDetail, Space8
     BlogDetail, Space8
