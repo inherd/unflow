@@ -87,7 +87,7 @@ component_use_decl
     | STRING_LITERAL                                                                       # component_use_string
     ;
 
-component_parameter: DIGITS_IDENTIFIER | POSITION | STRING_LITERAL;
+component_parameter: DIGITS_IDENTIFIER | POSITION | STRING_LITERAL | IDENTIFIER;
 
 // STYLE
 style_decl: STYLE style_name LBRACE style_body RBRACE;

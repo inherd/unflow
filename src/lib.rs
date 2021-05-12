@@ -154,7 +154,7 @@ component BlogList {
         assert_eq!("home", cells[0].component_name);
         assert_eq!("detail", cells[1].component_name);
         assert_eq!("Button", cells[2].component_name);
-        assert_eq!("Login", cells[2].layout_info);
+        assert_eq!("\"Login\"", cells[2].parameters[0]);
     }
 
     #[test]
@@ -199,5 +199,21 @@ component BlogList {
         assert_eq!(2, calls.len());
         assert_eq!("Primary", calls[0].preset);
         assert_eq!("#E53935", calls[1].preset);
+    }
+
+    #[test]
+    fn should_parse_multiple_component_use_parameters() {
+        let data = r#"Layout Navigation {
+--------------------------------------
+| "home" |"detail" | Button("Login", red) |
+--------------------------------------
+}
+
+"#;
+        let result = parse(data);
+
+        let cells = &result.layouts[0].flex_childs[0].cells;
+        assert_eq!(2, cells[2].parameters.len());
+        assert_eq!("red", cells[2].parameters[1]);
     }
 }

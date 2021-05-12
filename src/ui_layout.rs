@@ -33,7 +33,7 @@ impl Default for FlexChild {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct FlexCell {
     pub component_name: String,
-    pub layout_info: String,
+    pub parameters: Vec<String>,
     pub normal_info: String
 }
 
@@ -41,7 +41,7 @@ impl Default for FlexCell {
     fn default() -> Self {
         FlexCell {
             component_name: "".to_string(),
-            layout_info: "".to_string(),
+            parameters: vec![],
             normal_info: "".to_string()
         }
     }
