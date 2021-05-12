@@ -14,6 +14,8 @@ declarations
     | component_decl
     | library_decl
     | layout_decl
+    | COMMENT
+    | LINE_COMMENT
     ;
 
 config_decl: config_key COLON config_value;
@@ -118,10 +120,11 @@ STYLE:              'style' | 'STYLE' | 'CSS' | 'css';
 EmptyLine:          NewLine Space+ NewLine -> skip;
 STRING_LITERAL:     '"' (~["\\\r\n] | EscapeSequence)* '"';
 WS:                 [ \t\r\n\u000C]+ -> channel(HIDDEN);
-COMMENT:            '/*' .*? '*/'    -> channel(HIDDEN);
-LINE_COMMENT:       '//' ~[\r\n]*    -> channel(HIDDEN);
-Space :             [ \t];
+COMMENT:            '/*' .*? '*/';
+LINE_COMMENT:       '//' ~[\r\n]*;
 NewLine :           '\r\n' | '\n' | '\r';
+
+Space :             [ \t];
 LPAREN:             '(';
 RPAREN:             ')';
 LBRACE:             '{';

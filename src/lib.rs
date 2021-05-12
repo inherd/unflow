@@ -217,11 +217,9 @@ component BlogList {
         assert_eq!("red", cells[2].parameters[1]);
     }
 
-    #[ignore]
     #[test]
     fn should_return_empty_for_comments() {
-        let data = r#"
-// it's comments
+        let data = r#"// it's comments
 /* comments 2
 *
 */
