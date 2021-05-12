@@ -9,7 +9,7 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, Flex_childContextAll, Component_use_declContextAll, FlexChild, FlexCell, UiLibraryPreset, Key_valueContextAll, PresetCall};
+use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, Flex_childContextAll, Component_use_declContextAll, FlexChild, FlexCell, UiLibraryPreset, Key_valueContextAll, PresetCall, React_actionContextAll};
 #[allow(unused_imports)]
 use crate::{
     Animate_declContextAttrs,
@@ -274,7 +274,8 @@ impl<'i> UnflowParser<'i> {
         let mut react_component_data = "".to_string();
         let mut react_action = "".to_string();
         let mut react_component_name = "".to_string();
-        if let Some(action) = &decl.react_action() {
+        if let Some(act) = &decl.react_action() {
+            let action: &Rc<React_actionContextAll<'c>> = act;
             let sub_action = action.get_child(0).unwrap();
             let type_name = format!("{:?}", sub_action);
 
