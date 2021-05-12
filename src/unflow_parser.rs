@@ -9,20 +9,17 @@ use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Layout_declContext, Library_declContext, Library_expContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, Flex_childContextAll, Component_use_declContextAll, FlexChild, FlexCell, UiLibraryPreset, Key_valueContextAll, PresetCall, React_actionContextAll};
-#[allow(unused_imports)]
+use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Component_use_declContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flex_childContextAll, FlexCell, FlexChild, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Key_valueContextAll, Layout_declContext, Library_declContext, Library_expContextAll, PresetCall, React_actionContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, UiLibraryPreset};
 use crate::{
     Animate_declContextAttrs,
     Component_body_configContextAttrs,
-    Component_body_declContextAttrs,
     Component_body_nameContextAttrs,
     Component_declContextAttrs,
-    Component_use_name_valueContextAttrs,
     Component_use_decimalContextAttrs,
-    Component_use_stringContextAttrs,
+    Component_use_name_valueContextAttrs,
     Component_use_positionContextAttrs,
+    Component_use_stringContextAttrs,
     Config_declContextAttrs,
-    Config_keyContextAttrs,
     Do_declContextAttrs,
     Flex_component_useContextAttrs,
     Flow_declContextAttrs,
@@ -30,15 +27,15 @@ use crate::{
     Interaction_declContextAttrs,
     Key_valueContextAttrs,
     Layout_declContextAttrs,
-    Library_declContextAttrs,
     Library_configContextAttrs,
+    Library_declContextAttrs,
     Library_objectContextAttrs,
     React_actionContextAttrs,
     React_declContextAttrs,
     See_declContextAttrs,
     Show_actionContextAttrs,
 };
-use crate::ui_interaction::{DoInteraction, SeeInteraction, UiInteraction, ReactInteraction};
+use crate::ui_interaction::{DoInteraction, ReactInteraction, SeeInteraction, UiInteraction};
 use crate::ui_library::{Component, UiFlow, UiLibrary};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -64,7 +61,7 @@ impl Default for Unflow {
 
 pub struct UnflowParser<'i> {
     #[allow(dead_code)]
-    inputs: Vec<&'i str>,
+    _inputs: Vec<&'i str>,
     pub(crate) flow: Unflow,
 }
 
@@ -76,7 +73,7 @@ pub fn str_to_flow<'input>(data: &str) -> Unflow {
     let result = parser.start().expect("parsed unsuccessfully");
 
     let mut unflow = UnflowParser {
-        inputs: vec![],
+        _inputs: vec![],
         flow: Default::default(),
     };
 
@@ -196,18 +193,18 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         library.name = ctx.library_name().unwrap().get_text();
 
         let exps: Vec<Rc<Library_expContextAll<'i>>> = ctx.library_exp_all();
-        for exp in exps {
+        for exp in &exps {
             let mut preset = UiLibraryPreset::default();
             match exp.deref() {
                 Library_expContextAll::Library_objectContext(lib_ctx) => {
                     preset.key = lib_ctx.preset_key().unwrap().get_text();
                     let key_values: Vec<Rc<Key_valueContextAll<'i>>> = lib_ctx.key_value_all();
 
-                    for key_value in key_values {
+                    for obj in key_values {
                         let mut preset_call = PresetCall::default();
 
-                        preset_call.name = key_value.preset_key().unwrap().get_text();
-                        preset_call.preset = remove_quote(key_value.preset_value().unwrap().get_text());
+                        preset_call.name = obj.preset_key().unwrap().get_text();
+                        preset_call.preset = remove_quote(obj.preset_value().unwrap().get_text());
 
                         preset.preset_calls.push(preset_call);
                     }
@@ -249,8 +246,7 @@ impl<'i> UnflowParser<'i> {
             None => {
                 see_inter.component_name = see_decl.component_name().unwrap().get_text();
                 let text: String = see_decl.STRING_LITERAL().unwrap().get_text();
-                let without_quote: &str = &text[1..text.len() - 1];
-                see_inter.data = without_quote.to_string();
+                see_inter.data = remove_quote(text);
             }
         }
         see_inter
