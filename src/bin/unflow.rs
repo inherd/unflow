@@ -1,133 +1,38 @@
-use std::collections::HashMap;
-use std::path::PathBuf;
-use std::sync::Mutex;
+use std::{env, fs};
+use std::path::Path;
+use unflow::parse;
 
-use serde_json::Value;
-use tower_lsp::{Client, LanguageServer, LspService, Server};
-use tower_lsp::jsonrpc::Result;
-use tower_lsp::lsp_types::*;
+pub mod language_server;
 
-#[derive(Debug)]
-pub struct FileOffsets {
-    files: Vec<Vec<usize>>,
-}
+fn main() {
+    let args: Vec<String> = env::args().collect();
 
-#[derive(Debug)]
-pub struct Hovers {
-    offsets: FileOffsets,
-    lookup: Vec<(usize, usize, String)>,
-}
+    if args.len() < 2 {
+        println!("cannot find cmd. You can try
+1. lsp
+2. convert
+");
+        return;
+    }
 
-#[derive(Debug)]
-struct UnflowServer {
-    client: Client,
-    files: Mutex<HashMap<PathBuf, Hovers>>,
-}
-
-pub fn main() {
-    let mut rt = tokio::runtime::Runtime::new().unwrap();
-    rt.block_on(async {
-        let stdin = tokio::io::stdin();
-        let stdout = tokio::io::stdout();
-
-        let (service, messages) = LspService::new(|client| UnflowServer {
-            client,
-            files: Mutex::new(HashMap::new()),
-        });
-
-        Server::new(stdin, stdout)
-            .interleave(messages)
-            .serve(service)
-            .await;
-    });
-    std::process::exit(1);
-}
-
-impl UnflowServer {
-    async fn parse_file(&self, uri: Url) {
-        if let Ok(_path) = uri.to_file_path() {
-            let mut diags = vec![];
-            let diagnostic = Diagnostic::default();
-            diags.push(diagnostic);
-
-            let res = self.client.publish_diagnostics(uri, diags, None);
-
-            res.await;
+    let query = &args[1];
+    if query == "lsp" {
+        language_server::start();
+    } else if query == "convert" {
+        if args.len() < 3 {
+            println!("lost file name");
+            return;
         }
-    }
-}
-
-#[tower_lsp::async_trait]
-impl LanguageServer for UnflowServer {
-    async fn initialize(&self, _: InitializeParams) -> Result<InitializeResult> {
-        Ok(InitializeResult::default())
-    }
-
-    async fn initialized(&self, _: InitializedParams) {
-        self.client
-            .log_message(MessageType::Info, "server initialized!")
-            .await;
-    }
-
-    async fn shutdown(&self) -> Result<()> {
-        Ok(())
-    }
-
-    async fn did_change_workspace_folders(&self, _: DidChangeWorkspaceFoldersParams) {
-        self.client
-            .log_message(MessageType::Info, "workspace folders changed!")
-            .await;
-    }
-
-    async fn did_change_configuration(&self, _: DidChangeConfigurationParams) {
-        self.client
-            .log_message(MessageType::Info, "configuration changed!")
-            .await;
-    }
-
-    async fn did_change_watched_files(&self, _: DidChangeWatchedFilesParams) {
-        self.client
-            .log_message(MessageType::Info, "watched files have changed!")
-            .await;
-    }
-
-    async fn execute_command(&self, _: ExecuteCommandParams) -> Result<Option<Value>> {
-        self.client
-            .log_message(MessageType::Info, "command executed!")
-            .await;
-        Ok(None)
-    }
-
-    async fn did_open(&self, params: DidOpenTextDocumentParams) {
-        let uri = params.text_document.uri;
-
-        self.parse_file(uri).await;
-    }
-
-    async fn did_change(&self, params: DidChangeTextDocumentParams) {
-        let uri = params.text_document.uri;
-
-        self.parse_file(uri).await;
-    }
-
-    async fn did_save(&self, params: DidSaveTextDocumentParams) {
-        let uri = params.text_document.uri;
-
-        self.parse_file(uri).await;
-    }
-
-    async fn did_close(&self, params: DidCloseTextDocumentParams) {
-        let uri = params.text_document.uri;
-
-        if let Ok(path) = uri.to_file_path() {
-            if let Ok(mut files) = self.files.lock() {
-                files.remove(&path);
+        let filename = &args[2];
+        match fs::read_to_string(Path::new(filename)) {
+            Ok(content) => {
+                let unflow = parse(content.as_str());
+                let string = serde_json::to_string(&unflow).unwrap();
+                let _ = fs::write("unflow.json", string);
             }
-        }
-    }
-
-    async fn completion(&self, _: CompletionParams) -> Result<Option<CompletionResponse>> {
-        Ok(None)
+            Err(_) => {
+                println!("cannot find file name: {:?}", filename);
+            }
+        };
     }
 }
-
