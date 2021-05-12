@@ -15,10 +15,10 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_start(&mut self, ctx: &StartContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by {@link DesignParser#comment}.
+	 * Visit a parse tree produced by {@link DesignParser#declarations}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_comment(&mut self, ctx: &CommentContext<'input>) { self.visit_children(ctx) }
+	fn visit_declarations(&mut self, ctx: &DeclarationsContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#config_decl}.
@@ -43,12 +43,6 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	 * @param ctx the parse tree
 	 */
 	fn visit_unit(&mut self, ctx: &UnitContext<'input>) { self.visit_children(ctx) }
-
-	/**
-	 * Visit a parse tree produced by {@link DesignParser#declarations}.
-	 * @param ctx the parse tree
-	 */
-	fn visit_declarations(&mut self, ctx: &DeclarationsContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#flow_decl}.
@@ -109,12 +103,6 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	 * @param ctx the parse tree
 	 */
 	fn visit_action_name(&mut self, ctx: &Action_nameContext<'input>) { self.visit_children(ctx) }
-
-	/**
-	 * Visit a parse tree produced by {@link DesignParser#component_value}.
-	 * @param ctx the parse tree
-	 */
-	fn visit_component_value(&mut self, ctx: &Component_valueContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#component_name}.
@@ -233,6 +221,12 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_style_body(&mut self, ctx: &Style_bodyContext<'input>) { self.visit_children(ctx) }
 
 	/**
+	 * Visit a parse tree produced by {@link DesignParser#library_name}.
+	 * @param ctx the parse tree
+	 */
+	fn visit_library_name(&mut self, ctx: &Library_nameContext<'input>) { self.visit_children(ctx) }
+
+	/**
 	 * Visit a parse tree produced by {@link DesignParser#library_decl}.
 	 * @param ctx the parse tree
 	 */
@@ -281,12 +275,6 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	 * @param ctx the parse tree
 	 */
 	fn visit_preset_call(&mut self, ctx: &Preset_callContext<'input>) { self.visit_children(ctx) }
-
-	/**
-	 * Visit a parse tree produced by {@link DesignParser#library_name}.
-	 * @param ctx the parse tree
-	 */
-	fn visit_library_name(&mut self, ctx: &Library_nameContext<'input>) { self.visit_children(ctx) }
 
 
 }

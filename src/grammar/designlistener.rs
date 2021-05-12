@@ -17,15 +17,15 @@ fn enter_start(&mut self, _ctx: &StartContext<'input>) { }
 fn exit_start(&mut self, _ctx: &StartContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#comment}.
+ * Enter a parse tree produced by {@link DesignParser#declarations}.
  * @param ctx the parse tree
  */
-fn enter_comment(&mut self, _ctx: &CommentContext<'input>) { }
+fn enter_declarations(&mut self, _ctx: &DeclarationsContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#comment}.
+ * Exit a parse tree produced by {@link DesignParser#declarations}.
  * @param ctx the parse tree
  */
-fn exit_comment(&mut self, _ctx: &CommentContext<'input>) { }
+fn exit_declarations(&mut self, _ctx: &DeclarationsContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#config_decl}.
@@ -70,17 +70,6 @@ fn enter_unit(&mut self, _ctx: &UnitContext<'input>) { }
  * @param ctx the parse tree
  */
 fn exit_unit(&mut self, _ctx: &UnitContext<'input>) { }
-
-/**
- * Enter a parse tree produced by {@link DesignParser#declarations}.
- * @param ctx the parse tree
- */
-fn enter_declarations(&mut self, _ctx: &DeclarationsContext<'input>) { }
-/**
- * Exit a parse tree produced by {@link DesignParser#declarations}.
- * @param ctx the parse tree
- */
-fn exit_declarations(&mut self, _ctx: &DeclarationsContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#flow_decl}.
@@ -191,17 +180,6 @@ fn enter_action_name(&mut self, _ctx: &Action_nameContext<'input>) { }
  * @param ctx the parse tree
  */
 fn exit_action_name(&mut self, _ctx: &Action_nameContext<'input>) { }
-
-/**
- * Enter a parse tree produced by {@link DesignParser#component_value}.
- * @param ctx the parse tree
- */
-fn enter_component_value(&mut self, _ctx: &Component_valueContext<'input>) { }
-/**
- * Exit a parse tree produced by {@link DesignParser#component_value}.
- * @param ctx the parse tree
- */
-fn exit_component_value(&mut self, _ctx: &Component_valueContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#component_name}.
@@ -418,6 +396,17 @@ fn enter_style_body(&mut self, _ctx: &Style_bodyContext<'input>) { }
 fn exit_style_body(&mut self, _ctx: &Style_bodyContext<'input>) { }
 
 /**
+ * Enter a parse tree produced by {@link DesignParser#library_name}.
+ * @param ctx the parse tree
+ */
+fn enter_library_name(&mut self, _ctx: &Library_nameContext<'input>) { }
+/**
+ * Exit a parse tree produced by {@link DesignParser#library_name}.
+ * @param ctx the parse tree
+ */
+fn exit_library_name(&mut self, _ctx: &Library_nameContext<'input>) { }
+
+/**
  * Enter a parse tree produced by {@link DesignParser#library_decl}.
  * @param ctx the parse tree
  */
@@ -508,16 +497,5 @@ fn enter_preset_call(&mut self, _ctx: &Preset_callContext<'input>) { }
  * @param ctx the parse tree
  */
 fn exit_preset_call(&mut self, _ctx: &Preset_callContext<'input>) { }
-
-/**
- * Enter a parse tree produced by {@link DesignParser#library_name}.
- * @param ctx the parse tree
- */
-fn enter_library_name(&mut self, _ctx: &Library_nameContext<'input>) { }
-/**
- * Exit a parse tree produced by {@link DesignParser#library_name}.
- * @param ctx the parse tree
- */
-fn exit_library_name(&mut self, _ctx: &Library_nameContext<'input>) { }
 
 }
