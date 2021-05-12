@@ -209,10 +209,10 @@ pub trait DesignVisitor<'input>: ParseTreeVisitor<'input,DesignParserContextType
 	fn visit_component_use_string(&mut self, ctx: &Component_use_stringContext<'input>) { self.visit_children(ctx) }
 
 	/**
-	 * Visit a parse tree produced by {@link DesignParser#component_layout_value}.
+	 * Visit a parse tree produced by {@link DesignParser#component_parameter}.
 	 * @param ctx the parse tree
 	 */
-	fn visit_component_layout_value(&mut self, ctx: &Component_layout_valueContext<'input>) { self.visit_children(ctx) }
+	fn visit_component_parameter(&mut self, ctx: &Component_parameterContext<'input>) { self.visit_children(ctx) }
 
 	/**
 	 * Visit a parse tree produced by {@link DesignParser#style_decl}.

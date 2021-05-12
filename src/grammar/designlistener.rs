@@ -374,15 +374,15 @@ fn enter_component_use_string(&mut self, _ctx: &Component_use_stringContext<'inp
 fn exit_component_use_string(&mut self, _ctx: &Component_use_stringContext<'input>) { }
 
 /**
- * Enter a parse tree produced by {@link DesignParser#component_layout_value}.
+ * Enter a parse tree produced by {@link DesignParser#component_parameter}.
  * @param ctx the parse tree
  */
-fn enter_component_layout_value(&mut self, _ctx: &Component_layout_valueContext<'input>) { }
+fn enter_component_parameter(&mut self, _ctx: &Component_parameterContext<'input>) { }
 /**
- * Exit a parse tree produced by {@link DesignParser#component_layout_value}.
+ * Exit a parse tree produced by {@link DesignParser#component_parameter}.
  * @param ctx the parse tree
  */
-fn exit_component_layout_value(&mut self, _ctx: &Component_layout_valueContext<'input>) { }
+fn exit_component_parameter(&mut self, _ctx: &Component_parameterContext<'input>) { }
 
 /**
  * Enter a parse tree produced by {@link DesignParser#style_decl}.

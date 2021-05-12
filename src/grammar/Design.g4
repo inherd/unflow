@@ -81,13 +81,13 @@ flex_child
     ;
 
 component_use_decl
-    : DECIMAL_LITERAL                                              # component_use_decimal
-    | POSITION                                                     # component_use_position
-    | component_name (LPAREN component_layout_value RPAREN)?       # component_use_name_value
-    | STRING_LITERAL                                               # component_use_string
+    : DECIMAL_LITERAL                                                                      # component_use_decimal
+    | POSITION                                                                             # component_use_position
+    | component_name (LPAREN component_parameter (',' component_parameter)* RPAREN)?       # component_use_name_value
+    | STRING_LITERAL                                                                       # component_use_string
     ;
 
-component_layout_value: DIGITS_IDENTIFIER | POSITION | STRING_LITERAL;
+component_parameter: DIGITS_IDENTIFIER | POSITION | STRING_LITERAL;
 
 // STYLE
 style_decl: STYLE style_name LBRACE style_body RBRACE;
