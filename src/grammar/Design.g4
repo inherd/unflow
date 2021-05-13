@@ -116,15 +116,6 @@ POSITION:           'LEFT' | 'RIGHT' | 'TOP' | 'BOTTOM';
 STYLE:              'style' | 'STYLE' | 'CSS' | 'css';
 
 STRING_LITERAL:     '"' (~["\\\r\n] | EscapeSequence)* '"';
-WS:                 [ \t\r\n\u000C]+ -> channel(HIDDEN);
-COMMENT:            '/*' .*? '*/';
-LINE_COMMENT:       '//' ~[\r\n]*;
-NL :           '\r' '\n' | '\n' | '\r';
-NEWLINE
-   : NL+ -> skip
-   ;
-
-Space :             [ \t];
 LPAREN:             '(';
 RPAREN:             ')';
 LBRACE:             '{';
@@ -184,3 +175,18 @@ fragment Letter
     | ~[\u0000-\u007F\uD800-\uDBFF]        // covers all characters above 0x7F which are not a surrogate
     | [\uD800-\uDBFF] [\uDC00-\uDFFF]      // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
     ;
+
+
+//WS:                 [ \t\r\n\u000C]+ -> channel(HIDDEN);
+fragment WhiteSpace
+   : '\u0020' | '\u0009' | '\u000D' | '\u000A'
+   ;
+WS
+   :  WhiteSpace+ -> skip
+   ;
+NL :                '\r' '\n' | '\n' | '\r';
+NEWLINE
+   : NL+ -> skip
+   ;
+COMMENT:            '/*' .*? '*/';
+LINE_COMMENT:       '//' ~[\r\n]*;
