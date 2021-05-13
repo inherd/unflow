@@ -219,11 +219,12 @@ component BlogList {
 
     #[test]
     fn should_return_empty_for_comments() {
-        let data = r#"// it's comments
+        let data = r#"
+
+// it's comments
 /* comments 2
 *
 */
-
 "#;
         let result = parse(data);
 
