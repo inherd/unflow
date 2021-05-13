@@ -218,7 +218,7 @@ component BlogList {
     }
 
     #[test]
-    fn should_return_empty_for_comments() {
+    fn should_parse_comment() {
         let data = r#"
 
 // it's comments
@@ -227,7 +227,6 @@ component BlogList {
 */
 "#;
         let result = parse(data);
-
-        println!("{:?}", result);
+        assert!(true)
     }
 }

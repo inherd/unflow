@@ -188,5 +188,9 @@ NL :                '\r' '\n' | '\n' | '\r';
 NEWLINE
    : NL+ -> skip
    ;
-COMMENT:            '/*' .*? '*/';
-LINE_COMMENT:       '//' ~[\r\n]*;
+COMMENT
+   :   '/*' .*? '*/' -> skip
+   ;
+LINE_COMMENT
+   :   '//' (~[\r\n])* -> skip
+   ;
