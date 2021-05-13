@@ -9,6 +9,7 @@
 Todos:
 
  - [ ] LSP: https://github.com/ebkalderon/tower-lsp
+ - [ ] feat: support for components [props, config, action]
 
 ## Flow
 
