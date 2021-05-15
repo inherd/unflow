@@ -8,7 +8,7 @@
 
 Todos:
 
- - [ ] LSP: https://github.com/ebkalderon/tower-lsp
+ - [ ] LSP: https://github.com/silvanshade/lspower/
  - [ ] feat: support for components [props, config, action]
 
 ## Flow
