@@ -1,11 +1,11 @@
 use std::collections::HashMap;
 use std::path::PathBuf;
-use std::sync::Mutex;
 
 use serde_json::Value;
-use tower_lsp::{Client, LanguageServer, LspService, Server};
+use tokio::sync::Mutex;
 use tower_lsp::jsonrpc::Result;
 use tower_lsp::lsp_types::*;
+use tower_lsp::{Client, LanguageServer, LspService, Server};
 
 #[derive(Debug)]
 pub struct FileOffsets {
@@ -24,22 +24,21 @@ struct UnflowServer {
     files: Mutex<HashMap<PathBuf, Hovers>>,
 }
 
-pub fn start() {
-    let mut rt = tokio::runtime::Runtime::new().unwrap();
-    rt.block_on(async {
-        let stdin = tokio::io::stdin();
-        let stdout = tokio::io::stdout();
+#[tokio::main(flavor = "current_thread")]
+pub async fn start() {
+    let stdin = tokio::io::stdin();
+    let stdout = tokio::io::stdout();
 
-        let (service, messages) = LspService::new(|client| UnflowServer {
-            client,
-            files: Mutex::new(HashMap::new()),
-        });
-
-        Server::new(stdin, stdout)
-            .interleave(messages)
-            .serve(service)
-            .await;
+    let (service, messages) = LspService::new(|client| UnflowServer {
+        client,
+        files: Mutex::new(HashMap::new()),
     });
+
+    Server::new(stdin, stdout)
+        .interleave(messages)
+        .serve(service)
+        .await;
+
     std::process::exit(1);
 }
 
@@ -120,9 +119,7 @@ impl LanguageServer for UnflowServer {
         let uri = params.text_document.uri;
 
         if let Ok(path) = uri.to_file_path() {
-            if let Ok(mut files) = self.files.lock() {
-                files.remove(&path);
-            }
+            self.files.lock().await.remove(&path);
         }
     }
 
@@ -130,4 +127,3 @@ impl LanguageServer for UnflowServer {
         Ok(None)
     }
 }
-
