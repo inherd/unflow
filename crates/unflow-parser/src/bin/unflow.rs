@@ -1,8 +1,7 @@
 use std::{env, fs};
 use std::path::Path;
-use unflow::parse;
+use unflow_parser::parse;
 
-pub mod language_server;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -17,7 +16,6 @@ fn main() {
 
     let query = &args[1];
     if query == "lsp" {
-        language_server::start();
     } else if query == "convert" {
         if args.len() < 3 {
             println!("lost file name");

@@ -1,4 +1,4 @@
-// Generated from src/grammar/Design.g4 by ANTLR 4.8
+// Generated from crates/unflow-parser/src/grammar/Design.g4 by ANTLR 4.8
 #![allow(dead_code)]
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
@@ -24,8 +24,6 @@ use antlr_rust::int_stream::EOF;
 use antlr_rust::vocabulary::{Vocabulary,VocabularyImpl};
 use antlr_rust::token_factory::{CommonTokenFactory,TokenFactory, TokenAware};
 use super::designlistener::*;
-use super::designvisitor::*;
-
 use antlr_rust::lazy_static;
 use antlr_rust::{TidAble,TidExt};
 
@@ -234,18 +232,8 @@ where
 /// Trait for monomorphized trait object that corresponds to the nodes of parse tree generated for DesignParser
 pub trait DesignParserContext<'input>:
 	for<'x> Listenable<dyn DesignListener<'input> + 'x > + 
-	for<'x> Visitable<dyn DesignVisitor<'input> + 'x > + 
 	ParserRuleContext<'input, TF=LocalTokenFactory<'input>, Ctx=DesignParserContextType>
 {}
-
-impl<'input, 'x, T> VisitableDyn<T> for dyn DesignParserContext<'input> + 'input
-where
-    T: DesignVisitor<'input> + 'x,
-{
-    fn accept_dyn(&self, visitor: &mut T) {
-        self.accept(visitor as &mut (dyn DesignVisitor<'input> + 'x))
-    }
-}
 
 impl<'input> DesignParserContext<'input> for TerminalNode<'input,DesignParserContextType> {}
 impl<'input> DesignParserContext<'input> for ErrorNode<'input,DesignParserContextType> {}
@@ -323,16 +311,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for StartContext<'in
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_start(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_start(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for StartContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_start(self);
 	}
 }
 
@@ -442,16 +420,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for DeclarationsCont
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_declarations(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_declarations(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for DeclarationsContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_declarations(self);
 	}
 }
 
@@ -637,16 +605,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Config_declConte
 		listener.enter_every_rule(self);
 		listener.enter_config_decl(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_config_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Config_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_config_decl(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Config_declContextExt<'input>{
@@ -747,16 +705,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Config_keyContex
 		listener.enter_every_rule(self);
 		listener.enter_config_key(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_config_key(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Config_keyContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_config_key(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Config_keyContextExt<'input>{
@@ -842,16 +790,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Config_valueCont
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_config_value(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_config_value(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Config_valueContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_config_value(self);
 	}
 }
 
@@ -1075,16 +1013,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for UnitContext<'inp
 		listener.enter_every_rule(self);
 		listener.enter_unit(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_unit(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for UnitContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_unit(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for UnitContextExt<'input>{
@@ -1174,16 +1102,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Flow_declContext
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_flow_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_flow_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Flow_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_flow_decl(self);
 	}
 }
 
@@ -1318,16 +1236,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Interaction_decl
 		listener.enter_every_rule(self);
 		listener.enter_interaction_decl(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_interaction_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Interaction_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_interaction_decl(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Interaction_declContextExt<'input>{
@@ -1451,16 +1359,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for See_declContext<
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_see_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_see_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for See_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_see_decl(self);
 	}
 }
 
@@ -1596,16 +1494,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Do_declContext<'
 		listener.enter_every_rule(self);
 		listener.enter_do_decl(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_do_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Do_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_do_decl(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Do_declContextExt<'input>{
@@ -1737,16 +1625,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for React_declContex
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_react_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_react_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for React_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_react_decl(self);
 	}
 }
 
@@ -1880,16 +1758,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Animate_declCont
 		listener.enter_every_rule(self);
 		listener.enter_animate_decl(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_animate_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Animate_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_animate_decl(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Animate_declContextExt<'input>{
@@ -2007,16 +1875,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for React_actionCont
 		listener.enter_every_rule(self);
 		listener.enter_react_action(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_react_action(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for React_actionContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_react_action(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for React_actionContextExt<'input>{
@@ -2126,16 +1984,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Goto_actionConte
 		listener.enter_every_rule(self);
 		listener.enter_goto_action(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_goto_action(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Goto_actionContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_goto_action(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Goto_actionContextExt<'input>{
@@ -2228,16 +2076,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Show_actionConte
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_show_action(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_show_action(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Show_actionContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_show_action(self);
 	}
 }
 
@@ -2348,16 +2186,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Action_nameConte
 		listener.enter_every_rule(self);
 		listener.enter_action_name(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_action_name(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Action_nameContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_action_name(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Action_nameContextExt<'input>{
@@ -2443,16 +2271,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_nameCo
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_component_name(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_name(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_nameContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_name(self);
 	}
 }
 
@@ -2540,16 +2358,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Scene_nameContex
 		listener.enter_every_rule(self);
 		listener.enter_scene_name(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_scene_name(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Scene_nameContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_scene_name(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Scene_nameContextExt<'input>{
@@ -2636,16 +2444,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Animate_nameCont
 		listener.enter_every_rule(self);
 		listener.enter_animate_name(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_animate_name(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Animate_nameContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_animate_name(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Animate_nameContextExt<'input>{
@@ -2731,16 +2529,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Page_declContext
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_page_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_page_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Page_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_page_decl(self);
 	}
 }
 
@@ -2874,16 +2662,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_declCo
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_component_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_decl(self);
 	}
 }
 
@@ -3024,9 +2802,6 @@ Error(inner) => inner
 		}
 	}
 }
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_body_declContextAll<'input>{
-	fn accept(&self, visitor: &mut (dyn DesignVisitor<'input> + 'a)) { self.deref().accept(visitor) }
-}
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_declContextAll<'input>{
     fn enter(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().enter(listener) }
     fn exit(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().exit(listener) }
@@ -3044,9 +2819,6 @@ ph:PhantomData<&'input str>
 impl<'input> DesignParserContext<'input> for Component_body_declContext<'input>{}
 
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_declContext<'input>{
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_body_declContext<'input>{
 }
 
 impl<'input> CustomRuleContext<'input> for Component_body_declContextExt<'input>{
@@ -3107,16 +2879,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_c
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_component_body_config(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_body_config(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_body_configContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_body_config(self);
 	}
 }
 
@@ -3184,16 +2946,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_body_n
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_component_body_name(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_body_name(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_body_nameContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_body_name(self);
 	}
 }
 
@@ -3328,16 +3080,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Layout_declConte
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_layout_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_layout_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Layout_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_layout_decl(self);
 	}
 }
 
@@ -3478,9 +3220,6 @@ Error(inner) => inner
 		}
 	}
 }
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Flex_childContextAll<'input>{
-	fn accept(&self, visitor: &mut (dyn DesignVisitor<'input> + 'a)) { self.deref().accept(visitor) }
-}
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Flex_childContextAll<'input>{
     fn enter(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().enter(listener) }
     fn exit(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().exit(listener) }
@@ -3498,9 +3237,6 @@ ph:PhantomData<&'input str>
 impl<'input> DesignParserContext<'input> for Flex_childContext<'input>{}
 
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Flex_childContext<'input>{
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Flex_childContext<'input>{
 }
 
 impl<'input> CustomRuleContext<'input> for Flex_childContextExt<'input>{
@@ -3557,16 +3293,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Flex_component_u
 		listener.enter_every_rule(self);
 		listener.enter_flex_component_use(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_flex_component_use(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Flex_component_useContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_flex_component_use(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Flex_component_useContextExt<'input>{
@@ -3618,16 +3344,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Empty_lineContex
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_empty_line(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_empty_line(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Empty_lineContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_empty_line(self);
 	}
 }
 
@@ -3794,9 +3510,6 @@ Error(inner) => inner
 		}
 	}
 }
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_use_declContextAll<'input>{
-	fn accept(&self, visitor: &mut (dyn DesignVisitor<'input> + 'a)) { self.deref().accept(visitor) }
-}
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_use_declContextAll<'input>{
     fn enter(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().enter(listener) }
     fn exit(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().exit(listener) }
@@ -3814,9 +3527,6 @@ ph:PhantomData<&'input str>
 impl<'input> DesignParserContext<'input> for Component_use_declContext<'input>{}
 
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_use_declContext<'input>{
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_use_declContext<'input>{
 }
 
 impl<'input> CustomRuleContext<'input> for Component_use_declContextExt<'input>{
@@ -3895,16 +3605,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_use_na
 		listener.enter_every_rule(self);
 		listener.enter_component_use_name_value(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_use_name_value(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_use_name_valueContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_use_name_value(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Component_use_name_valueContextExt<'input>{
@@ -3961,16 +3661,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_use_de
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_component_use_decimal(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_use_decimal(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_use_decimalContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_use_decimal(self);
 	}
 }
 
@@ -4029,16 +3719,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_use_st
 		listener.enter_every_rule(self);
 		listener.enter_component_use_string(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_use_string(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_use_stringContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_use_string(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Component_use_stringContextExt<'input>{
@@ -4095,16 +3775,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_use_po
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_component_use_position(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_use_position(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_use_positionContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_use_position(self);
 	}
 }
 
@@ -4276,16 +3946,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Component_parame
 		listener.enter_every_rule(self);
 		listener.enter_component_parameter(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_component_parameter(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Component_parameterContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_component_parameter(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Component_parameterContextExt<'input>{
@@ -4395,16 +4055,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Style_declContex
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_style_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_style_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Style_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_style_decl(self);
 	}
 }
 
@@ -4522,16 +4172,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Style_nameContex
 		listener.enter_every_rule(self);
 		listener.enter_style_name(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_style_name(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Style_nameContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_style_name(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Style_nameContextExt<'input>{
@@ -4617,16 +4257,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Style_bodyContex
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_style_body(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_style_body(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Style_bodyContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_style_body(self);
 	}
 }
 
@@ -4732,16 +4362,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_nameCont
 		listener.enter_every_rule(self);
 		listener.enter_library_name(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_library_name(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_nameContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_library_name(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Library_nameContextExt<'input>{
@@ -4827,16 +4447,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_declCont
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_library_decl(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_library_decl(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_declContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_library_decl(self);
 	}
 }
 
@@ -4976,9 +4586,6 @@ Error(inner) => inner
 		}
 	}
 }
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_expContextAll<'input>{
-	fn accept(&self, visitor: &mut (dyn DesignVisitor<'input> + 'a)) { self.deref().accept(visitor) }
-}
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_expContextAll<'input>{
     fn enter(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().enter(listener) }
     fn exit(&self, listener: &mut (dyn DesignListener<'input> + 'a)) { self.deref().exit(listener) }
@@ -4996,9 +4603,6 @@ ph:PhantomData<&'input str>
 impl<'input> DesignParserContext<'input> for Library_expContext<'input>{}
 
 impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_expContext<'input>{
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_expContext<'input>{
 }
 
 impl<'input> CustomRuleContext<'input> for Library_expContextExt<'input>{
@@ -5068,16 +4672,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_objectCo
 		listener.enter_every_rule(self);
 		listener.enter_library_object(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_library_object(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_objectContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_library_object(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Library_objectContextExt<'input>{
@@ -5138,16 +4732,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Library_configCo
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_library_config(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_library_config(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Library_configContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_library_config(self);
 	}
 }
 
@@ -5319,16 +4903,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Key_valueContext
 		listener.enter_every_rule(self);
 		listener.enter_key_value(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_key_value(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Key_valueContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_key_value(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Key_valueContextExt<'input>{
@@ -5424,16 +4998,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Preset_keyContex
 		listener.enter_every_rule(self);
 		listener.enter_preset_key(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_preset_key(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Preset_keyContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_preset_key(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Preset_keyContextExt<'input>{
@@ -5520,16 +5084,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Preset_valueCont
 		listener.enter_every_rule(self);
 		listener.enter_preset_value(self);
 	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_preset_value(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Preset_valueContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_preset_value(self);
-	}
 }
 
 impl<'input> CustomRuleContext<'input> for Preset_valueContextExt<'input>{
@@ -5614,16 +5168,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Preset_arrayCont
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_preset_array(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_preset_array(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Preset_arrayContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_preset_array(self);
 	}
 }
 
@@ -5757,16 +5301,6 @@ impl<'input,'a> Listenable<dyn DesignListener<'input> + 'a> for Preset_callConte
 	fn enter(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
 		listener.enter_every_rule(self);
 		listener.enter_preset_call(self);
-	}
-	fn exit(&self,listener: &mut (dyn DesignListener<'input> + 'a)) {
-		listener.exit_preset_call(self);
-		listener.exit_every_rule(self);
-	}
-}
-
-impl<'input,'a> Visitable<dyn DesignVisitor<'input> + 'a> for Preset_callContext<'input>{
-	fn accept(&self,visitor: &mut (dyn DesignVisitor<'input> + 'a)) {
-		visitor.visit_preset_call(self);
 	}
 }
 
