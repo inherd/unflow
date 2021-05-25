@@ -95,7 +95,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
     fn visit_flow_decl(&mut self, ctx: &Flow_declContext<'i>) {
         #[allow(unused_assignments)]
-        let mut flow_name = "".to_string();
+            let mut flow_name = "".to_string();
 
         match ctx.IDENTIFIER() {
             None => {
@@ -178,7 +178,15 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
     fn visit_layout_decl(&mut self, ctx: &Layout_declContext<'i>) {
         let mut layout = UiLayout::default();
-        layout.name = ctx.IDENTIFIER().unwrap().get_text();
+        match ctx.IDENTIFIER() {
+            None => {
+                return;
+            }
+            Some(rc) => {
+                layout.name = rc.get_text()
+            }
+        }
+
 
         let decls: Vec<Rc<Flex_childContextAll<'i>>> = ctx.flex_child_all();
         for decl in &decls {
@@ -199,7 +207,14 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
     fn visit_library_decl(&mut self, ctx: &Library_declContext<'i>) {
         let mut library = UiLibrary::default();
-        library.name = ctx.library_name().unwrap().get_text();
+        match ctx.library_name() {
+            None => {
+                return;
+            }
+            Some(name) => {
+                library.name = name.get_text();
+            }
+        }
 
         let exps: Vec<Rc<Library_expContextAll<'i>>> = ctx.library_exp_all();
         for exp in &exps {
@@ -263,8 +278,8 @@ impl<'i> UnflowParser<'i> {
 
     fn build_react_interaction<'c>(decl: &Rc<BaseParserRuleContext<'c, React_declContextExt<'c>>>) -> ReactInteraction {
         let mut scene_name = "".to_string();
-        if let Some(_) = decl.scene_name() {
-            scene_name = decl.scene_name().unwrap().get_text();
+        if let Some(name) = decl.scene_name() {
+            scene_name = name.get_text();
         }
 
         let mut animate_name = "".to_string();
