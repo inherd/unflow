@@ -105,6 +105,7 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
             let type_name = format!("{:?}", child);
 
             let context_str = type_name.as_str();
+
             if context_str.contains("See_declContextExt") {
                 let see_decl = decl.see_decl().unwrap() as Rc<See_declContext<'i>>;
                 current_interaction.ui_see = <UnflowParser<'i>>::build_see_interaction(&see_decl);
