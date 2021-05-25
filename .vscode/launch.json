@@ -3,22 +3,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "extensionHost",
-      "request": "launch",
-      "name": "Launch Client",
-      "runtimeExecutable": "${execPath}",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceRoot}"
-      ],
-      "outFiles": [
-        "${workspaceRoot}/editors/code/out/**/*.js"
-      ],
-      "preLaunchTask": {
-        "type": "npm",
-        "script": "watch"
-      }
-    },
-    {
       // Used for testing the extension with the installed LSP server.
       "name": "Run Installed Extension",
       "type": "extensionHost",
@@ -26,7 +10,6 @@
       "runtimeExecutable": "${execPath}",
       "args": [
         // "--user-data-dir=${workspaceFolder}/target/code",
-        "--disable-extensions",
         "--extensionDevelopmentPath=${workspaceFolder}/editors/code"
       ],
       "outFiles": [
@@ -35,7 +18,10 @@
       "preLaunchTask": "Build Extension in Background",
       "skipFiles": [
         "<node_internals>/**/*.js"
-      ]
+      ],
+      "env": {
+        "__UNFLOW_LSP_SERVER_DEBUG": "${workspaceFolder}/target/debug/unflow-language-server.exe"
+      }
     },
   ]
 }

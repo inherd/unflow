@@ -15,12 +15,41 @@
     "vscode": "^1.44.0"
   },
   "activationEvents": [
-    "*"
+    "onLanguage:design"
   ],
   "main": "./out/extension",
   "contributes": {
     "commands": [],
-    "configuration": {}
+    "configuration": {
+      "type": "object",
+      "title": "unflow-vscode",
+      "properties": {
+        "unflow-vscode.trace.server": {
+          "type": "string",
+          "scope": "window",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "enumDescriptions": [
+            "No traces",
+            "Error only",
+            "Full log"
+          ],
+          "default": "messages",
+          "description": "Traces the communication between VS Code and the language server."
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "design",
+        "extensions": [
+          ".design"
+        ]
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "yarn run build",

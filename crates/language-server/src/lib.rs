@@ -1,12 +1,12 @@
 use std::collections::HashMap;
-use std::path::PathBuf;
 
+use lsp_text_document::FullTextDocument;
 use serde_json::Value;
 use tokio::sync::Mutex;
 use tower_lsp::jsonrpc::Result;
 use tower_lsp::lsp_types::*;
 use tower_lsp::{Client, LanguageServer, LspService, Server};
-
+use unflow_parser::parse;
 #[derive(Debug)]
 pub struct FileOffsets {
     files: Vec<Vec<usize>>,
@@ -18,10 +18,9 @@ pub struct Hovers {
     lookup: Vec<(usize, usize, String)>,
 }
 
-#[derive(Debug)]
 struct UnflowServer {
     client: Client,
-    files: Mutex<HashMap<PathBuf, Hovers>>,
+    files: Mutex<HashMap<String, FullTextDocument>>,
 }
 
 #[tokio::main(flavor = "current_thread")]
@@ -72,7 +71,7 @@ impl LanguageServer for UnflowServer {
 
     async fn initialized(&self, _: InitializedParams) {
         self.client
-            .log_message(MessageType::Info, "server fucked!")
+            .log_message(MessageType::Info, "server initialized!")
             .await;
     }
 
@@ -106,32 +105,77 @@ impl LanguageServer for UnflowServer {
     }
 
     async fn did_open(&self, params: DidOpenTextDocumentParams) {
-        let uri = &params.text_document.uri;
-        self.client
-            .log_message(MessageType::Info, format!("{:?}", params))
-            .await;
-        self.parse_file(uri.clone()).await;
+        let TextDocumentItem {
+            uri,
+            language_id,
+            version,
+            text,
+        } = params.text_document;
+        self.files.lock().await.insert(
+            uri.to_string(),
+            FullTextDocument::new(uri, language_id, version as i64, text),
+        );
     }
 
     async fn did_change(&self, params: DidChangeTextDocumentParams) {
-        self.client
-            .log_message(MessageType::Info, format!("{:?}", params))
-            .await;
+        let DidChangeTextDocumentParams {
+            content_changes,
+            text_document,
+        } = params;
+        if let Some(document) = self
+            .files
+            .lock()
+            .await
+            .get_mut(&text_document.uri.to_string())
+        {
+            let changes = content_changes
+                .into_iter()
+                .map(|change| {
+                    let range = change.range.and_then(|range| {
+                        Some(lsp_types::Range {
+                            start: lsp_types::Position::new(
+                                range.start.line as u32,
+                                range.start.character as u32,
+                            ),
+                            end: lsp_types::Position::new(
+                                range.end.line as u32,
+                                range.end.character as u32,
+                            ),
+                        })
+                    });
+                    lsp_types::TextDocumentContentChangeEvent {
+                        range,
+                        range_length: change.range_length.and_then(|v| Some(v as u32)),
+                        text: change.text,
+                    }
+                })
+                .collect();
+            document.update(changes, text_document.version as i64);
+        }
     }
 
     async fn did_save(&self, params: DidSaveTextDocumentParams) {
-        let uri = params.text_document.uri;
-        self.client
-            .log_message(MessageType::Info, "file saved")
-            .await;
+        if let Some(document) = self
+            .files
+            .lock()
+            .await
+            .get(&params.text_document.uri.to_string())
+        {
+            let content = document.rope.to_string();
+            let unflow_result = parse(&content);
+            // 从这里直接拿到编辑uri 对应的text string, 可以做一些具体的parsing,目前只是输出到 client 端的console
+            let result = if let Ok(result) = serde_json::to_string(&unflow_result) {
+                result
+            } else {
+                "error".to_string()
+            };
+            self.client.log_message(MessageType::Info, result).await;
+        };
     }
 
     async fn did_close(&self, params: DidCloseTextDocumentParams) {
         let uri = params.text_document.uri;
-
-        if let Ok(path) = uri.to_file_path() {
-            self.files.lock().await.remove(&path);
-        }
+        self.files.lock().await.remove(&uri.to_string());
     }
 
     async fn completion(&self, _: CompletionParams) -> Result<Option<CompletionResponse>> {
