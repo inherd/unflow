@@ -25,9 +25,10 @@ export async function activate(context: ExtensionContext) {
   // let debugOptions = { execArgv: ['--nolazy', '--inspect=6009'] };
 
   // E:\vscode-extension\github\server\target\debug
-  const traceOutputChannel = window.createOutputChannel("unflow language server trace");
+  const env = process.env
+  const traceOutputChannel = window.createOutputChannel("unflow-language-server-trace");
   // add the unflow-language-server.exe to your environment path
-  const command = "unflow-language-server.exe";
+  const command = env.__UNFLOW_LSP_SERVER_DEBUG || "unflow-language-server.exe";
   const run: Executable = {
     command,
     options: {
@@ -47,7 +48,7 @@ export async function activate(context: ExtensionContext) {
   // Options to control the language client
   let clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
-    documentSelector: [{ scheme: "file", language: "plaintext" }],
+    documentSelector: [{ scheme: "file", language: "design" }],
     synchronize: {
       // Notify the server about file changes to '.clientrc files contained in the workspace
       fileEvents: workspace.createFileSystemWatcher("**/.clientrc"),
@@ -56,7 +57,7 @@ export async function activate(context: ExtensionContext) {
   };
 
   // Create the language client and start the client.
-  client = new LanguageClient("unflow-vscode-client", "unflow-vscode", serverOptions, clientOptions);
+  client = new LanguageClient("unflow-vscode", "unflow-vscode-client", serverOptions, clientOptions);
 
   // Create the language client and start the client.
 

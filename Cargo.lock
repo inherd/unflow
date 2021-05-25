@@ -703,6 +703,7 @@ dependencies = [
  "serde_json",
  "tokio",
  "tower-lsp",
+ "unflow-parser",
 ]
 
 [[package]]
