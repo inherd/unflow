@@ -119,25 +119,38 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         let mut current_interaction = UiInteraction::default();
 
         for decl in &decls {
-            let child = decl.get_child(0).unwrap();
+            let child = match decl.get_child(0) {
+                Some(x) => x,
+                None => continue,
+            };
+
             let type_name = format!("{:?}", child);
 
             let context_str = type_name.as_str();
 
             if context_str.contains("See_declContextExt") {
-                let see_decl = decl.see_decl().unwrap() as Rc<See_declContext<'i>>;
+                let see_decl = match decl.see_decl() {
+                    Some(x) => x,
+                    None => continue,
+                } as Rc<See_declContext<'i>>;
                 current_interaction.ui_see = <UnflowParser<'i>>::build_see_interaction(&see_decl);
             } else if context_str.contains("Do_declContextExt") {
-                let do_decl = decl.do_decl().unwrap() as Rc<Do_declContext<'i>>;
+                let do_decl = match decl.do_decl() {
+                    Some(x) => x,
+                    None => continue,
+                } as Rc<Do_declContext<'i>>;
                 current_interaction.ui_do = <UnflowParser<'i>>::build_do_interaction(&do_decl);
             } else if context_str.contains("React_declContextExt") {
-                let react_decl = decl.react_decl().unwrap() as Rc<React_declContext<'i>>;
+                let react_decl = match decl.react_decl() {
+                    Some(x) => x,
+                    None => continue,
+                } as Rc<React_declContext<'i>>;
                 let interaction = <UnflowParser<'i>>::build_react_interaction(&react_decl);
                 current_interaction.ui_react.push(interaction);
 
                 let mut has_next_see = false;
                 if let Some(decl) = &decls.get(index + 1) {
-                    let next_name = format!("{:?}", decl.get_child(0).unwrap());
+                    let next_name = format!("{:?}", decl.get_child(0));
                     if next_name.as_str().contains("See_declContextExt") {
                         has_next_see = true;
                     }
