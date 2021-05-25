@@ -1,0 +1,23 @@
+[package]
+name = "unflow-language-server"
+version = "0.1.1"
+authors = ["Inherd Group <group@inherd.org>", "Phodal Huang <h@phodal.com>"]
+edition = "2018"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/inherd/unflow"
+documentation = "https://github.com/inherd/unflow"
+homepage = "https://github.com/inherd/unflow"
+description = """
+Unflow is a DSL to convert design to code.
+"""
+categories = ["language-server"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tower-lsp = "0.14"
+tokio = { version = "1.6", features = ["rt", "io-std", "macros", "sync"] }
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

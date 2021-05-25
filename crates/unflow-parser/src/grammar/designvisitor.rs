@@ -1,5 +1,5 @@
 #![allow(nonstandard_style)]
-// Generated from src/grammar/Design.g4 by ANTLR 4.8
+// Generated from crates/unflow-parser/src/grammar/Design.g4 by ANTLR 4.8
 use antlr_rust::tree::{ParseTreeVisitor};
 use super::designparser::*;
 
