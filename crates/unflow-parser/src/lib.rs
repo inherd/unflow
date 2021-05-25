@@ -234,7 +234,7 @@ component BlogList {
 
     #[test]
     fn should_capture_error() {
-        let data = r#" flow { }
+        let data = r#" zfs
 "#;
         let _result = parse(data);
         assert!(true)

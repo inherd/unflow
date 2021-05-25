@@ -265,13 +265,27 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
 impl<'i> UnflowParser<'i> {
     fn build_do_interaction<'c>(do_decl: &Rc<BaseParserRuleContext<'c, Do_declContextExt<'c>>>) -> DoInteraction {
-        let text: String = do_decl.STRING_LITERAL().unwrap().get_text();
+        let mut text = "\"\"".to_string();
+        if let Some(node) = do_decl.STRING_LITERAL() {
+            text = node.get_text();
+        }
+
         let without_quote: &str = &text[1..text.len() - 1];
 
+        let mut component_name = "".to_string();
+        if let Some(node) = do_decl.component_name() {
+            component_name = node.get_text();
+        }
+
+        let mut action_name = "".to_string();
+        if let Some(node) = do_decl.action_name() {
+            action_name = node.get_text();
+        }
+
         let do_inter = DoInteraction {
-            component_name: do_decl.component_name().unwrap().get_text(),
+            component_name,
             data: without_quote.to_string(),
-            ui_event: do_decl.action_name().unwrap().get_text(),
+            action_name,
         };
         do_inter
     }
@@ -281,8 +295,17 @@ impl<'i> UnflowParser<'i> {
         match see_decl.IDENTIFIER() {
             Some(ident_ctx) => { see_inter.component_name = ident_ctx.get_text() }
             None => {
-                see_inter.component_name = see_decl.component_name().unwrap().get_text();
-                let text: String = see_decl.STRING_LITERAL().unwrap().get_text();
+                let mut component_name = "".to_string();
+                if let Some(node) = see_decl.component_name() {
+                    component_name = node.get_text();
+                }
+
+                let mut text = "".to_string();
+                if let Some(node) = see_decl.STRING_LITERAL() {
+                    text = node.get_text();
+                }
+
+                see_inter.component_name = component_name;
                 see_inter.data = remove_quote(text);
             }
         }

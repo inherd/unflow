@@ -21,7 +21,7 @@ impl Default for UiInteraction {
 pub struct DoInteraction {
     pub component_name: String,
     pub data: String,
-    pub ui_event: String,
+    pub action_name: String,
 }
 
 impl Default for DoInteraction {
@@ -29,7 +29,7 @@ impl Default for DoInteraction {
         DoInteraction {
             component_name: "".to_string(),
             data: "".to_string(),
-            ui_event: "".to_string(),
+            action_name: "".to_string(),
         }
     }
 }
