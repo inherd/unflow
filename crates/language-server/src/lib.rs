@@ -59,12 +59,20 @@ impl UnflowServer {
 #[tower_lsp::async_trait]
 impl LanguageServer for UnflowServer {
     async fn initialize(&self, _: InitializeParams) -> Result<InitializeResult> {
-        Ok(InitializeResult::default())
+        Ok(InitializeResult {
+            server_info: None,
+            capabilities: ServerCapabilities {
+                text_document_sync: Some(TextDocumentSyncCapability::Kind(
+                    TextDocumentSyncKind::Incremental,
+                )),
+                ..ServerCapabilities::default()
+            },
+        })
     }
 
     async fn initialized(&self, _: InitializedParams) {
         self.client
-            .log_message(MessageType::Info, "server initialized!")
+            .log_message(MessageType::Info, "server fucked!")
             .await;
     }
 
@@ -98,21 +106,24 @@ impl LanguageServer for UnflowServer {
     }
 
     async fn did_open(&self, params: DidOpenTextDocumentParams) {
-        let uri = params.text_document.uri;
-
-        self.parse_file(uri).await;
+        let uri = &params.text_document.uri;
+        self.client
+            .log_message(MessageType::Info, format!("{:?}", params))
+            .await;
+        self.parse_file(uri.clone()).await;
     }
 
     async fn did_change(&self, params: DidChangeTextDocumentParams) {
-        let uri = params.text_document.uri;
-
-        self.parse_file(uri).await;
+        self.client
+            .log_message(MessageType::Info, format!("{:?}", params))
+            .await;
     }
 
     async fn did_save(&self, params: DidSaveTextDocumentParams) {
         let uri = params.text_document.uri;
-
-        self.parse_file(uri).await;
+        self.client
+            .log_message(MessageType::Info, "file saved")
+            .await;
     }
 
     async fn did_close(&self, params: DidCloseTextDocumentParams) {
