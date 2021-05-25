@@ -6,6 +6,7 @@ use tokio::sync::Mutex;
 use tower_lsp::jsonrpc::Result;
 use tower_lsp::lsp_types::*;
 use tower_lsp::{Client, LanguageServer, LspService, Server};
+use unflow_parser::parse;
 #[derive(Debug)]
 pub struct FileOffsets {
     files: Vec<Vec<usize>>,
@@ -19,7 +20,7 @@ pub struct Hovers {
 
 struct UnflowServer {
     client: Client,
-    files: Mutex<HashMap<Url, FullTextDocument>>,
+    files: Mutex<HashMap<String, FullTextDocument>>,
 }
 
 #[tokio::main(flavor = "current_thread")]
@@ -70,7 +71,7 @@ impl LanguageServer for UnflowServer {
 
     async fn initialized(&self, _: InitializedParams) {
         self.client
-            .log_message(MessageType::Info, "server fucked!")
+            .log_message(MessageType::Info, "server initialized!")
             .await;
     }
 
@@ -111,7 +112,7 @@ impl LanguageServer for UnflowServer {
             text,
         } = params.text_document;
         self.files.lock().await.insert(
-            uri.clone(),
+            uri.to_string(),
             FullTextDocument::new(uri, language_id, version as i64, text),
         );
     }
@@ -121,7 +122,12 @@ impl LanguageServer for UnflowServer {
             content_changes,
             text_document,
         } = params;
-        if let Some(document) = self.files.lock().await.get_mut(&text_document.uri) {
+        if let Some(document) = self
+            .files
+            .lock()
+            .await
+            .get_mut(&text_document.uri.to_string())
+        {
             let changes = content_changes
                 .into_iter()
                 .map(|change| {
@@ -149,15 +155,27 @@ impl LanguageServer for UnflowServer {
     }
 
     async fn did_save(&self, params: DidSaveTextDocumentParams) {
-        if let Some(document) = self.files.lock().await.get(&params.text_document.uri) {
+        if let Some(document) = self
+            .files
+            .lock()
+            .await
+            .get(&params.text_document.uri.to_string())
+        {
+            let content = document.rope.to_string();
+            let unflow_result = parse(&content);
             // 从这里直接拿到编辑uri 对应的text string, 可以做一些具体的parsing,目前只是输出到 client 端的console
-            self.client.log_message(MessageType::Info, format!("{}", document.rope.to_string())).await;
-        }
+            let result = if let Ok(result) = serde_json::to_string(&unflow_result) {
+                result
+            } else {
+                "error".to_string()
+            };
+            self.client.log_message(MessageType::Info, result).await;
+        };
     }
 
     async fn did_close(&self, params: DidCloseTextDocumentParams) {
         let uri = params.text_document.uri;
-        self.files.lock().await.remove(&uri);
+        self.files.lock().await.remove(&uri.to_string());
     }
 
     async fn completion(&self, _: CompletionParams) -> Result<Option<CompletionResponse>> {
