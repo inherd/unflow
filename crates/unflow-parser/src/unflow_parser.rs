@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::ops::Deref;
 use std::rc::Rc;
 
-use antlr_rust::{DefaultErrorStrategy, InputStream};
+use antlr_rust::{InputStream};
 use antlr_rust::common_token_stream::CommonTokenStream;
 use antlr_rust::parser_rule_context::BaseParserRuleContext;
 use antlr_rust::token_factory::ArenaCommonFactory;
@@ -70,7 +70,6 @@ pub fn str_to_flow<'input>(data: &str) -> Unflow {
     let lexer = DesignLexer::new_with_token_factory(InputStream::new(data.into()), &tf);
     let token_source = CommonTokenStream::new(lexer);
     let mut parser = DesignParser::new(token_source);
-    parser.err_handler = DefaultErrorStrategy::default();
     let result = parser.start().expect("parsed unsuccessfully");
 
     let mut unflow = UnflowParser {
@@ -87,10 +86,17 @@ impl<'i> ParseTreeVisitor<'i, DesignParserContextType> for UnflowParser<'i> {}
 
 impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
     fn visit_config_decl(&mut self, ctx: &Config_declContext<'i>) {
-        self.flow.config.insert(
-            ctx.config_key().unwrap().get_text(),
-            ctx.config_value().unwrap().get_text(),
-        );
+        let mut config_key = "".to_string();
+        if let Some(key) = ctx.config_key() {
+            config_key = key.get_text();
+        }
+
+        let mut config_value = "".to_string();
+        if let Some(value) = ctx.config_value() {
+            config_value = value.get_text();
+        }
+
+        self.flow.config.insert(config_key, config_value);
     }
 
     fn visit_flow_decl(&mut self, ctx: &Flow_declContext<'i>) {
@@ -158,10 +164,17 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
         for decl in &decls {
             match decl.deref() {
                 Component_body_declContextAll::Component_body_configContext(sub_ctx) => {
-                    let key = sub_ctx.config_key().unwrap().get_text();
-                    let value = sub_ctx.config_value().unwrap().get_text();
+                    let mut config_key = "".to_string();
+                    if let Some(key) = sub_ctx.config_key() {
+                        config_key = key.get_text();
+                    }
 
-                    component.configs.insert(key, value);
+                    let mut config_value = "".to_string();
+                    if let Some(value) = sub_ctx.config_value() {
+                        config_value = value.get_text();
+                    }
+
+                    component.configs.insert(config_key, config_value);
                 }
                 Component_body_declContextAll::Component_body_nameContext(sub_ctx) => {
                     let names: Vec<Rc<Component_nameContextAll<'i>>> = sub_ctx.component_name_all();
