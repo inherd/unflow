@@ -226,7 +226,7 @@ component BlogList {
 *
 */
 "#;
-        let result = parse(data);
+        let _result = parse(data);
         assert!(true)
     }
 }

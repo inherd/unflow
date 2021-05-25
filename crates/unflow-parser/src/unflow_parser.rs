@@ -104,34 +104,30 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
             let child = decl.get_child(0).unwrap();
             let type_name = format!("{:?}", child);
 
-            match type_name.as_str() {
-                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::See_declContextExt>" => {
-                    let see_decl = decl.see_decl().unwrap() as Rc<See_declContext<'i>>;
-                    current_interaction.ui_see = <UnflowParser<'i>>::build_see_interaction(&see_decl);
-                }
-                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::Do_declContextExt>" => {
-                    let do_decl = decl.do_decl().unwrap() as Rc<Do_declContext<'i>>;
-                    current_interaction.ui_do = <UnflowParser<'i>>::build_do_interaction(&do_decl);
-                }
-                "antlr_rust::parser_rule_context::BaseParserRuleContext<unflow::grammar::designparser::React_declContextExt>" => {
-                    let react_decl = decl.react_decl().unwrap() as Rc<React_declContext<'i>>;
-                    let interaction = <UnflowParser<'i>>::build_react_interaction(&react_decl);
-                    current_interaction.ui_react.push(interaction);
+            let context_str = type_name.as_str();
+            if context_str.contains("See_declContextExt") {
+                let see_decl = decl.see_decl().unwrap() as Rc<See_declContext<'i>>;
+                current_interaction.ui_see = <UnflowParser<'i>>::build_see_interaction(&see_decl);
+            } else if context_str.contains("Do_declContextExt") {
+                let do_decl = decl.do_decl().unwrap() as Rc<Do_declContext<'i>>;
+                current_interaction.ui_do = <UnflowParser<'i>>::build_do_interaction(&do_decl);
+            } else if context_str.contains("React_declContextExt") {
+                let react_decl = decl.react_decl().unwrap() as Rc<React_declContext<'i>>;
+                let interaction = <UnflowParser<'i>>::build_react_interaction(&react_decl);
+                current_interaction.ui_react.push(interaction);
 
-                    let mut has_next_see = false;
-                    if let Some(decl) = &decls.get(index + 1) {
-                        let next_name = format!("{:?}", decl.get_child(0).unwrap());
-                        if next_name.as_str().contains("See_declContextExt") {
-                            has_next_see = true;
-                        }
-                    }
-
-                    if has_next_see {
-                        flow.interactions.push(current_interaction);
-                        current_interaction = UiInteraction::default();
+                let mut has_next_see = false;
+                if let Some(decl) = &decls.get(index + 1) {
+                    let next_name = format!("{:?}", decl.get_child(0).unwrap());
+                    if next_name.as_str().contains("See_declContextExt") {
+                        has_next_see = true;
                     }
                 }
-                _ => {}
+
+                if has_next_see {
+                    flow.interactions.push(current_interaction);
+                    current_interaction = UiInteraction::default();
+                }
             }
             index = index + 1;
         }
