@@ -1,4 +1,4 @@
-// Generated from src/grammar/Design.g4 by ANTLR 4.8
+// Generated from crates/unflow-parser/src/grammar/Design.g4 by ANTLR 4.8
 #![allow(dead_code)]
 #![allow(nonstandard_style)]
 #![allow(unused_imports)]
