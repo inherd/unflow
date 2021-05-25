@@ -49,6 +49,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cdb031dd78e28731d87d56cc8ffef4a8f36ca26c38fe2de700543e627f8a464a"
 
 [[package]]
+name = "base64"
+version = "0.12.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3441f0f7b02788e948e47f457ca01f1d7e6d92c693bc132c22b087d3141c03ff"
+
+[[package]]
 name = "better_any"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -302,6 +308,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "lsp-text-document"
+version = "0.1.0"
+source = "git+https://github.com/IWANABETHATGUY/lsp-text-document#4f12dec9392bbccf976e34d3026a3fb17d1fae70"
+dependencies = [
+ "lsp-types 0.84.0",
+ "ropey",
+]
+
+[[package]]
+name = "lsp-types"
+version = "0.84.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3b95be71fe205e44de754185bcf86447b65813ce1ceb298f8d3793ade5fff08d"
+dependencies = [
+ "base64",
+ "bitflags",
+ "serde",
+ "serde_json",
+ "serde_repr",
+ "url",
+]
+
+[[package]]
 name = "lsp-types"
 version = "0.89.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -476,6 +505,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "ropey"
+version = "1.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f0f3ef16589fdbb3e8fbce3dca944c08e61f39c7f16064b21a257d68ea911a83"
+dependencies = [
+ "smallvec",
+]
+
+[[package]]
 name = "ryu"
 version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -621,7 +659,7 @@ dependencies = [
  "dashmap",
  "futures",
  "log",
- "lsp-types",
+ "lsp-types 0.89.1",
  "nom",
  "serde",
  "serde_json",
@@ -659,6 +697,8 @@ checksum = "0685c84d5d54d1c26f7d3eb96cd41550adb97baed141a761cf335d3d33bcd0ae"
 name = "unflow-language-server"
 version = "0.1.1"
 dependencies = [
+ "lsp-text-document",
+ "lsp-types 0.84.0",
  "serde",
  "serde_json",
  "tokio",
