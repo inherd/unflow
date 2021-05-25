@@ -1,10 +1,12 @@
 #![feature(try_blocks)]
+#![feature(in_band_lifetimes)]
 
 pub use grammar::*;
 pub use ui_interaction::*;
 pub use ui_layout::*;
 pub use ui_library::*;
-use crate::unflow_parser::{Unflow, str_to_flow};
+
+use crate::unflow_parser::{str_to_flow, Unflow};
 
 pub mod grammar;
 
@@ -225,6 +227,14 @@ component BlogList {
 /* comments 2
 *
 */
+"#;
+        let _result = parse(data);
+        assert!(true)
+    }
+
+    #[test]
+    fn should_capture_error() {
+        let data = r#" flow { }
 "#;
         let _result = parse(data);
         assert!(true)

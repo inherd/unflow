@@ -2,14 +2,14 @@ use std::collections::HashMap;
 use std::ops::Deref;
 use std::rc::Rc;
 
+use antlr_rust::{DefaultErrorStrategy, InputStream};
 use antlr_rust::common_token_stream::CommonTokenStream;
-use antlr_rust::InputStream;
 use antlr_rust::parser_rule_context::BaseParserRuleContext;
 use antlr_rust::token_factory::ArenaCommonFactory;
 use antlr_rust::tree::{ParseTree, ParseTreeVisitor, Tree, Visitable};
 use serde::{Deserialize, Serialize};
 
-use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Component_use_declContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flex_childContextAll, FlexCell, FlexChild, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Key_valueContextAll, Layout_declContext, Library_declContext, Library_expContextAll, PresetCall, React_actionContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, UiLibraryPreset, Component_parameterContextAll};
+use crate::{Component_body_declContextAll, Component_declContext, Component_nameContextAll, Component_parameterContextAll, Component_use_declContextAll, Config_declContext, DesignLexer, DesignParser, DesignParserContextType, DesignVisitor, Do_declContext, Do_declContextExt, Flex_childContextAll, FlexCell, FlexChild, Flow_declContext, Goto_actionContext, Interaction_declContextAll, Key_valueContextAll, Layout_declContext, Library_declContext, Library_expContextAll, PresetCall, React_actionContextAll, React_declContext, React_declContextExt, See_declContext, See_declContextExt, Show_actionContext, UiLayout, UiLibraryPreset};
 use crate::{
     Animate_declContextAttrs,
     Component_body_configContextAttrs,
@@ -70,6 +70,7 @@ pub fn str_to_flow<'input>(data: &str) -> Unflow {
     let lexer = DesignLexer::new_with_token_factory(InputStream::new(data.into()), &tf);
     let token_source = CommonTokenStream::new(lexer);
     let mut parser = DesignParser::new(token_source);
+    parser.err_handler = DefaultErrorStrategy::default();
     let result = parser.start().expect("parsed unsuccessfully");
 
     let mut unflow = UnflowParser {
@@ -93,7 +94,18 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
     }
 
     fn visit_flow_decl(&mut self, ctx: &Flow_declContext<'i>) {
-        let flow_name = ctx.IDENTIFIER().unwrap().get_text();
+        #[allow(unused_assignments)]
+        let mut flow_name = "".to_string();
+
+        match ctx.IDENTIFIER() {
+            None => {
+                return;
+            }
+            Some(name) => {
+                flow_name = name.get_text()
+            }
+        }
+
         let mut flow = UiFlow::new(flow_name);
 
         let decls: Vec<Rc<Interaction_declContextAll<'i>>> = ctx.interaction_decl_all();
