@@ -157,7 +157,12 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
 
     fn visit_component_decl(&mut self, ctx: &Component_declContext<'i>) {
         let mut component = Component::default();
-        let component_name = ctx.IDENTIFIER().unwrap().get_text();
+
+        let mut component_name = "".to_string();
+        if let Some(node) = ctx.IDENTIFIER() {
+            component_name = node.get_text();
+        }
+
         component.name = component_name;
 
         let decls: Vec<Rc<Component_body_declContextAll<'i>>> = ctx.component_body_decl_all();
@@ -234,20 +239,40 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
             let mut preset = UiLibraryPreset::default();
             match exp.deref() {
                 Library_expContextAll::Library_objectContext(lib_ctx) => {
-                    preset.key = lib_ctx.preset_key().unwrap().get_text();
+                    let mut preset_key = "".to_string();
+                    if let Some(node) = lib_ctx.preset_key() {
+                        preset_key = node.get_text();
+                    }
+                    preset.key = preset_key;
+
                     let key_values: Vec<Rc<Key_valueContextAll<'i>>> = lib_ctx.key_value_all();
 
                     for obj in key_values {
                         let mut preset_call = PresetCall::default();
 
-                        preset_call.name = obj.preset_key().unwrap().get_text();
-                        preset_call.preset = remove_quote(obj.preset_value().unwrap().get_text());
+                        let mut preset_key = "".to_string();
+                        if let Some(node) = obj.preset_key() {
+                            preset_key = node.get_text();
+                        }
+
+                        let mut preset_value = "".to_string();
+                        if let Some(node) = obj.preset_value() {
+                            preset_value = node.get_text();
+                        }
+
+                        preset_call.name = preset_key;
+                        preset_call.preset = remove_quote(preset_value);
 
                         preset.preset_calls.push(preset_call);
                     }
                 }
                 Library_expContextAll::Library_configContext(con_ctx) => {
-                    preset.key = con_ctx.preset_key().unwrap().get_text();
+                    let mut preset_key = "".to_string();
+                    if let Some(node) = con_ctx.preset_key() {
+                        preset_key = node.get_text();
+                    }
+
+                    preset.key = preset_key;
                     if let Some(value) = con_ctx.preset_value() {
                         preset.value = value.get_text();
                     }
@@ -323,7 +348,9 @@ impl<'i> UnflowParser<'i> {
         if let Some(animate) = decl.animate_decl() {
             let type_name = format!("{:?}", animate);
             if type_name.as_str().contains("Animate_declContextExt") {
-                animate_name = animate.animate_name().unwrap().get_text();
+                if let Some(node) = animate.animate_name() {
+                    animate_name = node.get_text();
+                }
             }
         }
 
@@ -337,19 +364,28 @@ impl<'i> UnflowParser<'i> {
 
             if type_name.as_str().contains("Show_actionContextExt") {
                 let show = action.show_action().unwrap() as Rc<Show_actionContext<'c>>;
-                let text: String = show.STRING_LITERAL().unwrap().get_text();
+                let mut text = "\"\"".to_string();
+                if let Some(node) = show.STRING_LITERAL() {
+                    text = node.get_text();
+                }
+
                 let without_quote: &str = &text[1..text.len() - 1];
 
                 react_action = "SHOW".to_string();
                 react_component_data = without_quote.to_string();
 
-                react_component_name = show.component_name().unwrap().get_text();
+                if let Some(node) = show.component_name() {
+                    react_component_name = node.get_text();
+                }
             }
 
             if type_name.as_str().contains("Goto_actionContextExt") {
                 let goto = action.goto_action().unwrap() as Rc<Goto_actionContext<'c>>;
                 react_action = "GOTO".to_string();
-                react_component_name = goto.component_name().unwrap().get_text();
+
+                if let Some(node) = goto.component_name() {
+                    react_component_name = node.get_text();
+                }
             }
         }
 
@@ -368,7 +404,12 @@ impl<'i> UnflowParser<'i> {
         let mut cell = FlexCell::default();
         match component.deref() {
             Component_use_declContextAll::Component_use_name_valueContext(sub_ctx) => {
-                cell.component_name = sub_ctx.component_name().unwrap().get_text();
+                let mut component_name = "".to_string();
+                if let Some(node) = sub_ctx.component_name() {
+                    component_name = node.get_text();
+                }
+
+                cell.component_name = component_name;
                 let params: Vec<Rc<Component_parameterContextAll>> = sub_ctx.component_parameter_all();
                 for param in params {
                     cell.parameters.push(param.get_text());
@@ -376,15 +417,30 @@ impl<'i> UnflowParser<'i> {
             }
             Component_use_declContextAll::Component_use_decimalContext(sub_ctx) => {
                 cell.normal_info = "value".to_string();
-                cell.component_name = remove_quote(sub_ctx.DECIMAL_LITERAL().unwrap().get_text());
+                let mut decimal_literal = "\"\"".to_string();
+                if let Some(node) = sub_ctx.DECIMAL_LITERAL() {
+                    decimal_literal = node.get_text();
+                }
+
+                cell.component_name = remove_quote(decimal_literal);
             }
             Component_use_declContextAll::Component_use_stringContext(sub_ctx) => {
                 cell.normal_info = "value".to_string();
-                cell.component_name = remove_quote(sub_ctx.STRING_LITERAL().unwrap().get_text());
+                let mut string_literal = "\"\"".to_string();
+                if let Some(node) = sub_ctx.STRING_LITERAL() {
+                    string_literal = node.get_text();
+                }
+
+                cell.component_name = remove_quote(string_literal);
             }
             Component_use_declContextAll::Component_use_positionContext(sub_ctx) => {
                 cell.normal_info = "value".to_string();
-                cell.component_name = remove_quote(sub_ctx.POSITION().unwrap().get_text());
+                let mut position = "\"\"".to_string();
+                if let Some(node) = sub_ctx.POSITION() {
+                    position = node.get_text();
+                }
+
+                cell.component_name = remove_quote(position);
             }
             Component_use_declContextAll::Error(_) => {}
         }
