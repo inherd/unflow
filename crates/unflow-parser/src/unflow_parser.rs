@@ -377,7 +377,8 @@ impl<'i> UnflowParser<'i> {
                 None => return ReactInteraction::default(),
             };
 
-            let type_name = format!("{:?}", sub_action).as_str();
+            let string = format!("{:?}", sub_action);
+            let type_name = string.as_str();
 
             if type_name.contains("Show_actionContextExt") {
                 let show = action.show_action().unwrap() as Rc<Show_actionContext<'c>>;
