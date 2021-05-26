@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::ops::Deref;
 use std::rc::Rc;
 
-use antlr_rust::{InputStream};
+use antlr_rust::InputStream;
 use antlr_rust::common_token_stream::CommonTokenStream;
 use antlr_rust::parser_rule_context::BaseParserRuleContext;
 use antlr_rust::token_factory::ArenaCommonFactory;
@@ -372,10 +372,14 @@ impl<'i> UnflowParser<'i> {
         let mut react_component_name = "".to_string();
         if let Some(act) = &decl.react_action() {
             let action: &Rc<React_actionContextAll<'c>> = act;
-            let sub_action = action.get_child(0).unwrap();
-            let type_name = format!("{:?}", sub_action);
+            let sub_action = match action.get_child(0) {
+                Some(x) => x,
+                None => return ReactInteraction::default(),
+            };
 
-            if type_name.as_str().contains("Show_actionContextExt") {
+            let type_name = format!("{:?}", sub_action).as_str();
+
+            if type_name.contains("Show_actionContextExt") {
                 let show = action.show_action().unwrap() as Rc<Show_actionContext<'c>>;
                 let mut text = "\"\"".to_string();
                 if let Some(node) = show.STRING_LITERAL() {
@@ -390,9 +394,7 @@ impl<'i> UnflowParser<'i> {
                 if let Some(node) = show.component_name() {
                     react_component_name = node.get_text();
                 }
-            }
-
-            if type_name.as_str().contains("Goto_actionContextExt") {
+            } else if type_name.contains("Goto_actionContextExt") {
                 let goto = action.goto_action().unwrap() as Rc<Goto_actionContext<'c>>;
                 react_action = "GOTO".to_string();
 

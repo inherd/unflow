@@ -59,3 +59,15 @@ pub struct ReactInteraction {
     pub animate_name: String,
     pub react_component_data: String,
 }
+
+impl Default for ReactInteraction {
+    fn default() -> Self {
+        Self {
+            scene_name: "".to_string(),
+            react_action: "".to_string(),
+            react_component_name: "".to_string(),
+            animate_name: "".to_string(),
+            react_component_data: "".to_string()
+        }
+    }
+}
