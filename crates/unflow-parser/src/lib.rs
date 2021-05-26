@@ -1,19 +1,17 @@
 #![feature(try_blocks)]
 #![feature(in_band_lifetimes)]
 
+pub use domain::ui_interaction::*;
+pub use domain::ui_layout::*;
+pub use domain::ui_library::*;
 pub use grammar::*;
-pub use ui_interaction::*;
-pub use ui_layout::*;
-pub use ui_library::*;
 
 use crate::unflow_parser::{str_to_flow, Unflow};
 
 pub mod grammar;
 
 pub mod unflow_parser;
-pub mod ui_layout;
-pub mod ui_library;
-pub mod ui_interaction;
+pub mod domain;
 
 pub fn parse(str: &str) -> Unflow {
     str_to_flow(str)

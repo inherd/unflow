@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 
-use crate::ui_interaction::UiInteraction;
-use crate::ui_layout::UiLayout;
+use crate::domain::ui_interaction::UiInteraction;
+use crate::domain::ui_layout::UiLayout;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct UiLibrary {

@@ -35,8 +35,8 @@ use crate::{
     See_declContextAttrs,
     Show_actionContextAttrs,
 };
-use crate::ui_interaction::{DoInteraction, ReactInteraction, SeeInteraction, UiInteraction};
-use crate::ui_library::{Component, UiFlow, UiLibrary};
+use crate::domain::ui_interaction::{DoInteraction, ReactInteraction, SeeInteraction, UiInteraction};
+use crate::domain::ui_library::{Component, UiFlow, UiLibrary};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Unflow {
