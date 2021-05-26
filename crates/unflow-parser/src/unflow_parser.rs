@@ -308,8 +308,6 @@ impl<'i> UnflowParser<'i> {
             text = node.get_text();
         }
 
-        let without_quote: &str = &text[1..text.len() - 1];
-
         let mut component_name = "".to_string();
         if let Some(node) = do_decl.component_name() {
             component_name = node.get_text();
@@ -322,7 +320,7 @@ impl<'i> UnflowParser<'i> {
 
         let do_inter = DoInteraction {
             component_name,
-            data: without_quote.to_string(),
+            data: remove_quote(text),
             action_name,
         };
         do_inter
