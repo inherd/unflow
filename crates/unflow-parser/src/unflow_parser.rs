@@ -100,16 +100,10 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
     }
 
     fn visit_flow_decl(&mut self, ctx: &Flow_declContext<'i>) {
-        #[allow(unused_assignments)]
-            let mut flow_name = "".to_string();
+        let mut flow_name = "".to_string();
 
-        match ctx.IDENTIFIER() {
-            None => {
-                return;
-            }
-            Some(name) => {
-                flow_name = name.get_text()
-            }
+        if let Some(name) = ctx.IDENTIFIER() {
+            flow_name = name.get_text()
         }
 
         let mut flow = UiFlow::new(flow_name);
@@ -125,7 +119,6 @@ impl<'i> DesignVisitor<'i> for UnflowParser<'i> {
             };
 
             let type_name = format!("{:?}", child);
-
             let context_str = type_name.as_str();
 
             if context_str.contains("See_declContextExt") {
