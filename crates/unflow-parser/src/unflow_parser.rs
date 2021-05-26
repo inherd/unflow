@@ -381,7 +381,11 @@ impl<'i> UnflowParser<'i> {
             let type_name = string.as_str();
 
             if type_name.contains("Show_actionContextExt") {
-                let show = action.show_action().unwrap() as Rc<Show_actionContext<'c>>;
+                let show = match action.show_action() {
+                    Some(x) => x,
+                    None => return ReactInteraction::default(),
+                } as Rc<Show_actionContext<'c>>;
+
                 let mut text = "\"\"".to_string();
                 if let Some(node) = show.STRING_LITERAL() {
                     text = node.get_text();
@@ -396,7 +400,10 @@ impl<'i> UnflowParser<'i> {
                     react_component_name = node.get_text();
                 }
             } else if type_name.contains("Goto_actionContextExt") {
-                let goto = action.goto_action().unwrap() as Rc<Goto_actionContext<'c>>;
+                let goto = match action.goto_action() {
+                    Some(x) => x,
+                    None => return ReactInteraction::default(),
+                } as Rc<Goto_actionContext<'c>>;
                 react_action = "GOTO".to_string();
 
                 if let Some(node) = goto.component_name() {
