@@ -10,6 +10,9 @@ Todos:
 
  - [ ] LSP: https://github.com/silvanshade/lspower/
  - [ ] feat: support for components [props, config, action]
+ - [ ] to sketch spike
+   - [ ] [https://github.com/ant-design/html2sketch](https://github.com/ant-design/html2sketch)
+   - [ ] [https://github.com/airbnb/react-sketchapp](https://github.com/airbnb/react-sketchapp)
 
 ## Flow
 
